@@ -14,6 +14,7 @@
       <el-menu-item class="e-item" index="3">排行</el-menu-item>
       <el-menu-item class="e-item" index="4">搜索</el-menu-item>
     </el-menu>
+    <div>修的换货单号</div>
   </div>
 </template>
 
