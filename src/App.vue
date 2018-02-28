@@ -1,26 +1,21 @@
 <template>
   <div id="app">
     <h3>Chicken Music</h3>
-    <el-menu
-      :default-active="activeIndex2"
-      class="el-menu-demo"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-menu-item class="e-item" index="1">推荐</el-menu-item>
-      <el-menu-item class="e-item" index="2">歌手</el-menu-item>
-      <el-menu-item class="e-item" index="3">排行</el-menu-item>
-      <el-menu-item class="e-item" index="4">搜索</el-menu-item>
-    </el-menu>
-    <div>修的换货单号</div>
-    <div>修改的地方</div>
+    <mt-navbar v-model="selected">
+      <mt-tab-item id="1">推荐</mt-tab-item>
+      <mt-tab-item id="2">歌手</mt-tab-item>
+      <mt-tab-item id="3">排行</mt-tab-item>
+      <mt-tab-item id="4">搜索</mt-tab-item>
+    </mt-navbar>
+
+    <!-- tab-container -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+
 
 export default {
   name: 'App',
@@ -29,7 +24,8 @@ export default {
   },
   data(){
     return {
-      activeIndex2: '1'
+      activeIndex2: '1',
+      selected:'1',
     }
   },
   methods: {
@@ -47,10 +43,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background: #222;
   h3{
+    margin: 0;
+    height: 44px;
+    line-height: 44px;
     text-align: center;
+    color: #ffcd32;
   }
+  mt-navbar{
+  background: #222;
+}
 }
   .el-menu-demo{
     display: flex;
