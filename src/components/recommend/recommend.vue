@@ -32,7 +32,7 @@
     },
     created(){
       this.items= [
-        {url:'',text:'阿nijfsajlfjsaldfj教所带来的萨芬就是代理商到底是谁的'},
+        {url:'',text:'阿nijfsajlfjsaldfj教所带来的萨芬就是代理商到底是谁的 '},
         {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
         {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
         {url:'',text:'阿娇辅导老师fdsfsdjfwejoj教所带来的萨芬就是代理商到底是谁的'},
