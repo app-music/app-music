@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped="" type="text/css">
+<style lang="scss"  type="text/css">
   body{
     background: #222;
   }
@@ -52,7 +52,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   background: #222;
   h3{
@@ -75,5 +74,26 @@ export default {
     }
   }
 }
-
+  .mint-indexsection-index {
+    margin: 0;
+    padding: 10px;
+    background-color: #fafafa;
+    background: #222222;
+  }
+  .mint-indexlist-nav{
+    border-radius: 10px;
+    color: #fafafa;
+    text-align: center;
+    background: rgba(0,0,0,.3);
+    font-family: Helvetica;
+    border: none;
+  }
+  .mint-indexsection-index{
+    /*height: 30px;*/
+    /*line-height: 30px;*/
+    padding-left: 20px;
+    font-size: 12px;
+    color: hsla(0,0%,100%,.5);
+    background: #333;
+  }
 </style>

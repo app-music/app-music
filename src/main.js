@@ -6,12 +6,16 @@ import router from './router'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import '../static/css/global.css'
+import Loading from './core/api-server/index';
 
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 
+
 Vue.use(Mint);
+Vue.use(Loading);
+
 new Vue({
   el: '#app',
   router,

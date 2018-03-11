@@ -12,7 +12,7 @@
     <div class="song-recommend">
       <ul>
         <li v-for="(item, index) in items">
-          <div class="song-img"><img width="50" height="50" src="../../assets/swipe1.jpg" alt=""></div>
+          <div class="song-img"><img width="60" height="60" src="../../assets/recommend/1.jpg" alt=""></div>
           <div class="song-info"><p href="">{{item.text}}</p></div>
         </li>
       </ul>
@@ -49,23 +49,30 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss" scoped="" type="text/css">
+<style  lang="scss"  type="text/css" scoped>
   .block{
 
   }
   .list-title{
-    height: 50px;
-    line-height: 50px;
+
+    height: 65px;
+    line-height: 65px;
     text-align: center;
-    display:inline-block;
+    font-size: 14px;
     color: #ffcd32;
   }
   .song-recommend{
     ul{
       li{
         display: flex;
+        box-sizing: border-box;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 0 20px 20px;
         div:nth-of-type(1){
-          flex: 1;
+          flex: 0 0 60px;
+          width: 60px;
+          padding-right: 20px;
         }
         div:nth-of-type(2){
           flex: 5;
