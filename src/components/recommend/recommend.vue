@@ -2,18 +2,20 @@
   <div>
     <div class="block" style="height: 150px">
       <mt-swipe :auto="4000">
-        <mt-swipe-item><img height="100%" width="100%" src="../../assets/swipe1.jpg" alt=""></mt-swipe-item>
-        <mt-swipe-item><img height="100%" width="100%" src="../../assets/swipe2.png" alt=""></mt-swipe-item>
-        <mt-swipe-item><img height="100%" width="100%" src="../../assets/swipe3.jpg" alt=""></mt-swipe-item>
-        <mt-swipe-item><img height="100%" width="100%" src="../../assets/swipe4.jpg" alt=""></mt-swipe-item>
+        <mt-swipe-item v-for=" item in swipes">
+          <img height="100%" width="100%" :src="item.picUrl" alt="">
+        </mt-swipe-item>
       </mt-swipe>
     </div>
     <h5 class="list-title">热门歌单推荐</h5>
     <div class="song-recommend">
       <ul>
         <li v-for="(item, index) in items">
-          <div class="song-img"><img width="60" height="60" src="../../assets/recommend/1.jpg" alt=""></div>
-          <div class="song-info"><p href="">{{item.text}}</p></div>
+          <div class="song-img"><img width="60" height="60" :src="item.imgurl" alt=""></div>
+          <div class="song-info">
+            <p href="">{{item.creator.name}}</p>
+            <p>{{item.dissname}}</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -22,26 +24,45 @@
 </template>
 
 <script>
+  import aaa from '../../core/api-server/recommend'
   export default {
     name: 'recommend',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
-        items:[]
+        items:[],
+        swipes:[]
       }
     },
     created(){
-      this.items= [
-        {url:'',text:'阿nijfsajlfjsaldfj教所带来的萨芬就是代理商到底是谁的 '},
-        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-        {url:'',text:'阿娇辅导老师fdsfsdjfwejoj教所带来的萨芬就是代理商到底是谁的'},
-        {url:'',text:'阿sdfsdkf;akdsf;kdsa;fk老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-      ];
+//      this.items= [
+//        {url:'',text:'阿nijfsajlfjsaldfj教所带来的萨芬就是代理商到底是谁的 '},
+//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
+//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
+//        {url:'',text:'阿娇辅导老师fdsfsdjfwejoj教所带来的萨芬就是代理商到底是谁的'},
+//        {url:'',text:'阿sdfsdkf;akdsf;kdsa;fk老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
+//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
+//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
+//      ];
+      this.getRecommend();
+      this.getCdInfo();
     },
     methods:{
+      getRecommend(){
+        this.$recommendService.getRecommend().then(success=>{
+          console.log(success);
+          this.swipes = success.data.slider;
+        },err=>{
+          throw new Error(err);
+        })
+      },
+      getCdInfo(){
+        this.$recommendService.getCdInfo().then(success=>{
+          console.log(success);
+          this.items =success.data.list;
+        })
+      }
+
 
     }
 
@@ -77,6 +98,13 @@
         div:nth-of-type(2){
           flex: 5;
           text-align: left;
+          p:nth-of-type(1){
+            margin-bottom: 10px;
+            color: #fff;
+          }
+          p:nth-of-type(2){
+            color: hsla(0,0%,100%,.3);
+          }
 
         }
       }

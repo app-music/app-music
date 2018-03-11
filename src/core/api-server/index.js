@@ -1,8 +1,10 @@
 import singerService from './singer';
+import recommendService from './recommend';
 
 
 const servers = {
   singerService,
+  recommendService
 
 };
 
