@@ -23,6 +23,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import './assets/iconfont/iconfont.css'
 
 
 export default {
@@ -95,5 +96,25 @@ export default {
     font-size: 12px;
     color: hsla(0,0%,100%,.5);
     background: #333;
+  }
+
+  .mint-searchbar{
+    flex: 1;
+    margin: 0 5px;
+    line-height: 18px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    outline: 0;
+    z-index: 1;
+    position: static;
+  }
+  .mintui-search:before {
+    content: "\E604";
+  }
+  .mintui-search{
+    display: inline-block;
+    font-size: 22px !important;
+    color: #222;
   }
 </style>
