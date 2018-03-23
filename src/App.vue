@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import './assets/iconfont/iconfont.css'
 
 
