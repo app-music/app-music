@@ -28,7 +28,6 @@ import './assets/iconfont/iconfont.css'
 export default {
   name: 'App',
   components: {
-    HelloWorld
   },
   data(){
     return {

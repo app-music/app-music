@@ -1,11 +1,13 @@
 import singerService from './singer';
 import recommendService from './recommend';
 import searchService from './search';
+import seniorityService from './seniority';
 
 const servers = {
   singerService,
   recommendService,
-  searchService
+  searchService,
+  seniorityService
 };
 
 
