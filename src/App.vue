@@ -18,16 +18,18 @@
 
     <!-- tab-container -->
     <router-view></router-view>
+    <player></player>
   </div>
 </template>
 
 <script>
 import './assets/iconfont/iconfont.css'
-
+import player from './components/player/player'
 
 export default {
   name: 'App',
   components: {
+    player
   },
   data(){
     return {

@@ -67,6 +67,7 @@
             if (data.length > 0) {
               obj = {index: item, childNode: arr};
             }
+
             this.singerData.push(obj)
           })
         });
