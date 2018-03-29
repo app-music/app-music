@@ -12,20 +12,19 @@
     </mt-index-list>
   </div>
 </template>
-<style lang="scss"  type="text/css" scoped>
-  .singer-l{
+<style lang="scss" type="text/scss" scoped>
+  .singer-l {
     align-items: center;
     padding: 20px 0 0 30px;
   }
 
-
-  .singer-name{
+  .singer-name {
     margin-left: 20px;
-    color: hsla(0,0%,100%,.5);
+    color: hsla(0, 0%, 100%, .5);
     font-size: 14px;
   }
 
-  .singerImg{
+  .singerImg {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -33,47 +32,47 @@
 
 </style>
 <script>
-  import { CommonUtil } from '../../core/utils/common-util';
+  import {CommonUtil} from '../../core/utils/common-util';
 
-    export default {
-        data() {
-            return {
-              msg: 'hello vue',
-              singerData: [],
+  export default {
+    data() {
+      return {
+        msg: 'hello vue',
+        singerData: [],
+      }
+    },
+    created() {
+      this.getSingerList();
+    },
+    methods: {
+      getSingerList() {
+        let data, arr = [];
+        let generateBig = CommonUtil.generateBig_1();
+        this.$singerService.getSingerList().then(success => {
+          data = success.data.list;
+          data.forEach((_item, index) => {
+            _item.Fsinger_mid = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${_item.Fsinger_mid}.jpg?max_age=2592000`
+            if (index < 5) {
+              arr.push(_item);
             }
-        },
-      created(){
-        this.getSingerList();
-      },
-      methods:{
-        getSingerList(){
-          let data, arr=[];
-          let generateBig = CommonUtil.generateBig_1();
-          this.$singerService.getSingerList().then(success=>{
-            data = success.data.list;
-            data.forEach((_item,index)=>{
-              _item.Fsinger_mid =`https://y.gtimg.cn/music/photo_new/T001R300x300M000${_item.Fsinger_mid}.jpg?max_age=2592000`
-              if(index<5){
-                arr.push(_item);
+          });
+          this.singerData.push({index: '热', childNode: arr});
+          generateBig.forEach(item => {
+            let arr = data.filter((_item, index) => {
+              if (item === _item.Findex) {
+                return _item
               }
             });
-            this.singerData.push({index:'热',childNode:arr});
-            generateBig.forEach(item=>{
-              let arr= data.filter((_item,index)=>{
-                if(item===_item.Findex){
-                  return _item
-                }
-              });
-              let obj;
-              if(data.length>0){
-                 obj ={index:item,childNode:arr};
-              }
-              this.singerData.push(obj)
-            })
-          });
-          console.log(this.singerData);
-        }
+            let obj;
+            if (data.length > 0) {
+              obj = {index: item, childNode: arr};
+            }
+            this.singerData.push(obj)
+          })
+        });
+        console.log(this.singerData);
       }
-
     }
+
+  }
 </script>

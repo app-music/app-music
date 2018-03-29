@@ -25,41 +25,31 @@
 
 <script>
   import aaa from '../../core/api-server/recommend'
+
   export default {
     name: 'recommend',
-    data () {
+    data() {
       return {
         msg: 'Welcome to Your Vue.js App',
-        items:[],
-        swipes:[]
+        items: [],
+        swipes: []
       }
     },
-    created(){
-//      this.items= [
-//        {url:'',text:'阿nijfsajlfjsaldfj教所带来的萨芬就是代理商到底是谁的 '},
-//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-//        {url:'',text:'阿娇辅导老师fdsfsdjfwejoj教所带来的萨芬就是代理商到底是谁的'},
-//        {url:'',text:'阿sdfsdkf;akdsf;kdsa;fk老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-//        {url:'',text:'阿娇辅导老师极大激发了佛教所带来的萨芬就是代理商到底是谁的'},
-//      ];
+    created() {
       this.getRecommend();
       this.getCdInfo();
     },
-    methods:{
-      getRecommend(){
-        this.$recommendService.getRecommend().then(success=>{
-          console.log(success);
+    methods: {
+      getRecommend() {
+        this.$recommendService.getRecommend().then(success => {
           this.swipes = success.data.slider;
-        },err=>{
+        }, err => {
           throw new Error(err);
         })
       },
-      getCdInfo(){
-        this.$recommendService.getCdInfo().then(success=>{
-          console.log(success);
-          this.items =success.data.list;
+      getCdInfo() {
+        this.$recommendService.getCdInfo().then(success => {
+          this.items = success.data.list;
         })
       }
 
@@ -70,11 +60,12 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style  lang="scss"  type="text/css" scoped>
-  .block{
+<style lang="scss" type="text/scss" scoped>
+  .block {
 
   }
-  .list-title{
+
+  .list-title {
 
     height: 65px;
     line-height: 65px;
@@ -82,28 +73,29 @@
     font-size: 14px;
     color: #ffcd32;
   }
-  .song-recommend{
-    ul{
-      li{
+
+  .song-recommend {
+    ul {
+      li {
         display: flex;
         box-sizing: border-box;
         -ms-flex-align: center;
         align-items: center;
         padding: 0 20px 20px;
-        div:nth-of-type(1){
+        div:nth-of-type(1) {
           flex: 0 0 60px;
           width: 60px;
           padding-right: 20px;
         }
-        div:nth-of-type(2){
+        div:nth-of-type(2) {
           flex: 5;
           text-align: left;
-          p:nth-of-type(1){
+          p:nth-of-type(1) {
             margin-bottom: 10px;
             color: #fff;
           }
-          p:nth-of-type(2){
-            color: hsla(0,0%,100%,.3);
+          p:nth-of-type(2) {
+            color: hsla(0, 0%, 100%, .3);
           }
 
         }

@@ -23,7 +23,7 @@
     </div>
   </div>
 </template>
-<style lang="scss" type="text/css" scoped>
+<style lang="scss" type="text/scss"  scoped>
   .container{
     .search{
         display: flex;
