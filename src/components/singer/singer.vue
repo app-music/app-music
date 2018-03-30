@@ -1,7 +1,7 @@
 <template>
   <div>
     <mt-index-list>
-      <mt-index-section v-for="item in singerData" :index="item.index">
+      <mt-index-section v-for="(item,index) in singerData" :key="index" :index="item.index">
         <template v-for="itemChild in item.childNode">
           <div class="singer-l">
             <img class="singerImg" :src="itemChild.Fsinger_mid" alt="">

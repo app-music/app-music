@@ -2,7 +2,7 @@
   <div>
     <div class="block" style="height: 150px">
       <mt-swipe :auto="4000">
-        <mt-swipe-item v-for=" item in swipes">
+        <mt-swipe-item v-for=" (item,index) in swipes" :key="index">
           <img height="100%" width="100%" :src="item.picUrl" alt="">
         </mt-swipe-item>
       </mt-swipe>
@@ -10,7 +10,7 @@
     <h5 class="list-title">热门歌单推荐</h5>
     <div class="song-recommend">
       <ul>
-        <li v-for="(item, index) in items" @click="goToDetail(item.dissid)">
+        <li v-for="(item, index) in items" :key="index" @click="goToDetail(item.dissid)">
           <div class="song-img"><img width="60" height="60" :src="item.imgurl" alt=""></div>
           <div class="song-info">
             <p href="">{{item.creator.name}}</p>

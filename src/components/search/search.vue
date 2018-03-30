@@ -10,7 +10,7 @@
     <div class="search-hot-key">
       <p>热门搜索</p>
       <ul>
-        <li class="hot-key" v-for="item in hotKey">
+        <li class="hot-key" v-for="(item,index) in hotKey" :key="index">
           {{item.k}}
         </li>
       </ul>

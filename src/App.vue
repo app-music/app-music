@@ -25,6 +25,7 @@
 <script>
 import './assets/iconfont/iconfont.css'
 import player from './components/player/player'
+import './assets/iconfont_2/iconfont.css'
 
 export default {
   name: 'App',
