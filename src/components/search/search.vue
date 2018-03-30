@@ -7,7 +7,6 @@
                placeholder="搜索歌曲、歌名">
       </div>
     </div>
-
     <div class="search-hot-key">
       <p>热门搜索</p>
       <ul>

@@ -13,6 +13,10 @@ export default new Router({
       component: resolve => import('../components/recommend/recommend.vue').then(resolve),
     },
     {
+      path: '/recommend/detail/:id',
+      component: resolve => import('../components/recommend/recommend-detail.vue').then(resolve),
+    },
+    {
       path: '/search',
       component: resolve => import('../components/search/search.vue').then(resolve),
     },

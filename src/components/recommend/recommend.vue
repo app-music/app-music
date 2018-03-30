@@ -10,7 +10,7 @@
     <h5 class="list-title">热门歌单推荐</h5>
     <div class="song-recommend">
       <ul>
-        <li v-for="(item, index) in items">
+        <li v-for="(item, index) in items" @click="goToDetail(item.dissid)">
           <div class="song-img"><img width="60" height="60" :src="item.imgurl" alt=""></div>
           <div class="song-info">
             <p href="">{{item.creator.name}}</p>
@@ -51,6 +51,11 @@
         this.$recommendService.getCdInfo().then(success => {
           this.items = success.data.list;
         })
+      },
+      goToDetail(id){
+        this.$router.push({
+          path:`/recommend/detail/${id}`,
+        })
       }
 
 
@@ -64,7 +69,6 @@
   .block {
 
   }
-
   .list-title {
 
     height: 65px;

@@ -8,7 +8,7 @@
       <mt-tab-item id="2" class="nav-item">
         <router-link class="nav-item-link" to="/singer">歌手</router-link>
       </mt-tab-item>
-      <mt-tab-item id="3"class="nav-item">
+      <mt-tab-item id="3" class="nav-item">
         <router-link class="nav-item-link" to="/seniority">排行</router-link>
       </mt-tab-item>
       <mt-tab-item id="4" class="nav-item">
