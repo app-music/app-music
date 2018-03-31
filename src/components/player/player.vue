@@ -10,7 +10,10 @@
                 <p class="desc">Run From You</p>
             </div>
             <div class="progress-circle" @click ="playMusic()">
-                <div class="play-music"> ▶ </div>
+                <div class="play-music">
+                    <i v-if="paused" class="iconfont icon-bofang"></i>
+                    <i v-if="!paused" class="iconfont icon-zanting3"></i>
+                </div>
             </div>
         </div>
         <audio ref="audio"
@@ -31,6 +34,7 @@
     },
     methods:{
       playMusic(){
+        console.log(this.$refs);
         this.paused = !this.paused;
         this.$refs.audio[this.paused?'pause':'play']()
       }
@@ -86,8 +90,6 @@
             box-sizing: content-box;
             width: 30px;
             height: 30px;
-            border: 2px solid red;
-            border-radius: 16px;
             position: relative;
             margin-right: 20px;
             .play-music{
@@ -96,6 +98,9 @@
                 top: 50%;
                 transform: translate(-50%,-50%);
                 color: red;
+                i{
+                    font-size: 40px;
+                }
             }
         }
     }
