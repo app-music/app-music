@@ -1,15 +1,60 @@
 <template>
-  <p>这里是排行页面</p>
+  <div id="seniority">
+    <ul>
+      <li v-for="(item,index) in listData" class="wrap">
+        <!--{{item.id}}-->
+        <img height="100" :src="item.picUrl" alt="">
+        <ul>
+          <li v-for="(title,index) in item.songList" class="info">
+
+            <span class="title">{{index+1}} {{title.songname}}-{{title.singername}}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style type="text/scss" lang="scss" scoped>
+  #seniority {
 
+  ul {
+
+  li {
+
+    background: #333;
+
+  }
+
+  }
+
+  }
+  .wrap {
+    display: flex;
+    margin: 10px 20px;
+
+  ul {
+    flex: 1;
+    margin-left: 20px;
+  }
+
+  }
+  li {
+    margin-top: 10px;
+  }
+
+  .title {
+    font-size: 12px;
+    color: #828282;
+  }
 </style>
 
 <script>
   export default {
     data() {
-      return {msg: 'hello vue'}
+      return {
+        listData: []
+      }
     },
     created() {
       this.getTopList();
@@ -18,6 +63,7 @@
       getTopList() {
         this.$seniorityService.getTopList().then(success => {
           console.log(success);
+          this.listData = success.data.topList;
         }, failed => {
           console.log(failed);
         })

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
   /**
-   * 获取搜索关键字
+   * 获取topList排行
    * @returns {Promise}
    */
   getTopList(){
@@ -14,3 +14,5 @@ export default {
     })
   }
 }
+
+
