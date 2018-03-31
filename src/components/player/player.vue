@@ -14,16 +14,20 @@
                     <i v-if="paused" class="iconfont icon-bofang"></i>
                     <i v-if="!paused" class="iconfont icon-zanting3"></i>
                 </div>
+                <circle-progress></circle-progress>
             </div>
         </div>
         <audio ref="audio"
-               src="http://dl.stream.qqmusic.qq.com/C400003Gso9L37NJwF.m4a?guid=1642610470&vkey=50696E543587FC0215B115430A56513CF965782A0C4E4F8CCC81C21710D085C052978D3141520AA8778725D3F6DDF605E903F5EB1D1997FE&uin=0&fromtag=38"
+               src="http://dl.stream.qqmusic.qq.com/C400003Gso9L37NJwF.m4a?guid=3493659276&vkey=19B699139988D962C3958E8FEEDFD86B1113DEE8CB00C10DBD980BB90F7F6BBE342D9AD6BDCFB71AC307C4E2C829317B19024F9266BE7C15&uin=0&fromtag=38"
                ></audio>
     </div>
 
 </template>
 
 <script>
+
+  import circleProgress from './circle-progress';
+
   export default {
     name: "player",
     data(){
@@ -32,9 +36,11 @@
       }
 
     },
+    components: {
+      circleProgress,
+    },
     methods:{
       playMusic(){
-        console.log(this.$refs);
         this.paused = !this.paused;
         this.$refs.audio[this.paused?'pause':'play']()
       }
@@ -94,12 +100,12 @@
             margin-right: 20px;
             .play-music{
                 position: absolute;
-                left: 55%;
+                left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%);
                 color: red;
                 i{
-                    font-size: 40px;
+                    font-size: 34px;
                 }
             }
         }
