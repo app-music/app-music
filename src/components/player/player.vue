@@ -6,8 +6,8 @@
                      src="https://y.gtimg.cn/music/photo_new/T002R300x300M000002FeuvF1UpdPa.jpg?max_age=2592000">
             </div>
             <div class="text">
-                <h2 class="name">山下智久</h2>
-                <p class="desc">Run From You</p>
+                <h2 class="name" v-html="getCount.singer[0].name"></h2>
+                <p class="desc" v-html="getCount.name"></p>
             </div>
             <div class="progress-circle" @click ="playMusic()">
                 <div class="play-music">
@@ -17,8 +17,9 @@
                 <circle-progress></circle-progress>
             </div>
         </div>
+        <span v-html="playAll"></span>
         <audio ref="audio"
-               src="http://dl.stream.qqmusic.qq.com/C400003Gso9L37NJwF.m4a?guid=3493659276&vkey=19B699139988D962C3958E8FEEDFD86B1113DEE8CB00C10DBD980BB90F7F6BBE342D9AD6BDCFB71AC307C4E2C829317B19024F9266BE7C15&uin=0&fromtag=38"
+               :src="getCount.url"
                ></audio>
     </div>
 
@@ -27,24 +28,72 @@
 <script>
 
   import circleProgress from './circle-progress';
+  import {mapGetters} from 'vuex'
+  import Song from "../../core/utils/song";
+  import {CommonUtil} from "../../core/utils/common-util";
 
   export default {
     name: "player",
     data(){
       return{
-        paused:true
+        paused:true,
+        count:'',
+        song:{},
+        aa:''
       }
 
     },
     components: {
       circleProgress,
     },
+    created(){
+    },
+    computed:{
+      getCount(){
+        if(this.getCurrentMusic){
+            let songs = this.getCurrentMusic;
+            console.log(this.getCurrentMusic);
+            let index = CommonUtil.getRandomNumBoth(1,songs.length+1);
+            let a =  new Song(this.getCurrentMusic[index]);
+          console.log(a);
+          return a;
+        }else {
+          return new Song({singer:[{}]})
+        }
+      },
+      playAll(){
+        if(this.playAll){
+          this.playMusic();
+          this.aa = this.playAll;
+        }
+        return this.playAll
+      },
+      ...mapGetters([
+        'getCurrentMusic',
+        'playAll'
+      ]),
+    },
+    watch: {
+      aa: {
+        deep: true,
+        handler (val) {
+          // 由于是异步载入，所以只能在状态值的变化时执行渲染操作
+          // 绝不可在mounted中执行render方法
+          console.log(val);
+        }
+      }
+    },
     methods:{
       playMusic(){
         this.paused = !this.paused;
         this.$refs.audio[this.paused?'pause':'play']()
+      },
+      play(){
+        if(this.playAll){
+          this.playMusic()
+        }
       }
-    }
+    },
   }
 </script>
 

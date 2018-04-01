@@ -2,14 +2,15 @@ import singerService from './singer';
 import recommendService from './recommend';
 import searchService from './search';
 import seniorityService from './seniority';
+import songService from './song';
 
 const servers = {
   singerService,
   recommendService,
   searchService,
-  seniorityService
+  seniorityService,
+  songService
 };
-
 
 
 export default {

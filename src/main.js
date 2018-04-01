@@ -7,7 +7,7 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import '../static/css/global.css'
 import Loading from './core/api-server/index';
-
+import store from './core/store';
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
@@ -19,6 +19,7 @@ Vue.use(Loading);
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });

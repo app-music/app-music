@@ -6,9 +6,8 @@
         <h1>{{cdList[0].dissname}}</h1>
         <div class="music-img">
             <img :src="cdList[0].logo" width="100%" height="100%" alt=""/>
-            <div class="play-all">
-
-                <span>
+            <div class="play-all"  @click="clickPlayAll()">
+                <span >
                     <i class="iconfont icon-bofang"></i>
                     随机播放全部
                 </span>
@@ -29,6 +28,10 @@
 </template>
 
 <script>
+  import {isValidMusic} from "../../core/utils/song";
+  import Song from '../../core/utils/song';
+  import {mapActions} from 'vuex'
+
   export default {
     name: "recommend-detail",
     data() {
@@ -45,17 +48,36 @@
     methods: {
       getCdListDetail() {
         this.$recommendService.getCdListDetail(this.id).then(result => {
-          console.log(result);
           this.cdList = result.cdlist;
+          console.log(this.cdList);
+          this.$songService.getSongUrlList(this.cdList[0].songlist).then(result => {
+            console.log(result);
+            let midUrlInfo = result.url_mid.data.midurlinfo;
+            this.cdList[0].songlist.forEach((item, index) => {
+              item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
+            });
+            this.currentMusic(this.cdList[0].songlist);
+          }, failed => {
+            console.log(failed);
+          })
         }, failed => {
 
         })
+      },
+      clickPlayAll() {
+        console.log(111);
+        this.playAll(true);
       },
       goBack() {
         this.$router.push({
           path: '/'
         })
-      }
+      },
+
+      ...mapActions([
+        'currentMusic',
+        'playAll'
+      ])
     }
   }
 </script>
