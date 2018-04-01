@@ -66,7 +66,7 @@
       },
       clickPlayAll() {
         console.log(111);
-        this.playAll(true);
+        this.playAll({isPlay:true});
       },
       goBack() {
         this.$router.push({

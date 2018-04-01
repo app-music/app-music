@@ -17,7 +17,6 @@
                 <circle-progress></circle-progress>
             </div>
         </div>
-        <span v-html="playAll"></span>
         <audio ref="audio"
                :src="getCount.url"
                ></audio>
@@ -47,6 +46,9 @@
       circleProgress,
     },
     created(){
+      setTimeout(e=>{
+        this.aa = 666;
+      },5000)
     },
     computed:{
       getCount(){
@@ -61,12 +63,11 @@
           return new Song({singer:[{}]})
         }
       },
-      playAll(){
+      playAllMusic(){
         if(this.playAll){
-          this.playMusic();
-          this.aa = this.playAll;
+            // this.aa = 666;
         }
-        return this.playAll
+
       },
       ...mapGetters([
         'getCurrentMusic',
@@ -74,12 +75,10 @@
       ]),
     },
     watch: {
-      aa: {
-        deep: true,
-        handler (val) {
-          // 由于是异步载入，所以只能在状态值的变化时执行渲染操作
-          // 绝不可在mounted中执行render方法
-          console.log(val);
+      playAllMusic:{
+        deep:true,
+        handler () {
+          this.playMusic()
         }
       }
     },
