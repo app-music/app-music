@@ -1,68 +1,69 @@
 <template>
-    <div>
-        <div class="circleProgress_wrapper">
-            <div class="wrapper right">
-                <div class="circleProgress rightcircle"></div>
-            </div>
-            <div class="wrapper left">
-                <div class="circleProgress leftcircle"></div>
-            </div>
-        </div>
-    </div>
+  <div id="seniority">
+    <ul>
+      <li v-for="(item,index) in listData" class="wrap">
+        <!--{{item.id}}-->
+        <img height="100" :src="item.picUrl" alt="">
+        <ul>
+          <li v-for="(title,index) in item.songList" class="info">
+
+            <span class="title">{{index+1}} {{title.songname}}-{{title.singername}}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style type="text/scss" lang="scss" scoped>
-    .circleProgress_wrapper{
-        width: 200px;
-        height: 200px;
-        border:1px solid red;
-        position: relative;
-    }
-    .wrapper{
-        width: 100px;
-        height: 200px;
-        position: absolute;
-        top:0;
-        overflow: hidden;
-    }
-    .right{
-        right:0;
-    }
-    .left{
-        left:0;
-    }
-    .circleProgress{
-        width: 160px;
-        height: 160px;
-        border:20px solid transparent;
-        border-radius: 50%;
-        position: absolute;
-        top:0;
-        transform: rotate(45deg);
-    }
-    .rightcircle{
-        border-top:20px solid green;
-        border-right:20px solid green;
-        right:0;
-    }
+  #seniority {
+
+  ul {
+
+  li {
+
+    background: #333;
+
+  }
+
+  }
+
+  }
+  .wrap {
+    display: flex;
+    margin: 10px 20px;
+
+  ul {
+    flex: 1;
+    margin-left: 20px;
+  }
+
+  }
+  li {
+    margin-top: 10px;
+  }
+
+  .title {
+    font-size: 12px;
+    color: #828282;
+  }
 </style>
 
 <script>
-  import circleProgress from '../player/circle-progress'
   export default {
     data() {
-      return {msg: 'hello vue'}
+      return {
+        listData: []
+      }
     },
     created() {
       this.getTopList();
-    },
-    components:{
-      circleProgress
     },
     methods: {
       getTopList() {
         this.$seniorityService.getTopList().then(success => {
           console.log(success);
+          this.listData = success.data.topList;
         }, failed => {
           console.log(failed);
         })
