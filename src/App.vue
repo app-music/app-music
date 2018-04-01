@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style lang="scss"  type="text/css">
+<style lang="scss"  type="text/scss">
   body{
     background: #222;
   }
@@ -79,7 +79,6 @@ export default {
   .mint-indexsection-index {
     margin: 0;
     padding: 10px;
-    background-color: #fafafa;
     background: #222222;
   }
   .mint-indexlist-nav{

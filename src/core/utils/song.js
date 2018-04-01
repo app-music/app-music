@@ -15,7 +15,7 @@ export default class Song {
     this.name = data.songname;
     this.album = data.album;
     this.duration = data.duration;
-    if(data.albummid){
+    if (data.albummid) {
       this.image = `https://y.gtimg.cn/music/photo_new/T002R300x300M000${data.albummid}.jpg?max_age=2592000`;
     }
     this.url = data.songUrl;
@@ -52,8 +52,8 @@ export function createSong(musicData) {
 
 export function isValidMusic(musicData) {
   let arr = [];
-  musicData.forEach(item=>{
-    if(musicData.songid && musicData.albummid && (!musicData.pay || musicData.pay.payalbumprice === 0)){
+  musicData.forEach(item => {
+    if (musicData.songid && musicData.albummid && (!musicData.pay || musicData.pay.payalbumprice === 0)) {
       arr.push(createSong(item))
     }
   })
