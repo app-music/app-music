@@ -3,13 +3,13 @@
         <div class="sing-player">
             <div class="sing-icon">
                 <img width="40" height="40" class=""
-                     src="https://y.gtimg.cn/music/photo_new/T002R300x300M000002FeuvF1UpdPa.jpg?max_age=2592000">
+                     :src="getCount.image">
             </div>
             <div class="text">
                 <h2 class="name" v-html="getCount.singer[0].name"></h2>
                 <p class="desc" v-html="getCount.name"></p>
             </div>
-            <div class="progress-circle" @click ="playMusic()">
+            <div class="progress-circle" @click="playMusic()">
                 <div class="play-music">
                     <i v-if="paused" class="iconfont icon-bofang"></i>
                     <i v-if="!paused" class="iconfont icon-zanting3"></i>
@@ -19,7 +19,7 @@
         </div>
         <audio ref="audio"
                :src="getCount.url"
-               ></audio>
+        ></audio>
     </div>
 
 </template>
@@ -33,39 +33,39 @@
 
   export default {
     name: "player",
-    data(){
-      return{
-        paused:true,
-        count:'',
-        song:{},
-        aa:''
+    data() {
+      return {
+        paused: true,
+        count: '',
+        song: {},
+        aa: ''
       }
 
     },
     components: {
       circleProgress,
     },
-    created(){
-      setTimeout(e=>{
+    created() {
+      setTimeout(e => {
         this.aa = 666;
-      },5000)
+      }, 5000)
     },
-    computed:{
-      getCount(){
-        if(this.getCurrentMusic){
-            let songs = this.getCurrentMusic;
-            console.log(this.getCurrentMusic);
-            let index = CommonUtil.getRandomNumBoth(1,songs.length+1);
-            let a =  new Song(this.getCurrentMusic[index]);
+    computed: {
+      getCount() {
+        if (this.getCurrentMusic) {
+          let songs = this.getCurrentMusic;
+          console.log(this.getCurrentMusic);
+          let index = CommonUtil.getRandomNumBoth(1, songs.length + 1);
+          let a = new Song(this.getCurrentMusic[index]);
           console.log(a);
           return a;
-        }else {
-          return new Song({singer:[{}]})
+        } else {
+          return new Song({singer: [{}]})
         }
       },
-      playAllMusic(){
-        if(this.playAll){
-            // this.aa = 666;
+      playAllMusic() {
+        if (this.playAll) {
+          // this.aa = 666;
         }
 
       },
@@ -75,23 +75,22 @@
       ]),
     },
     watch: {
-      playAllMusic:{
-        deep:true,
-        handler () {
+      playAllMusic: {
+        deep: true,
+        handler() {
+          if(!this.paused){
+            this.$refs.audio.pause();
+          }
           this.playMusic()
         }
       }
     },
-    methods:{
-      playMusic(){
+    methods: {
+      playMusic() {
         this.paused = !this.paused;
-        this.$refs.audio[this.paused?'pause':'play']()
+        this.$refs.audio[this.paused ? 'pause' : 'play']()
       },
-      play(){
-        if(this.playAll){
-          this.playMusic()
-        }
-      }
+
     },
   }
 </script>
@@ -107,14 +106,17 @@
         z-index: 999;
         background: #333;
         display: flex;
-        .sing-icon{
+        .sing-icon {
             s-flex: 0 0 40px;
             flex: 0 0 40px;
             width: 40px;
             height: 40px;
             padding: 0 10px 0 20px;
+            img {
+                border-radius: 50%;
+            }
         }
-        .text{
+        .text {
             display: flex;
             -ms-flex-direction: column;
             flex-direction: column;
@@ -124,7 +126,7 @@
             flex: 1;
             line-height: 20px;
             overflow: hidden;
-            h2{
+            h2 {
                 margin-bottom: 2px;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -132,27 +134,27 @@
                 font-size: 14px;
                 color: #fff;
             }
-            p{
+            p {
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
                 font-size: 12px;
-                color: hsla(0,0%,100%,.3);
+                color: hsla(0, 0%, 100%, .3);
             }
         }
-        .progress-circle{
+        .progress-circle {
             box-sizing: content-box;
             width: 30px;
             height: 30px;
             position: relative;
             margin-right: 20px;
-            .play-music{
+            .play-music {
                 position: absolute;
                 left: 50%;
                 top: 50%;
-                transform: translate(-50%,-50%);
+                transform: translate(-50%, -50%);
                 color: red;
-                i{
+                i {
                     font-size: 34px;
                 }
             }

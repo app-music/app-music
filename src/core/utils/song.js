@@ -6,6 +6,7 @@ import {Base64} from 'js-base64';
 export default class Song {
 
   lyric;
+  image = 'https://y.gtimg.cn/music/photo_new/T002R300x300M0000013N5QP4bIcLc.jpg?max_age=2592000';
 
   constructor(data) {
     this.id = data.songid;
@@ -14,7 +15,9 @@ export default class Song {
     this.name = data.songname;
     this.album = data.album;
     this.duration = data.duration;
-    this.image = data.image;
+    if(data.albummid){
+      this.image = `https://y.gtimg.cn/music/photo_new/T002R300x300M000${data.albummid}.jpg?max_age=2592000`;
+    }
     this.url = data.songUrl;
   }
 
