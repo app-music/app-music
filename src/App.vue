@@ -63,9 +63,18 @@ export default {
     text-align: center;
     color: #ffcd32;
   }
+    .mint-navbar .mint-tab-item.is-selected {
+        border-bottom: none;
+        margin-bottom: -3px;
+    }
   .nav-bar{
     background: #222;
     .nav-item{
+        .router-link-active{
+            border-bottom: 2px solid #26a2ff;
+            color: #26a2ff;
+            margin-bottom: 3px;
+        }
       padding: 0;
       .nav-item-link{
         color: #ffcd32;
