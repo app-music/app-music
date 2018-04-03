@@ -8,10 +8,10 @@
             <div class="music-img" style="border: none">
                 <img v-if="cdList[0].logo" :src="cdList[0].logo" style="border: none" width="100%" height="100%" alt=""/>
                 <div class="play-all" @click="clickPlayAll()">
-                <span>
-                    <i class="iconfont icon-bofang"></i>
-                    随机播放全部
-                </span>
+                    <span>
+                        <i class="iconfont icon-bofang"></i>
+                        随机播放全部
+                    </span>
                 </div>
             </div>
             <div class="filter"></div>
