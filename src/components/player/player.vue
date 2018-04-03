@@ -17,8 +17,7 @@
                 <circle-progress :isPlay="paused" :time="time"></circle-progress>
             </div>
         </div>
-        <audio ref="audio">
-            <source :src="getCount.url" type="audio/mpeg">
+        <audio ref="audio" :src="getCount.url">
         </audio>
     </div>
 
