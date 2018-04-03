@@ -14,12 +14,12 @@
                     <i v-if="paused" class="iconfont icon-bofang"></i>
                     <i v-if="!paused" class="iconfont icon-zanting3"></i>
                 </div>
-                <circle-progress></circle-progress>
+                <circle-progress :isPlay="paused" :time="time"></circle-progress>
             </div>
         </div>
-        <audio ref="audio"
-               :src="getCount.url"
-        ></audio>
+        <audio ref="audio">
+            <source :src="getCount.url" type="audio/mpeg">
+        </audio>
     </div>
 
 </template>
@@ -38,7 +38,8 @@
         paused: true,
         count: '',
         song: {},
-        aa: ''
+        msg: false,
+        time:0,
       }
 
     },
@@ -46,9 +47,6 @@
       circleProgress,
     },
     created() {
-      setTimeout(e => {
-        this.aa = 666;
-      }, 5000)
     },
     computed: {
       getCount() {
@@ -88,7 +86,8 @@
     methods: {
       playMusic() {
         this.paused = !this.paused;
-        this.$refs.audio[this.paused ? 'pause' : 'play']()
+        this.$refs.audio[this.paused ? 'pause' : 'play']();
+        this.time = this.$refs.audio.duration;
       },
 
     },

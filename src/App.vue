@@ -154,4 +154,45 @@
         font-size: 22px !important;
         color: #222;
     }
+    @keyframes circleProgressLoad_right {
+        0% {
+            /*border-top: 2px solid #ED1A1A;*/
+            /*border-right: 2px solid #ED1A1A;*/
+            -webkit-transform: rotate(45deg);
+        }
+        50% {
+            /*border-top: 2px solid blue;*/
+            /*border-right: 2px solid blue;*/
+            /*border-left: 2px solid blue;*/
+            /*border-bottom: 2px solid blue;*/
+            -webkit-transform: rotate(225deg);
+        }
+        100% {
+            /*border-left: 2px solid green;*/
+            /*border-bottom: 2px solid green;*/
+            -webkit-transform: rotate(225deg);
+        }
+    }
+
+    @keyframes circleProgressLoad_left {
+        0% {
+            /*border-bottom: 2px solid #ED1A1A;*/
+            /*border-left: 2px solid #ED1A1A;*/
+            -webkit-transform: rotate(45deg);
+        }
+        50% {
+            /*border-bottom: 2px solid blue;*/
+            /*border-left: 2px solid blue;*/
+            /*border-top: 2px solid blue;*/
+            /*border-right: 2px solid blue;*/
+            -webkit-transform: rotate(45deg);
+        }
+        100% {
+            /*border-top: 2px solid green;*/
+            /*border-right: 2px solid green;*/
+            /*border-bottom: 2px solid green;*/
+            /*border-left: 2px solid green;*/
+            -webkit-transform: rotate(225deg);
+        }
+    }
 </style>
