@@ -1,30 +1,32 @@
 <template>
-    <div class="music-detail">
-        <div class="go-back" @click="goBack()">
-            <i class="iconfont icon-fanhui"></i>
-        </div>
-        <h1>{{cdList[0].dissname}}</h1>
-        <div class="music-img">
-            <img :src="cdList[0].logo" width="100%" height="100%" alt=""/>
-            <div class="play-all"  @click="clickPlayAll()">
-                <span >
+    <transition name="slide-fade">
+        <div ref="aa" class="music-detail">
+            <div class="go-back" @click="goBack()">
+                <i class="iconfont icon-fanhui"></i>
+            </div>
+            <h1>{{cdList[0].dissname}}</h1>
+            <div class="music-img" style="border: none">
+                <img v-if="cdList[0].logo" :src="cdList[0].logo" style="border: none" width="100%" height="100%" alt=""/>
+                <div class="play-all" @click="clickPlayAll()">
+                <span>
                     <i class="iconfont icon-bofang"></i>
                     随机播放全部
                 </span>
+                </div>
+            </div>
+            <div class="filter"></div>
+
+
+            <div class="song-list">
+                <ul>
+                    <li v-for="(item,index) in cdList[0].songlist" :key="index">
+                        <h2>{{item.songname}}</h2>
+                        <p>{{item.singer[0].name}}*{{item.albumname}}</p>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="filter"></div>
-
-
-        <div class="song-list">
-            <ul>
-                <li v-for="(item,index) in cdList[0].songlist" :key="index">
-                    <h2>{{item.songname}}</h2>
-                    <p>{{item.singer[0].name}}*{{item.albumname}}</p>
-                </li>
-            </ul>
-        </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -66,7 +68,7 @@
       },
       clickPlayAll() {
         console.log(111);
-        this.playAll({isPlay:true});
+        this.playAll({isPlay: true});
       },
       goBack() {
         this.$router.push({
@@ -126,9 +128,11 @@
             transform-origin: top;
             background-size: cover;
             img {
+                border: none;
                 position: absolute;
                 top: 0;
                 left: 0;
+                vertical-align:bottom;
             }
         }
         .filter {
@@ -184,5 +188,16 @@
             }
         }
 
+    }
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active for below version 2.1.8 */ {
+        transform: translateX(100%);
+        opacity: 0;
     }
 </style>
