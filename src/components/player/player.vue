@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="sing-player">
-            <div class="sing-icon">
+            <div class="sing-icon" @click="playerDetailShow =!playerDetailShow">
                 <img width="40" height="40" class=""
                      :src="getCount.image">
             </div>
@@ -11,21 +11,22 @@
             </div>
             <div class="progress-circle" @click="playMusic()">
                 <div class="play-music">
-                    <i v-if="paused" class="iconfont icon-bofang"></i>
-                    <i v-if="!paused" class="iconfont icon-zanting3"></i>
+                    <i v-if="paused"  class="iconfont icon-bofang1 first"></i>
+                    <i v-if="!paused" class="iconfont icon-ai07"></i>
                 </div>
                 <circle-progress :isPlay="paused" :time="time"></circle-progress>
             </div>
         </div>
         <audio ref="audio" :src="getCount.url">
         </audio>
+        <player-detail v-if="playerDetailShow" :currentSong="getCount" @playerDetailEvent = "getPlayDetailEvent"></player-detail>
     </div>
-
 </template>
 
 <script>
 
   import circleProgress from './circle-progress';
+  import playerDetail from './player-detail';
   import {mapGetters} from 'vuex'
   import Song from "../../core/utils/song";
   import {CommonUtil} from "../../core/utils/common-util";
@@ -38,12 +39,15 @@
         count: '',
         song: {},
         msg: false,
-        time:0,
+        time: 0,
+        playerDetailShow: false,
+        currentSong:{}
       }
 
     },
     components: {
       circleProgress,
+      playerDetail
     },
     created() {
     },
@@ -75,7 +79,7 @@
       playAllMusic: {
         deep: true,
         handler() {
-          if(!this.paused){
+          if (!this.paused) {
             this.$refs.audio.pause();
           }
           this.playMusic()
@@ -88,6 +92,10 @@
         this.$refs.audio[this.paused ? 'pause' : 'play']();
         this.time = this.$refs.audio.duration;
       },
+      getPlayDetailEvent(evt){
+        this.playerDetailShow = evt.playerDetailShow;
+
+      }
 
     },
   }
@@ -153,7 +161,12 @@
                 transform: translate(-50%, -50%);
                 color: red;
                 i {
-                    font-size: 34px;
+                    font-size: 20px;
+
+                }
+                .first{
+                    display: block;
+                    transform: translateX(2px);
                 }
             }
         }

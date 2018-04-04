@@ -15,8 +15,6 @@
                 </div>
             </div>
             <div class="filter"></div>
-
-
             <div class="song-list">
                 <ul>
                     <li v-for="(item,index) in cdList[0].songlist" :key="index">

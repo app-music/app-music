@@ -31,7 +31,7 @@
     },
     methods: {},
     watch: {
-      isPlay: function (prevous, current) {
+      isPlay: function (previous, current) {
         if (current) {
           this.$refs.rightCircle.style.animationPlayState = 'running';
           this.$refs.rightCircle.style.WebkitAnimation = `circleProgressLoad_right ${this.time}s linear`;
