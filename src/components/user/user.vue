@@ -4,7 +4,6 @@
             <div class="go-back" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui"></i>
             </div>
-
         </div>
     </transition>
 </template>

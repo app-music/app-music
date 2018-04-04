@@ -77,21 +77,21 @@
         width: 26px;
         height: 26px;
         border: 2px solid rgb(232, 232, 12);
-        border-radius: 50%;
+        border-radius: 60%;
         position: absolute;
         top: 0;
         -webkit-transform: rotate(45deg);
     }
 
     .rightcircle {
-        border-top: 2px solid green;
-        border-right: 2px solid green;
+        border-top: 2px solid red;
+        border-right: 2px solid red;
         right: 0;
     }
 
     .leftcircle {
-        border-bottom: 2px solid green;
-        border-left: 2px solid green;
+        border-bottom: 2px solid red;
+        border-left: 2px solid red;
         left: 0;
     }
 
