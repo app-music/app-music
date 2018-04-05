@@ -95,8 +95,7 @@
             background: #222;
             .nav-item {
                 .router-link-active {
-                    border-bottom: 2px solid #26a2ff;
-                    color: #26a2ff;
+                    border-bottom: 2px solid #ffcd32;
                     margin-bottom: 3px;
                 }
                 padding: 0;

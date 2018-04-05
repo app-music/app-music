@@ -1,9 +1,10 @@
 <template>
     <div class="container">
-        <div style="margin: 20px;">
+        <div style="margin:20px;">
             <div class="search">
-                <i class="iconfont icon-search icon-color" style="color: #866363"></i>
-                <input type="text" class="search-input" v-model="value" v-bind:onchange="searchChange()"
+                <i class="iconfont icon-sousuo icon-color" style="color: #866363"></i>
+                <input type="text" class="search-input"
+                       v-model="value" v-bind:onchange="searchChange()"
                        placeholder="搜索歌曲、歌名">
             </div>
         </div>
