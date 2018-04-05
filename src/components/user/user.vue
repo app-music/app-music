@@ -4,6 +4,26 @@
             <div class="go-back" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui"></i>
             </div>
+            <mt-navbar v-model="selected">
+                <mt-tab-item id="1" >我喜欢的</mt-tab-item>
+                <mt-tab-item id="2" >最近听的</mt-tab-item>
+            </mt-navbar>
+            <div id="play">
+                <i class="iconfont icon-suijibofang"></i>
+                <span>随机播放</span>
+            </div>
+
+            <!-- tab-container -->
+            <mt-tab-container v-model="selected" height="120px">
+                <mt-tab-container-item id="1">
+                    <mt-cell v-for="n in 3" :title="'content ' + n" />
+                </mt-tab-container-item>
+                <mt-tab-container-item id="2">
+                    <mt-cell v-for="n in 4" :title="'content ' + n" />
+                </mt-tab-container-item>
+
+            </mt-tab-container>
+            <view-router></view-router>
         </div>
     </transition>
 </template>
@@ -42,6 +62,28 @@
     transform: translateX(100%);
     /*opacity: 0;*/
 }
+    ul{
+        display: flex;
+        color:#fff;
+        li{
+            flex:1;
+        }
+
+    }
+#play{
+    height:30px;
+    width:150px;
+    line-height:30px;
+    text-align: center;
+    color: #999;
+    border:1px solid #999;
+    border-radius:20px;
+    margin:5px auto;
+    i{
+        color: #ffffff;
+        margin-top:-10px;
+    }
+}
 </style>
 
 <script>
@@ -49,8 +91,10 @@
   export default {
     data() {
       return {
+          selected:'1',
         msg: 'hello vue',
-        ok: false
+        ok: false,
+          title:['我喜欢的','最近听的']
       }
     },
     created() {
