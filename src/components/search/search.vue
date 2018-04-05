@@ -59,7 +59,7 @@
     }
   }</script>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" type="text/scss" rel="stylesheet/scss"  scoped>
     .container {
         .search {
             display: flex;

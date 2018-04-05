@@ -65,7 +65,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" type="text/scss" rel="stylesheet/scss"  scoped>
   .block {
 
   }

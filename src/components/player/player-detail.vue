@@ -74,7 +74,7 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss">
+<style scoped type="text/scss"  rel="stylesheet/scss" lang="scss">
     .player-enter-active {
         transition: all .8s ease;
     }

@@ -101,7 +101,7 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss">
+<style scoped type="text/scss"  rel="stylesheet/scss" lang="scss">
     .sing-player {
         position: fixed;
         align-items: center;

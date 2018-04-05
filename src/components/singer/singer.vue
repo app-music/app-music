@@ -12,7 +12,7 @@
     </mt-index-list>
   </div>
 </template>
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" type="text/scss" rel="stylesheet/scss"  scoped>
   .singer-l {
     align-items: center;
     padding: 20px 0 0 30px;

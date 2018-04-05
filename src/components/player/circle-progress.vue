@@ -50,7 +50,7 @@
 
 </script>
 
-<style scoped>
+<style  rel="stylesheet/scss" type="text/css" scoped>
     .circleProgress_wrapper {
         width: 30px;
         height: 30px;

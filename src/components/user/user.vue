@@ -16,23 +16,23 @@
             <!-- tab-container -->
             <mt-tab-container v-model="selected" height="120px">
                 <mt-tab-container-item id="1">
-                    <mt-cell v-for="n in 3" :title="'content ' + n" />
+                    <mt-cell v-for="n in 3" :key="n" :title="'content ' + n" />
                 </mt-tab-container-item>
                 <mt-tab-container-item id="2">
-                    <mt-cell v-for="n in 4" :title="'content ' + n" />
+                    <mt-cell v-for="n in 4" :key="n" :title="'content ' + n" />
                 </mt-tab-container-item>
 
             </mt-tab-container>
-            <view-router></view-router>
+
         </div>
     </transition>
 </template>
 
-<style type="text/scss" lang="scss" scoped>
+<style type="text/scss" lang="scss" rel="stylesheet/scss" scoped>
 .user{
     position: fixed;
     z-index: 100;
-    top: 0;
+    top: -90px;
     left: 0;
     bottom: 0;
     right: 0;

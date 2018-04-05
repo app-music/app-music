@@ -82,11 +82,11 @@
   }
 </script>
 
-<style scoped type="text/scss" lang="scss">
+<style scoped type="text/scss" rel="stylesheet/scss"  lang="scss">
     .music-detail {
         position: fixed;
         z-index: 100;
-        top: 0;
+        top: -90px;
         left: 0;
         bottom: 0;
         right: 0;

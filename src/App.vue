@@ -1,26 +1,28 @@
 <template>
     <div id="app">
-        <header class="header">
+        <div id="head">
+          <header class="header">
             <h3>Chicken Music</h3>
             <span class="user" @click="$router.push({ path: 'user'})">
                 <i class="iconfont icon-yonghu"></i>
             </span>
-        </header>
-        <mt-navbar v-model="selected" class="nav-bar">
+          </header>
+          <mt-navbar v-model="selected" class="nav-bar">
             <mt-tab-item id="1" class="nav-item">
-                <router-link class="nav-item-link" to="/recommend">推荐</router-link>
+              <router-link class="nav-item-link" to="/recommend">推荐</router-link>
             </mt-tab-item>
             <mt-tab-item id="2" class="nav-item">
-                <router-link class="nav-item-link" to="/singer">歌手</router-link>
+              <router-link class="nav-item-link" to="/singer">歌手</router-link>
             </mt-tab-item>
             <mt-tab-item id="3" class="nav-item">
-                <router-link class="nav-item-link" to="/seniority">排行</router-link>
+              <router-link class="nav-item-link" to="/seniority">排行</router-link>
             </mt-tab-item>
             <mt-tab-item id="4" class="nav-item">
-                <router-link class="nav-item-link" to="/search">搜索</router-link>
+              <router-link class="nav-item-link" to="/search">搜索</router-link>
             </mt-tab-item>
-        </mt-navbar>
-        <router-view></router-view>
+          </mt-navbar>
+        </div>
+        <router-view style="margin-bottom:60px;margin-top: 90px;"></router-view>
         <player></player>
     </div>
 </template>
@@ -49,11 +51,19 @@
   }
 </script>
 
-<style lang="scss" type="text/scss">
+<style lang="scss" type="text/scss"  rel="stylesheet/scss" >
     body {
         background: #222;
     }
-
+#head{
+  height:60px;
+  width: 100%;
+  position: fixed;
+  top:0;
+  left:0;
+  background: #222;
+  z-index: 20;
+}
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
