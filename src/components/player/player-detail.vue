@@ -9,6 +9,29 @@
                 {{currentSong.singer[0].name}}
                 <h2>{{currentSong.name}}</h2>
             </h3>
+            <div class="music-img">
+                <div>
+                    <img height="100%" width="100%" :src="currentSong.image" alt=""/>
+                </div>
+                <h2>目前没有获取到歌词</h2>
+            </div>
+            <div class="player-control">
+                <div class="progress">
+                    <mt-progress :value="60">
+                        <div slot="start">0%</div>
+                        <div slot="end">100%</div>
+                    </mt-progress>
+                </div>
+                <div class="player-button">
+                    <span>
+                        <i class="iconfont icon-suijibofang"></i>
+                        <i class="iconfont icon-shangyishou1"></i>
+                        <i class="iconfont icon-bofang"></i>
+                        <i class="iconfont icon-xiayishou"></i>
+                        <i class="iconfont icon-xihuan"></i>
+                    </span>
+                </div>
+            </div>
         </div>
 
     </transition>
@@ -19,24 +42,31 @@
 
   export default {
     name: "player-detail",
-    props:{
-      currentSong:{
+    props: {
+      currentSong: {
         type: Song,
         default: new Song({}),
       }
     },
-    created(){
-      console.log(this.currentSong);
+    data() {
+      return{
+        start:'',
+        end:''
+      }
     },
-    methods:{
-      detailClose(){
-        this.$emit('playerDetailEvent',{playerDetailShow:false})
+    created() {
+      console.log(this.currentSong);
+      console.log(this);
+    },
+    methods: {
+      detailClose() {
+        this.$emit('playerDetailEvent', {playerDetailShow: false})
       }
     },
     watch: {
       currentSong: {
         deep: true,
-        handler(){
+        handler() {
           console.log(111);
         }
       }
@@ -48,14 +78,17 @@
     .player-enter-active {
         transition: all .8s ease;
     }
+
     .player-leave-active {
         transition: all .8s ease;
     }
-    .player-enter,.player-leave-to{
+
+    .player-enter, .player-leave-to {
         transform: translateY(100%);
         opacity: 0;
     }
-    .player{
+
+    .player {
         position: fixed;
         z-index: 100;
         top: 0;
@@ -90,11 +123,50 @@
             font-size: 18px;
             color: #fff;
         }
-        h2{
+        h2 {
             line-height: 20px;
             text-align: center;
             font-size: 14px;
             color: #fff;
+        }
+        .music-img {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 90px;
+            width: 80%;
+            img {
+                border-radius: 50%;
+            }
+            h2 {
+                margin-top: 30px;
+            }
+        }
+        .player-control {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 50px;
+            .progress{
+                margin:0 auto;
+                width: 90%;
+            }
+            .player-button {
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                height: 50px;
+                vertical-align: middle;
+                i {
+                    margin-left: 20px;
+                    font-size: 40px;
+                    color: #ffcd32bd;
+                }
+                i:nth-of-type(3) {
+                    font-size: 50px;
+                    line-height: 50px;
+                }
+            }
         }
     }
 </style>

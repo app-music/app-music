@@ -1,15 +1,15 @@
 <template>
     <div>
-        <div class="sing-player">
+        <div class="sing-player" v-if="!playerDetailShow"  >
             <div class="sing-icon" @click="playerDetailShow =!playerDetailShow">
                 <img width="40" height="40" class=""
                      :src="getCount.image">
             </div>
-            <div class="text">
+            <div class="text" >
                 <h2 class="name" v-html="getCount.singer[0].name"></h2>
                 <p class="desc" v-html="getCount.name"></p>
             </div>
-            <div class="progress-circle" @click="playMusic()">
+            <div class="progress-circle"  @click="playMusic()">
                 <div class="play-music">
                     <i v-if="paused"  class="iconfont icon-bofang1 first"></i>
                     <i v-if="!paused" class="iconfont icon-ai07"></i>
