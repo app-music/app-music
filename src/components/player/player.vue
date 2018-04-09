@@ -1,25 +1,26 @@
 <template>
     <div>
-        <div class="sing-player" v-if="!playerDetailShow"  >
+        <div class="sing-player">
             <div class="sing-icon" @click="playerDetailShow =!playerDetailShow">
                 <img width="40" height="40" class=""
                      :src="getCount.image">
             </div>
-            <div class="text" >
+            <div class="text">
                 <h2 class="name" v-html="getCount.singer[0].name"></h2>
                 <p class="desc" v-html="getCount.name"></p>
             </div>
-            <div class="progress-circle"  @click="playMusic()">
+            <div class="progress-circle" @click="playMusic()">
                 <div class="play-music">
-                    <i v-if="paused"  class="iconfont icon-bofang1 first"></i>
-                    <i v-if="!paused" class="iconfont icon-ai07"></i>
+                    <i :class="playAllMusic"></i>
+                    <!--<i v-if="!paused" class="iconfont icon-ai07"></i>-->
                 </div>
                 <circle-progress :isPlay="paused" :time="time"></circle-progress>
             </div>
         </div>
-        <audio ref="audio" :src="getCount.url">
+        <player-detail v-if="playerDetailShow" :currentSong="getCount"
+                       @playerDetailEvent="getPlayDetailEvent"></player-detail>
+        <audio id="aa" ref="audio" :src="getCount.url">
         </audio>
-        <player-detail v-if="playerDetailShow" :currentSong="getCount" @playerDetailEvent = "getPlayDetailEvent"></player-detail>
     </div>
 </template>
 
@@ -27,9 +28,8 @@
 
   import circleProgress from './circle-progress';
   import playerDetail from './player-detail';
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
   import Song from "../../core/utils/song";
-  import {CommonUtil} from "../../core/utils/common-util";
 
   export default {
     name: "player",
@@ -41,7 +41,7 @@
         msg: false,
         time: 0,
         playerDetailShow: false,
-        currentSong:{}
+        currentSong: {}
       }
 
     },
@@ -50,14 +50,14 @@
       playerDetail
     },
     created() {
+
     },
     computed: {
       getCount() {
         if (this.getCurrentMusic) {
           let songs = this.getCurrentMusic;
-          console.log(this.getCurrentMusic);
-          let index = CommonUtil.getRandomNumBoth(1, songs.length + 1);
-          let a = new Song(this.getCurrentMusic[index]);
+          this.paused = true;
+          let a = new Song(songs[this.currentMusicIndex]);
           console.log(a);
           return a;
         } else {
@@ -65,43 +65,64 @@
         }
       },
       playAllMusic() {
-        if (this.playAll) {
-          // this.aa = 666;
+        if (this.playAll.isPlay) {
+          return 'iconfont icon-ai07 '
+        } else {
+          return 'iconfont icon-bofang1'
         }
 
       },
       ...mapGetters([
+        'currentMusicIndex',
         'getCurrentMusic',
-        'playAll'
+        'playAll',
       ]),
     },
     watch: {
       playAllMusic: {
         deep: true,
         handler() {
-          if (!this.paused) {
-            this.$refs.audio.pause();
-          }
-          this.playMusic()
+          this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
+          // this.time = this.$refs.audio.duration;
+          // this.currentMusicTime(this.time)
+
         }
+      },
+      currentMusicIndex(value) {
+        this.$nextTick(() => {
+          if (value) {
+            setTimeout(e => {
+              this.$refs.audio.play();
+              this.currentMusicTime(this.$refs.audio.duration);
+              this.playIt({isPlay: true});
+              console.log(this.$refs.audio.duration);
+            }, 1000)
+          }
+        })
       }
     },
     methods: {
       playMusic() {
         this.paused = !this.paused;
-        this.$refs.audio[this.paused ? 'pause' : 'play']();
+        this.playIt({isPlay: !this.playAll.isPlay});
+        this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
         this.time = this.$refs.audio.duration;
+        this.currentMusicTime(this.time)
       },
-      getPlayDetailEvent(evt){
+      getPlayDetailEvent(evt) {
         this.playerDetailShow = evt.playerDetailShow;
 
-      }
+      },
+      ...mapActions({
+        playIt: 'playAll',
+        currentMusicTime: 'currentMusicTime'
+      })
 
     },
   }
 </script>
 
-<style scoped type="text/scss"  rel="stylesheet/scss" lang="scss">
+<style scoped type="text/scss" rel="stylesheet/scss" lang="scss">
     .sing-player {
         position: fixed;
         align-items: center;
@@ -164,7 +185,7 @@
                     font-size: 20px;
 
                 }
-                .first{
+                .first {
                     display: block;
                     transform: translateX(2px);
                 }

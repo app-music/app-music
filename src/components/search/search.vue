@@ -52,7 +52,6 @@
       },
       searchChange() {
         // this.$store.commit('COUNT',this.value)
-        this.currentMusic(this.value)
       },
       ...mapActions([
         'currentMusic'

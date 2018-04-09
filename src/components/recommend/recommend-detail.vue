@@ -28,10 +28,8 @@
 </template>
 
 <script>
-  import {isValidMusic} from "../../core/utils/song";
-  import Song from '../../core/utils/song';
+  import {CommonUtil} from "../../core/utils/common-util";
   import {mapActions} from 'vuex'
-
   export default {
     name: "recommend-detail",
     data() {
@@ -56,7 +54,6 @@
             this.cdList[0].songlist.forEach((item, index) => {
               item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
             });
-            this.currentMusic(this.cdList[0].songlist);
           }, failed => {
             console.log(failed);
           })
@@ -65,17 +62,19 @@
         })
       },
       clickPlayAll() {
-        console.log(111);
-        this.playAll({isPlay: true});
+        let index = CommonUtil.getRandomNumBoth(1, this.cdList[0].songlist.length + 1);
+        this.currentMusicIndex(index);
+        // this.playAll({isPlay: true});
+        this.currentMusic(this.cdList[0].songlist);
       },
       goBack() {
         this.$router.push({
           path: '/'
         })
       },
-
       ...mapActions([
         'currentMusic',
+        'currentMusicIndex',
         'playAll'
       ])
     }

@@ -24,11 +24,11 @@
                 </div>
                 <div class="player-button">
                     <span>
-                        <i class="iconfont icon-suijibofang"></i>
-                        <i class="iconfont icon-shangyishou1"></i>
-                        <i class="iconfont icon-bofang"></i>
-                        <i class="iconfont icon-xiayishou"></i>
-                        <i class="iconfont icon-xihuan"></i>
+                        <i @click="" class="iconfont icon-suijibofang"></i>
+                        <i @click="previous()" class="iconfont icon-shangyishou1"></i>
+                        <i @click="play()" :class="playStaus"></i>
+                        <i @click="next()" class="iconfont icon-xiayishou"></i>
+                        <i @click="" class="iconfont icon-xihuan"></i>
                     </span>
                 </div>
             </div>
@@ -39,6 +39,7 @@
 
 <script>
   import Song from "../../core/utils/song";
+  import {mapActions, mapGetters} from 'vuex';
 
   export default {
     name: "player-detail",
@@ -49,10 +50,23 @@
       }
     },
     data() {
-      return{
-        start:'',
-        end:''
+      return {
+        start: '',
+        end: '',
       }
+    },
+    computed: {
+      playStaus(){
+        if(this.playAll.isPlay){
+          return 'iconfont icon-zanting2'
+        }else {
+          return 'iconfont icon-bofang'
+        }
+      },
+      ...mapGetters([
+        'currentMusicIndex',
+        'playAll'
+      ])
     },
     created() {
       console.log(this.currentSong);
@@ -61,7 +75,22 @@
     methods: {
       detailClose() {
         this.$emit('playerDetailEvent', {playerDetailShow: false})
-      }
+      },
+      previous() {
+        this.currentIndex(this.currentMusicIndex - 1);
+        this.playMusic({isPlay: true});
+      },
+      next() {
+        this.currentIndex(this.currentMusicIndex + 1);
+        this.playMusic({isPlay: true});
+      },
+      play() {
+        this.playMusic({isPlay: !this.playAll.isPlay});
+      },
+      ...mapActions({
+        currentIndex: 'currentMusicIndex',
+        playMusic: 'playAll'
+      })
     },
     watch: {
       currentSong: {
@@ -74,7 +103,7 @@
   }
 </script>
 
-<style scoped type="text/scss"  rel="stylesheet/scss" lang="scss">
+<style scoped type="text/scss" rel="stylesheet/scss" lang="scss">
     .player-enter-active {
         transition: all .8s ease;
     }
@@ -90,7 +119,7 @@
 
     .player {
         position: fixed;
-        z-index: 100;
+        z-index: 1000;
         top: 0;
         left: 0;
         bottom: 0;
@@ -147,8 +176,8 @@
             position: absolute;
             left: 0;
             bottom: 50px;
-            .progress{
-                margin:0 auto;
+            .progress {
+                margin: 0 auto;
                 width: 90%;
             }
             .player-button {

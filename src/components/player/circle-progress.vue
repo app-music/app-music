@@ -10,7 +10,7 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
   export default {
     name: "circle-progress",
     props: {
@@ -29,20 +29,26 @@
     created() {
       console.log(this.$refs.rightCirlcle);
     },
+    computed:{
+      ...mapGetters([
+        'currentMusicIndex',
+        'getCurrentMusic',
+        'playAll',
+        'currentMusicTime'
+      ]),
+    },
     methods: {},
     watch: {
-      isPlay: function (previous, current) {
-        if (current) {
+      playAll(value){
+        if (value.isPlay) {
           this.$refs.rightCircle.style.animationPlayState = 'running';
-          this.$refs.rightCircle.style.WebkitAnimation = `circleProgressLoad_right ${this.time}s linear`;
+          this.$refs.rightCircle.style.WebkitAnimation = `circleProgressLoad_right ${this.currentMusicTime}s linear`;
           setTimeout(e => {
-            this.$refs.leftCircle.style.WebkitAnimation = `circleProgressLoad_left ${this.time}s linear`;
-          }, this.time / 2)
-
+            this.$refs.leftCircle.style.WebkitAnimation = `circleProgressLoad_left ${this.currentMusicTime}s linear`;
+          }, this.currentMusicTime / 2)
         } else {
           this.$refs.rightCircle.style.animationPlayState = 'paused'
         }
-
       }
     }
 
