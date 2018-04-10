@@ -17,9 +17,9 @@
             </div>
             <div class="player-control">
                 <div class="progress">
-                    <mt-progress :value="60">
-                        <div slot="start">0%</div>
-                        <div slot="end">100%</div>
+                    <mt-progress :value="currentTime/getCurrentMusicTime*100">
+                        <div slot="start">{{currentTime*1000 | formatDate}}</div>
+                        <div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>
                     </mt-progress>
                 </div>
                 <div class="player-button">
@@ -40,6 +40,7 @@
 <script>
   import Song from "../../core/utils/song";
   import {mapActions, mapGetters} from 'vuex';
+  import {CommonUtil} from '../../core/utils/common-util';
 
   export default {
     name: "player-detail",
@@ -47,6 +48,10 @@
       currentSong: {
         type: Song,
         default: new Song({}),
+      },
+      currentTime:{
+        type: Number,
+        default: 0,
       }
     },
     data() {
@@ -63,9 +68,13 @@
           return 'iconfont icon-bofang'
         }
       },
+      getCurrentMusicTime(){
+        return this.currentMusicTime;
+      },
       ...mapGetters([
         'currentMusicIndex',
-        'playAll'
+        'playAll',
+        'currentMusicTime'
       ])
     },
     created() {
@@ -91,6 +100,13 @@
         currentIndex: 'currentMusicIndex',
         playMusic: 'playAll'
       })
+    },
+    filters:{
+      formatDate(time){
+        let date = new Date(time);
+        return CommonUtil.dateFmt('mm:ss',date);
+        //此处formatDate是一个函数，将其封装在common/js/date.js里面，便于全局使用
+      }
     },
     watch: {
       currentSong: {

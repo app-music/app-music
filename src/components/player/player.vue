@@ -17,9 +17,9 @@
                 <circle-progress :isPlay="paused" :time="time"></circle-progress>
             </div>
         </div>
-        <player-detail v-if="playerDetailShow" :currentSong="getCount"
+        <player-detail v-if="playerDetailShow" :currentSong="getCount" :currentTime="currentTime"
                        @playerDetailEvent="getPlayDetailEvent"></player-detail>
-        <audio id="aa" ref="audio" :src="getCount.url">
+        <audio id="aa" ref="audio" :src="getCount.url" @timeupdate="timeUpdate">
         </audio>
     </div>
 </template>
@@ -41,7 +41,8 @@
         msg: false,
         time: 0,
         playerDetailShow: false,
-        currentSong: {}
+        currentSong: {},
+        currentTime: 0,
       }
 
     },
@@ -85,7 +86,6 @@
           this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
           // this.time = this.$refs.audio.duration;
           // this.currentMusicTime(this.time)
-
         }
       },
       currentMusicIndex(value) {
@@ -112,6 +112,9 @@
       getPlayDetailEvent(evt) {
         this.playerDetailShow = evt.playerDetailShow;
 
+      },
+      timeUpdate(e){
+        this.currentTime =e.target.currentTime;
       },
       ...mapActions({
         playIt: 'playAll',
