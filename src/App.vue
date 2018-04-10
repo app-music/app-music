@@ -1,26 +1,26 @@
 <template>
     <div id="app">
         <div id="head">
-          <header class="header">
-            <h3>Chicken Music</h3>
-            <span class="user" @click="$router.push({ path: 'user'})">
+            <header class="header">
+                <h3>Chicken Music</h3>
+                <span class="user" @click="$router.push({ path: 'user'})">
                 <i class="iconfont icon-yonghu"></i>
             </span>
-          </header>
-          <mt-navbar v-model="selected" class="nav-bar">
-            <mt-tab-item id="1" class="nav-item">
-              <router-link class="nav-item-link" to="/recommend">推荐</router-link>
-            </mt-tab-item>
-            <mt-tab-item id="2" class="nav-item">
-              <router-link class="nav-item-link" to="/singer">歌手</router-link>
-            </mt-tab-item>
-            <mt-tab-item id="3" class="nav-item">
-              <router-link class="nav-item-link" to="/seniority">排行</router-link>
-            </mt-tab-item>
-            <mt-tab-item id="4" class="nav-item">
-              <router-link class="nav-item-link" to="/search">搜索</router-link>
-            </mt-tab-item>
-          </mt-navbar>
+            </header>
+            <mt-navbar v-model="selected" class="nav-bar">
+                <mt-tab-item id="1" class="nav-item">
+                    <router-link class="nav-item-link" to="/recommend">推荐</router-link>
+                </mt-tab-item>
+                <mt-tab-item id="2" class="nav-item">
+                    <router-link class="nav-item-link" to="/singer">歌手</router-link>
+                </mt-tab-item>
+                <mt-tab-item id="3" class="nav-item">
+                    <router-link class="nav-item-link" to="/seniority">排行</router-link>
+                </mt-tab-item>
+                <mt-tab-item id="4" class="nav-item">
+                    <router-link class="nav-item-link" to="/search">搜索</router-link>
+                </mt-tab-item>
+            </mt-navbar>
         </div>
         <router-view style="margin-bottom:60px;margin-top: 90px;"></router-view>
         <player></player>
@@ -51,26 +51,28 @@
   }
 </script>
 
-<style lang="scss" type="text/scss"  rel="stylesheet/scss" >
+<style lang="scss" type="text/scss" rel="stylesheet/scss">
     body {
         background: #222;
     }
-#head{
-  height:60px;
-  width: 100%;
-  position: fixed;
-  top:0;
-  left:0;
-  background: #222;
-  z-index: 20;
-}
+
+    #head {
+        height: 60px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #222;
+        z-index: 20;
+    }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
         background: #222;
-        header{
+        header {
             position: relative;
             h3 {
                 margin: 0;
@@ -79,7 +81,7 @@
                 text-align: center;
                 color: #ffcd32;
             }
-            .user{
+            .user {
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
@@ -107,9 +109,9 @@
                 }
             }
         }
-        .user{
+        .user {
             position: absolute;
-            i{
+            i {
                 display: block;
                 padding: 12px;
                 font-size: 20px;
@@ -163,6 +165,7 @@
         font-size: 22px !important;
         color: #222;
     }
+
     @keyframes circleProgressLoad_right {
         0% {
             /*border-top: 2px solid #ED1A1A;*/
