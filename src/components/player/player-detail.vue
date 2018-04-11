@@ -105,7 +105,6 @@
       formatDate(time){
         let date = new Date(time);
         return CommonUtil.dateFmt('mm:ss',date);
-        //此处formatDate是一个函数，将其封装在common/js/date.js里面，便于全局使用
       }
     },
     watch: {
