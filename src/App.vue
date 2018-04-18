@@ -28,27 +28,27 @@
 </template>
 
 <script>
-  import './assets/iconfont/iconfont.css'
-  import player from './components/player/player'
-  import './assets/iconfont_2/iconfont.css'
+    import './assets/iconfont/iconfont.css'
+    import player from './components/player/player'
+    import './assets/iconfont_2/iconfont.css'
 
-  export default {
-    name: 'App',
-    components: {
-      player
-    },
-    data() {
-      return {
-        activeIndex2: '1',
-        selected: '1',
-      }
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
+    export default {
+        name: 'App',
+        components: {
+            player
+        },
+        data() {
+            return {
+                activeIndex2: '1',
+                selected: '1',
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
     }
-  }
 </script>
 
 <style lang="scss" type="text/scss" rel="stylesheet/scss">

@@ -38,84 +38,84 @@
 </template>
 
 <script>
-  import Song from "../../core/utils/song";
-  import {mapActions, mapGetters} from 'vuex';
-  import {CommonUtil} from '../../core/utils/common-util';
+    import Song from "../../core/utils/song";
+    import {mapActions, mapGetters} from 'vuex';
+    import {CommonUtil} from '../../core/utils/common-util';
 
-  export default {
-    name: "player-detail",
-    props: {
-      currentSong: {
-        type: Song,
-        default: new Song({}),
-      },
-      currentTime:{
-        type: Number,
-        default: 0,
-      }
-    },
-    data() {
-      return {
-        start: '',
-        end: '',
-      }
-    },
-    computed: {
-      playStaus(){
-        if(this.playAll.isPlay){
-          return 'iconfont icon-zanting2'
-        }else {
-          return 'iconfont icon-bofang'
+    export default {
+        name: "player-detail",
+        props: {
+            currentSong: {
+                type: Song,
+                default: new Song({}),
+            },
+            currentTime: {
+                type: Number,
+                default: 0,
+            }
+        },
+        data() {
+            return {
+                start: '',
+                end: '',
+            }
+        },
+        computed: {
+            playStaus() {
+                if (this.playAll.isPlay) {
+                    return 'iconfont icon-zanting2'
+                } else {
+                    return 'iconfont icon-bofang'
+                }
+            },
+            getCurrentMusicTime() {
+                return this.currentMusicTime;
+            },
+            ...mapGetters([
+                'currentMusicIndex',
+                'playAll',
+                'currentMusicTime'
+            ])
+        },
+        created() {
+            console.log(this.currentSong);
+            console.log(this);
+        },
+        methods: {
+            detailClose() {
+                this.$emit('playerDetailEvent', {playerDetailShow: false})
+            },
+            previous() {
+                this.currentIndex(this.currentMusicIndex - 1);
+                this.playMusic({isPlay: true});
+            },
+            next() {
+                this.currentIndex(this.currentMusicIndex + 1);
+                this.playMusic({isPlay: true});
+            },
+            play() {
+                this.playMusic({isPlay: !this.playAll.isPlay});
+            },
+            ...mapActions({
+                currentIndex: 'currentMusicIndex',
+                playMusic: 'playAll'
+            })
+        },
+        filters: {
+            formatDate(time) {
+                let date = new Date(time);
+                return CommonUtil.dateFmt('mm:ss', date);
+            }
+        },
+        watch: {
+            currentSong: {
+                deep: true,
+                handler() {
+                    console.log(111);
+                }
+            }
         }
-      },
-      getCurrentMusicTime(){
-        return this.currentMusicTime;
-      },
-      ...mapGetters([
-        'currentMusicIndex',
-        'playAll',
-        'currentMusicTime'
-      ])
-    },
-    created() {
-      console.log(this.currentSong);
-      console.log(this);
-    },
-    methods: {
-      detailClose() {
-        this.$emit('playerDetailEvent', {playerDetailShow: false})
-      },
-      previous() {
-        this.currentIndex(this.currentMusicIndex - 1);
-        this.playMusic({isPlay: true});
-      },
-      next() {
-        this.currentIndex(this.currentMusicIndex + 1);
-        this.playMusic({isPlay: true});
-      },
-      play() {
-        this.playMusic({isPlay: !this.playAll.isPlay});
-      },
-      ...mapActions({
-        currentIndex: 'currentMusicIndex',
-        playMusic: 'playAll'
-      })
-    },
-    filters:{
-      formatDate(time){
-        let date = new Date(time);
-        return CommonUtil.dateFmt('mm:ss',date);
-      }
-    },
-    watch: {
-      currentSong: {
-        deep: true,
-        handler() {
-          console.log(111);
-        }
-      }
     }
-  }
 </script>
 
 <style scoped type="text/scss" rel="stylesheet/scss" lang="scss">

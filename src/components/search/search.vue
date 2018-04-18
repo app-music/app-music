@@ -25,41 +25,42 @@
 </template>
 <script>
     import {mapActions} from 'vuex'
-  export default {
-    data() {
-      return {
-        value: '',
-        result: [
-          {title: 'ssss', value: 'ssss'},
-          {title: 'ssss', value: 'ssss'},
-          {title: 'ssss', value: 'ssss'},
-          {title: 'ssss', value: 'ssss'},
-        ],
-        hotKey: []
-      }
-    },
-    created() {
-      this.getSearchKey();
-    },
-    methods: {
-      getSearchKey() {
-        this.$searchService.getSearchKey().then(success => {
-          console.log(success);
-          this.hotKey = success.data.hotkey.slice(0, 10);
-        }, failed => {
-          console.log(failed.msg);
-        })
-      },
-      searchChange() {
-        // this.$store.commit('COUNT',this.value)
-      },
-      ...mapActions([
-        'currentMusic'
-      ])
-    }
-  }</script>
 
-<style lang="scss" type="text/scss" rel="stylesheet/scss"  scoped>
+    export default {
+        data() {
+            return {
+                value: '',
+                result: [
+                    {title: 'ssss', value: 'ssss'},
+                    {title: 'ssss', value: 'ssss'},
+                    {title: 'ssss', value: 'ssss'},
+                    {title: 'ssss', value: 'ssss'},
+                ],
+                hotKey: []
+            }
+        },
+        created() {
+            this.getSearchKey();
+        },
+        methods: {
+            getSearchKey() {
+                this.$searchService.getSearchKey().then(success => {
+                    console.log(success);
+                    this.hotKey = success.data.hotkey.slice(0, 10);
+                }, failed => {
+                    console.log(failed.msg);
+                })
+            },
+            searchChange() {
+                // this.$store.commit('COUNT',this.value)
+            },
+            ...mapActions([
+                'currentMusic'
+            ])
+        }
+    }</script>
+
+<style lang="scss" type="text/scss" rel="stylesheet/scss" scoped>
     .container {
         .search {
             display: flex;

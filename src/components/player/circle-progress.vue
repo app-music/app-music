@@ -10,53 +10,54 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
-  export default {
-    name: "circle-progress",
-    props: {
-      isPlay: {
-        type: Boolean,
-        default: false
-      },
-      time: {
-        type: Number,
-        default: 0
-      }
-    },
-    data() {
-      return {}
-    },
-    created() {
-      console.log(this.$refs.rightCirlcle);
-    },
-    computed:{
-      ...mapGetters([
-        'currentMusicIndex',
-        'getCurrentMusic',
-        'playAll',
-        'currentMusicTime'
-      ]),
-    },
-    methods: {},
-    watch: {
-      playAll(value){
-        if (value.isPlay) {
-          this.$refs.rightCircle.style.animationPlayState = 'running';
-          this.$refs.rightCircle.style.WebkitAnimation = `circleProgressLoad_right ${this.currentMusicTime}s linear`;
-          setTimeout(e => {
-            this.$refs.leftCircle.style.WebkitAnimation = `circleProgressLoad_left ${this.currentMusicTime}s linear`;
-          }, this.currentMusicTime / 2)
-        } else {
-          this.$refs.rightCircle.style.animationPlayState = 'paused'
-        }
-      }
-    }
+    import {mapGetters} from 'vuex'
 
-  }
+    export default {
+        name: "circle-progress",
+        props: {
+            isPlay: {
+                type: Boolean,
+                default: false
+            },
+            time: {
+                type: Number,
+                default: 0
+            }
+        },
+        data() {
+            return {}
+        },
+        created() {
+            console.log(this.$refs.rightCirlcle);
+        },
+        computed: {
+            ...mapGetters([
+                'currentMusicIndex',
+                'getCurrentMusic',
+                'playAll',
+                'currentMusicTime'
+            ]),
+        },
+        methods: {},
+        watch: {
+            playAll(value) {
+                if (value.isPlay) {
+                    this.$refs.rightCircle.style.animationPlayState = 'running';
+                    this.$refs.rightCircle.style.WebkitAnimation = `circleProgressLoad_right ${this.currentMusicTime}s linear`;
+                    setTimeout(e => {
+                        this.$refs.leftCircle.style.WebkitAnimation = `circleProgressLoad_left ${this.currentMusicTime}s linear`;
+                    }, this.currentMusicTime / 2)
+                } else {
+                    this.$refs.rightCircle.style.animationPlayState = 'paused'
+                }
+            }
+        }
+
+    }
 
 </script>
 
-<style  rel="stylesheet/scss" type="text/css" scoped>
+<style rel="stylesheet/scss" type="text/css" scoped>
     .circleProgress_wrapper {
         width: 30px;
         height: 30px;
@@ -92,7 +93,7 @@ import {mapGetters} from 'vuex'
     .rightcircle {
         border-top: 2px solid red;
         border-right: 2px solid red;
-        right: 0;
+        right: 0;¬
     }
 
     .leftcircle {

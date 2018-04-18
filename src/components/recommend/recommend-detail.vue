@@ -6,7 +6,8 @@
             </div>
             <h1>{{cdList[0].dissname}}</h1>
             <div class="music-img" style="border: none">
-                <img v-if="cdList[0].logo" :src="cdList[0].logo" style="border: none" width="100%" height="100%" alt=""/>
+                <img v-if="cdList[0].logo" :src="cdList[0].logo" style="border: none" width="100%" height="100%"
+                     alt=""/>
                 <div class="play-all" @click="clickPlayAll()">
                     <span>
                         <i class="iconfont icon-bofang"></i>
@@ -28,60 +29,61 @@
 </template>
 
 <script>
-  import {CommonUtil} from "../../core/utils/common-util";
-  import {mapActions} from 'vuex'
-  export default {
-    name: "recommend-detail",
-    data() {
-      return {
-        id: '',
-        cdList: [{}]
-      }
-    },
-    comments: {},
-    created() {
-      this.id = this.$route.params.id;
-      this.getCdListDetail();
-    },
-    methods: {
-      getCdListDetail() {
-        this.$recommendService.getCdListDetail(this.id).then(result => {
-          this.cdList = result.cdlist;
-          console.log(this.cdList);
-          this.$songService.getSongUrlList(this.cdList[0].songlist).then(result => {
-            console.log(result);
-            let midUrlInfo = result.url_mid.data.midurlinfo;
-            this.cdList[0].songlist.forEach((item, index) => {
-              item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
-            });
-          }, failed => {
-            console.log(failed);
-          })
-        }, failed => {
+    import {CommonUtil} from "../../core/utils/common-util";
+    import {mapActions} from 'vuex'
 
-        })
-      },
-      clickPlayAll() {
-        let index = CommonUtil.getRandomNumBoth(1, this.cdList[0].songlist.length + 1);
-        this.currentMusicIndex(index);
-        // this.playAll({isPlay: true});
-        this.currentMusic(this.cdList[0].songlist);
-      },
-      goBack() {
-        this.$router.push({
-          path: '/'
-        })
-      },
-      ...mapActions([
-        'currentMusic',
-        'currentMusicIndex',
-        'playAll'
-      ])
+    export default {
+        name: "recommend-detail",
+        data() {
+            return {
+                id: '',
+                cdList: [{}]
+            }
+        },
+        comments: {},
+        created() {
+            this.id = this.$route.params.id;
+            this.getCdListDetail();
+        },
+        methods: {
+            getCdListDetail() {
+                this.$recommendService.getCdListDetail(this.id).then(result => {
+                    this.cdList = result.cdlist;
+                    console.log(this.cdList);
+                    this.$songService.getSongUrlList(this.cdList[0].songlist).then(result => {
+                        console.log(result);
+                        let midUrlInfo = result.url_mid.data.midurlinfo;
+                        this.cdList[0].songlist.forEach((item, index) => {
+                            item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
+                        });
+                    }, failed => {
+                        console.log(failed);
+                    })
+                }, failed => {
+
+                })
+            },
+            clickPlayAll() {
+                let index = CommonUtil.getRandomNumBoth(1, this.cdList[0].songlist.length + 1);
+                this.currentMusicIndex(index);
+                // this.playAll({isPlay: true});
+                this.currentMusic(this.cdList[0].songlist);
+            },
+            goBack() {
+                this.$router.push({
+                    path: '/'
+                })
+            },
+            ...mapActions([
+                'currentMusic',
+                'currentMusicIndex',
+                'playAll'
+            ])
+        }
     }
-  }
 </script>
 
-<style scoped type="text/scss" rel="stylesheet/scss"  lang="scss">
+<style scoped type="text/scss" rel="stylesheet/scss" lang="scss">
     .music-detail {
         position: fixed;
         z-index: 100;
@@ -129,7 +131,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                vertical-align:bottom;
+                vertical-align: bottom;
             }
         }
         .filter {
@@ -186,14 +188,18 @@
         }
 
     }
+
     .slide-fade-enter-active {
         transition: all .3s ease;
     }
+
     .slide-fade-leave-active {
         transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
+
     .slide-fade-enter, .slide-fade-leave-to
-        /* .slide-fade-leave-active for below version 2.1.8 */ {
+        /* .slide-fade-leave-active for below version 2.1.8 */
+    {
         transform: translateX(100%);
         opacity: 0;
     }

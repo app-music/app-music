@@ -26,103 +26,103 @@
 
 <script>
 
-  import circleProgress from './circle-progress';
-  import playerDetail from './player-detail';
-  import {mapGetters, mapActions} from 'vuex'
-  import Song from "../../core/utils/song";
+    import circleProgress from './circle-progress';
+    import playerDetail from './player-detail';
+    import {mapGetters, mapActions} from 'vuex'
+    import Song from "../../core/utils/song";
 
-  export default {
-    name: "player",
-    data() {
-      return {
-        paused: true,
-        count: '',
-        song: {},
-        msg: false,
-        time: 0,
-        playerDetailShow: false,
-        currentSong: {},
-        currentTime: 0,
-      }
+    export default {
+        name: "player",
+        data() {
+            return {
+                paused: true,
+                count: '',
+                song: {},
+                msg: false,
+                time: 0,
+                playerDetailShow: false,
+                currentSong: {},
+                currentTime: 0,
+            }
 
-    },
-    components: {
-      circleProgress,
-      playerDetail
-    },
-    created() {
+        },
+        components: {
+            circleProgress,
+            playerDetail
+        },
+        created() {
 
-    },
-    computed: {
-      getCount() {
-        if (this.getCurrentMusic) {
-          let songs = this.getCurrentMusic;
-          this.paused = true;
-          let a = new Song(songs[this.currentMusicIndex]);
-          console.log(a);
-          return a;
-        } else {
-          return new Song({singer: [{}]})
-        }
-      },
-      playAllMusic() {
-        if (this.playAll.isPlay) {
-          return 'iconfont icon-ai07 '
-        } else {
-          return 'iconfont icon-bofang1'
-        }
+        },
+        computed: {
+            getCount() {
+                if (this.getCurrentMusic) {
+                    let songs = this.getCurrentMusic;
+                    this.paused = true;
+                    let a = new Song(songs[this.currentMusicIndex]);
+                    console.log(a);
+                    return a;
+                } else {
+                    return new Song({singer: [{}]})
+                }
+            },
+            playAllMusic() {
+                if (this.playAll.isPlay) {
+                    return 'iconfont icon-ai07 '
+                } else {
+                    return 'iconfont icon-bofang1'
+                }
 
-      },
-      ...mapGetters([
-        'currentMusicIndex',
-        'getCurrentMusic',
-        'playAll',
-      ]),
-    },
-    watch: {
-      playAllMusic: {
-        deep: true,
-        handler() {
-          this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
-          // this.time = this.$refs.audio.duration;
-          // this.currentMusicTime(this.time)
-        }
-      },
-      currentMusicIndex(value) {
-        this.$nextTick(() => {
-          if (value) {
-            setTimeout(e => {
-              this.$refs.audio.play();
-              this.currentMusicTime(this.$refs.audio.duration);
-              this.playIt({isPlay: true});
-              console.log(this.$refs.audio.duration);
-            }, 1000)
-          }
-        })
-      }
-    },
-    methods: {
-      playMusic() {
-        this.paused = !this.paused;
-        this.playIt({isPlay: !this.playAll.isPlay});
-        this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
-        this.time = this.$refs.audio.duration;
-        this.currentMusicTime(this.time)
-      },
-      getPlayDetailEvent(evt) {
-        this.playerDetailShow = evt.playerDetailShow;
+            },
+            ...mapGetters([
+                'currentMusicIndex',
+                'getCurrentMusic',
+                'playAll',
+            ]),
+        },
+        watch: {
+            playAllMusic: {
+                deep: true,
+                handler() {
+                    this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
+                    // this.time = this.$refs.audio.duration;
+                    // this.currentMusicTime(this.time)
+                }
+            },
+            currentMusicIndex(value) {
+                this.$nextTick(() => {
+                    if (value) {
+                        setTimeout(e => {
+                            this.$refs.audio.play();
+                            this.currentMusicTime(this.$refs.audio.duration);
+                            this.playIt({isPlay: true});
+                            console.log(this.$refs.audio.duration);
+                        }, 1000)
+                    }
+                })
+            }
+        },
+        methods: {
+            playMusic() {
+                this.paused = !this.paused;
+                this.playIt({isPlay: !this.playAll.isPlay});
+                this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
+                this.time = this.$refs.audio.duration;
+                this.currentMusicTime(this.time)
+            },
+            getPlayDetailEvent(evt) {
+                this.playerDetailShow = evt.playerDetailShow;
 
-      },
-      timeUpdate(e){
-        this.currentTime =e.target.currentTime;
-      },
-      ...mapActions({
-        playIt: 'playAll',
-        currentMusicTime: 'currentMusicTime'
-      })
+            },
+            timeUpdate(e) {
+                this.currentTime = e.target.currentTime;
+            },
+            ...mapActions({
+                playIt: 'playAll',
+                currentMusicTime: 'currentMusicTime'
+            })
 
-    },
-  }
+        },
+    }
 </script>
 
 <style scoped type="text/scss" rel="stylesheet/scss" lang="scss">
