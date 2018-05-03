@@ -1,0 +1,14 @@
+
+@import "config";
+// 根据不同设备的屏幕宽度，定义<html>的基准font-size
+@mixin html-font-size() {
+    @each $current-width in $device-widths {
+        @media (min-width: $current-width) {
+            html {
+                $x: $UI-resolution-width / $current-width;  // 计算出是几倍屏
+                font-size: $rem-base-font-size / $x;
+            }
+        }
+    }
+}
+

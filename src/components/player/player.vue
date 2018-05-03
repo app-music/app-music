@@ -2,7 +2,7 @@
     <div>
         <div class="sing-player">
             <div class="sing-icon" @click="playerDetailShow =!playerDetailShow">
-                <img width="40" height="40" class=""
+                <img
                      :src="getCount.image">
             </div>
             <div class="text">
@@ -138,18 +138,20 @@
         align-items: center;
         left: 0;
         bottom: 0;
-        height: 60px;
+        height: px2rem(60px);
         width: 100%;
         z-index: 999;
         background: #333;
         display: flex;
         .sing-icon {
-            s-flex: 0 0 40px;
-            flex: 0 0 40px;
-            width: 40px;
-            height: 40px;
-            padding: 0 10px 0 20px;
+            s-flex: 0 0 px2rem(40px);
+            flex: 0 0 px2rem(40px);
+            width: px2rem(40px);
+            height: px2rem(40px);
+            padding: 0 px2rem(10px) 0 px2rem(20px);
             img {
+                width: px2rem(40px);
+                height: px2rem(40px);
                 border-radius: 50%;
             }
         }
@@ -161,14 +163,14 @@
             justify-content: center;
             -ms-flex: 1;
             flex: 1;
-            line-height: 20px;
+            line-height: px2rem(20px);
             overflow: hidden;
             h2 {
-                margin-bottom: 2px;
+                margin-bottom: px2rem(2px);
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
-                font-size: 14px;
+                font-size: px2rem(14px);
                 color: #fff;
             }
             p {
@@ -181,10 +183,10 @@
         }
         .progress-circle {
             box-sizing: content-box;
-            width: 30px;
-            height: 30px;
+            width: px2rem(30px);
+            height: px2rem(30px);
             position: relative;
-            margin-right: 20px;
+            margin-right: px2rem(20px);
             .play-music {
                 position: absolute;
                 left: 50%;

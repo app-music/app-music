@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="block" style="height: 150px">
+        <div class="block" >
             <mt-swipe :auto="4000">
                 <mt-swipe-item v-for=" (item,index) in swipes" :key="index">
-                    <img height="100%" width="100%" :src="item.picUrl" alt="">
+                    <img class="swipe-recommend" height="100%" width="100%" :src="item.picUrl" alt="">
                 </mt-swipe-item>
             </mt-swipe>
         </div>
@@ -67,7 +67,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" type="text/scss" rel="stylesheet/scss" scoped>
     .block {
-
+        height: px2rem(300px);
     }
 
     .list-title {
@@ -105,6 +105,8 @@
 
                 }
             }
+        }
+        .swipe-recommend{
         }
     }
 </style>

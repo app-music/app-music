@@ -143,19 +143,19 @@
         .hidden {
             position: absolute;
             top: 0;
-            left: 6px;
+            left: px2rem(6px);
             z-index: 60;
             i {
                 font-size: 22px;
                 display: block;
-                padding: 10px;
+                padding: px2rem(10px);
                 color: #ffcd32;
             }
 
         }
         h3 {
             position: absolute;
-            top: 2px;
+            top: px2rem(2px);
             left: 10%;
             z-index: 40;
             width: 80%;
@@ -163,12 +163,12 @@
             overflow: hidden;
             white-space: nowrap;
             text-align: center;
-            line-height: 40px;
+            line-height: px2rem(40px);
             font-size: 18px;
             color: #fff;
         }
         h2 {
-            line-height: 20px;
+            line-height: px2rem(20px);
             text-align: center;
             font-size: 14px;
             color: #fff;
@@ -177,20 +177,20 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: 90px;
+            top: px2rem(90px);
             width: 80%;
             img {
                 border-radius: 50%;
             }
             h2 {
-                margin-top: 30px;
+                margin-top: px2rem(30px);
             }
         }
         .player-control {
             width: 100%;
             position: absolute;
             left: 0;
-            bottom: 50px;
+            bottom: px2rem(50px);
             .progress {
                 margin: 0 auto;
                 width: 90%;
@@ -199,16 +199,16 @@
                 text-align: center;
                 display: inline-block;
                 width: 100%;
-                height: 50px;
+                height: px2rem(50px);
                 vertical-align: middle;
                 i {
-                    margin-left: 20px;
+                    margin-left: px2rem(20px);
                     font-size: 40px;
                     color: #ffcd32bd;
                 }
                 i:nth-of-type(3) {
                     font-size: 50px;
-                    line-height: 50px;
+                    line-height: px2rem(50px);
                 }
             }
         }

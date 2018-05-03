@@ -15,18 +15,18 @@
 <style lang="scss" type="text/scss" rel="stylesheet/scss" scoped>
     .singer-l {
         align-items: center;
-        padding: 20px 0 0 30px;
+        padding: px2rem(20px) 0 0 px2rem(30px);
     }
 
     .singer-name {
-        margin-left: 20px;
+        margin-left: px2rem(20px);
         color: hsla(0, 0%, 100%, .5);
-        font-size: 14px;
+        font-size: px2rem(14px);
     }
 
     .singerImg {
-        width: 50px;
-        height: 50px;
+        width: px2rem(80px);
+        height: px2rem(80px);
         border-radius: 50%;
     }
 
