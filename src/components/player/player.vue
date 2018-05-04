@@ -138,20 +138,20 @@
         align-items: center;
         left: 0;
         bottom: 0;
-        height: px2rem(60px);
+        height: px2rem(80px);
         width: 100%;
         z-index: 999;
         background: #333;
         display: flex;
         .sing-icon {
-            s-flex: 0 0 px2rem(40px);
-            flex: 0 0 px2rem(40px);
-            width: px2rem(40px);
-            height: px2rem(40px);
+            s-flex: 0 0 px2rem(60px);
+            flex: 0 0 px2rem(60px);
+            width: px2rem(60px);
+            height: px2rem(60px);
             padding: 0 px2rem(10px) 0 px2rem(20px);
             img {
-                width: px2rem(40px);
-                height: px2rem(40px);
+                width: px2rem(60px);
+                height: px2rem(60px);
                 border-radius: 50%;
             }
         }
@@ -183,18 +183,18 @@
         }
         .progress-circle {
             box-sizing: content-box;
-            width: px2rem(30px);
-            height: px2rem(30px);
+            width: px2rem(60px);
+            height: px2rem(60px);
             position: relative;
-            margin-right: px2rem(20px);
+            margin-right: px2rem(0px);
             .play-music {
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
+                left: px2rem(30px);
+                top: px2rem(30px);
+                transform: translate(-0.15rem, -0.15rem);
                 color: red;
                 i {
-                    font-size: 20px;
+                    font-size: px2rem(30px);
 
                 }
                 .first {

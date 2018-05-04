@@ -35,30 +35,30 @@
             console.log(this.$refs.rightCirlcle);
         },
         computed: {
-            rightTransformDeg() {
-                // 右边半圆 三种状态
-                if (this.currentTime && this.time && this.currentTime >= this.time / 2 && this.currentTime < this.time) {
-                    // 播放超过一半的时候 返回 半圆时的角度 保存进度
-                    return {transform: `rotate(${180 + 45}deg)`}
-                } else if (this.currentTime < this.time / 2) {
-                    // 返回播放时的角度
-                    return {transform: `rotate(${this.currentTime / this.time * 360 + 45}deg)`}
-                } else {
-                    // 播放结束返回初始角度
-                    return {transform: `rotate(${45}deg)`}
-                }
-
-            },
-            leftTransformDeg() {
-                // 左边半圆 两种状态
-                if (this.currentTime && this.time && this.currentTime >= this.time / 2&& this.currentTime < this.time) {
-                    // 播放超过一半的时候 半圆开始旋转
-                    return {transform: `rotate(${this.currentTime / this.time * 360 + 45 - 180}deg)`}
-                } else if (this.currentTime === this.time) {
-                    // 播放结束 返回初始 角度
-                    return {transform: `rotate(${45}deg)`}
-                }
-            },
+            // rightTransformDeg() {
+            //     // 右边半圆 三种状态
+            //     if (this.currentTime && this.time && this.currentTime >= this.time / 2 && this.currentTime < this.time) {
+            //         // 播放超过一半的时候 返回 半圆时的角度 保存进度
+            //         return {transform: `rotate(${180 + 45}deg)`}
+            //     } else if (this.currentTime < this.time / 2) {
+            //         // 返回播放时的角度
+            //         return {transform: `rotate(${this.currentTime / this.time * 360 + 45}deg)`}
+            //     } else {
+            //         // 播放结束返回初始角度
+            //         return {transform: `rotate(${45}deg)`}
+            //     }
+            //
+            // },
+            // leftTransformDeg() {
+            //     // 左边半圆 两种状态
+            //     if (this.currentTime && this.time && this.currentTime >= this.time / 2&& this.currentTime < this.time) {
+            //         // 播放超过一半的时候 半圆开始旋转
+            //         return {transform: `rotate(${this.currentTime / this.time * 360 + 45 - 180}deg)`}
+            //     } else if (this.currentTime === this.time) {
+            //         // 播放结束 返回初始 角度
+            //         return {transform: `rotate(${45}deg)`}
+            //     }
+            // },
             ...mapGetters([
                 'currentMusicIndex',
                 'getCurrentMusic',
@@ -86,16 +86,16 @@
 
 </script>
 
-<style rel="stylesheet/scss" type="text/css" scoped>
+<style rel="stylesheet/scss" type="text/scss" lang="scss" scoped>
     .circleProgress_wrapper {
-        width: 30px;
-        height: 30px;
+        width: px2rem(60px);
+        height: px2rem(60px);
         position: relative;
     }
 
     .wrapper {
-        width: 15px;
-        height: 30px;
+        width: px2rem(30px);
+        height: px2rem(60px);
         position: absolute;
         top: 0;
         overflow: hidden;
@@ -110,13 +110,13 @@
     }
 
     .circleProgress {
-        width: 26px;
-        height: 26px;
-        border: 2px solid rgb(232, 232, 12);
-        border-radius: 60%;
+        width: px2rem(55px);
+        height: px2rem(55px);
+        border: px2rem(1px) solid rgb(232, 232, 12);
+        border-radius: 50%;
         position: absolute;
         top: 0;
-        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
 
     .rightcircle {
