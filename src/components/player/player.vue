@@ -2,7 +2,7 @@
     <div>
         <div class="sing-player">
             <div class="sing-icon" @click="playerDetailShow =!playerDetailShow">
-                <img width="40" height="40" class=""
+                <img
                      :src="getCount.image">
             </div>
             <div class="text">
@@ -14,13 +14,17 @@
                     <i :class="playAllMusic"></i>
                     <!--<i v-if="!paused" class="iconfont icon-ai07"></i>-->
                 </div>
-                <circle-progress :isPlay="paused" :time="time"></circle-progress>
+                <circle-progress :isPlay="paused" :time="time" :currentTime="currentTime"></circle-progress>
             </div>
         </div>
         <player-detail v-if="playerDetailShow" :currentSong="getCount" :currentTime="currentTime"
                        @playerDetailEvent="getPlayDetailEvent"></player-detail>
         <audio id="aa" ref="audio" :src="getCount.url" @timeupdate="timeUpdate">
         </audio>
+        <!--播放本地音乐测试-->
+        <!--<audio id="aa" ref="audio"  @timeupdate="timeUpdate">-->
+            <!--<source src="./Jam.mp3">-->
+        <!--</audio>-->
     </div>
 </template>
 
@@ -115,6 +119,9 @@
             },
             timeUpdate(e) {
                 this.currentTime = e.target.currentTime;
+                if(this.currentTime === this.time){
+                    this.playIt({isPlay: false});
+                }
             },
             ...mapActions({
                 playIt: 'playAll',
@@ -131,18 +138,20 @@
         align-items: center;
         left: 0;
         bottom: 0;
-        height: 60px;
+        height: px2rem(80px);
         width: 100%;
         z-index: 999;
         background: #333;
         display: flex;
         .sing-icon {
-            s-flex: 0 0 40px;
-            flex: 0 0 40px;
-            width: 40px;
-            height: 40px;
-            padding: 0 10px 0 20px;
+            s-flex: 0 0 px2rem(60px);
+            flex: 0 0 px2rem(60px);
+            width: px2rem(60px);
+            height: px2rem(60px);
+            padding: 0 px2rem(10px) 0 px2rem(20px);
             img {
+                width: px2rem(60px);
+                height: px2rem(60px);
                 border-radius: 50%;
             }
         }
@@ -154,14 +163,14 @@
             justify-content: center;
             -ms-flex: 1;
             flex: 1;
-            line-height: 20px;
+            line-height: px2rem(20px);
             overflow: hidden;
             h2 {
-                margin-bottom: 2px;
+                margin-bottom: px2rem(2px);
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
-                font-size: 14px;
+                font-size: px2rem(14px);
                 color: #fff;
             }
             p {
@@ -174,18 +183,18 @@
         }
         .progress-circle {
             box-sizing: content-box;
-            width: 30px;
-            height: 30px;
+            width: px2rem(60px);
+            height: px2rem(60px);
             position: relative;
-            margin-right: 20px;
+            margin-right: px2rem(0px);
             .play-music {
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
+                left: px2rem(30px);
+                top: px2rem(30px);
+                transform: translate(-0.15rem, -0.15rem);
                 color: red;
                 i {
-                    font-size: 20px;
+                    font-size: px2rem(30px);
 
                 }
                 .first {

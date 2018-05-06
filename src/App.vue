@@ -22,7 +22,7 @@
                 </mt-tab-item>
             </mt-navbar>
         </div>
-        <router-view style="margin-bottom:60px;margin-top: 90px;"></router-view>
+        <router-view class="router-view" style=""></router-view>
         <player></player>
     </div>
 </template>
@@ -52,12 +52,13 @@
 </script>
 
 <style lang="scss" type="text/scss" rel="stylesheet/scss">
+    @import "assets/css/utils";
     body {
         background: #222;
     }
 
     #head {
-        height: 60px;
+        height: px2rem(60px);
         width: 100%;
         position: fixed;
         top: 0;
@@ -76,8 +77,8 @@
             position: relative;
             h3 {
                 margin: 0;
-                height: 44px;
-                line-height: 44px;
+                height: px2rem(44px);
+                line-height: px2rem(44px);
                 text-align: center;
                 color: #ffcd32;
             }
@@ -85,26 +86,26 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                right: 5px;
+                right: px2rem(5px);
             }
         }
 
         .mint-navbar .mint-tab-item.is-selected {
             border-bottom: none;
-            margin-bottom: -3px;
+            margin-bottom: px2rem(-3px);
         }
         .nav-bar {
             background: #222;
             .nav-item {
                 .router-link-active {
-                    border-bottom: 2px solid #ffcd32;
-                    margin-bottom: 3px;
+                    border-bottom: px2rem(2px) solid #ffcd32;
+                    margin-bottom: px2rem(3px);
                 }
                 padding: 0;
                 .nav-item-link {
                     color: #ffcd32;
                     display: block;
-                    padding: 17px 0;
+                    padding: px2rem(17px) 0;
                     text-decoration: none;
                 }
             }
@@ -113,8 +114,8 @@
             position: absolute;
             i {
                 display: block;
-                padding: 12px;
-                font-size: 20px;
+                padding: px2rem(12px);
+                font-size: px2rem(20px);
                 color: #ffcd32
             }
         }
@@ -122,12 +123,12 @@
 
     .mint-indexsection-index {
         margin: 0;
-        padding: 10px;
+        padding: px2rem(10px);
         background: #222222;
     }
 
     .mint-indexlist-nav {
-        border-radius: 10px;
+        border-radius: px2rem(10px);
         color: #fafafa;
         text-align: center;
         background: rgba(0, 0, 0, .3);
@@ -138,19 +139,19 @@
     .mint-indexsection-index {
         /*height: 30px;*/
         /*line-height: 30px;*/
-        padding-left: 20px;
-        font-size: 12px;
+        padding-left: px2rem(20px);
+        font-size: px2rem(12px);
         color: hsla(0, 0%, 100%, .5);
         background: #333;
     }
 
     .mint-searchbar {
         flex: 1;
-        margin: 0 5px;
-        line-height: 18px;
+        margin: 0 px2rem(5px);
+        line-height: px2rem(18px);
         background: #333;
         color: #fff;
-        font-size: 14px;
+        font-size: px2rem(14px);
         outline: 0;
         z-index: 1;
         position: static;
@@ -162,7 +163,7 @@
 
     .mintui-search {
         display: inline-block;
-        font-size: 22px !important;
+        font-size: px2rem(22px) !important;
         color: #222;
     }
 
@@ -206,5 +207,13 @@
             /*border-left: 2px solid green;*/
             -webkit-transform: rotate(225deg);
         }
+    }
+    mt-swipe-item{
+        .swipe-recommend{
+        }
+    }
+    .router-view{
+        margin-bottom:px2rem(110px);
+        margin-top: px2rem(90px);
     }
 </style>

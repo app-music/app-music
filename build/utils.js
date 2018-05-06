@@ -60,7 +60,15 @@ exports.cssLoaders = function (options) {
         postcss: generateLoaders(),
         less: generateLoaders('less'),
         sass: generateLoaders('sass', {indentedSyntax: true}),
-        scss: generateLoaders('sass'),
+        scss: generateLoaders('sass').concat(
+            {
+                loader: 'sass-resources-loader',
+                options: {
+                    // 全局倒入 scss 方法/变量
+                    resources: path.resolve(__dirname, '../src/assets/css/utils.scss')
+                }
+            }
+        ),
         stylus: generateLoaders('stylus'),
         styl: generateLoaders('stylus')
     }

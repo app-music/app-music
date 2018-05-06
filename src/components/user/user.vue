@@ -67,12 +67,12 @@
         .go-back {
             position: absolute;
             top: 0;
-            left: 6px;
+            left: px2rem(6px);
             z-index: 60;
             i {
-                font-size: 26px !important;
+                font-size: px2rem(26px) !important;
                 display: block;
-                padding: 10px;
+                padding: px2rem(10px);
                 color: #ffcd32;
             }
 

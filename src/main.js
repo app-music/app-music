@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
-import '../static/css/global.css'
+import '../src/assets/css/global.scss'
+import "../src/assets/css/utils.scss";
 import Loading from './core/api-server/index';
 import store from './core/store';
 

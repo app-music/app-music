@@ -17,20 +17,20 @@
 <style type="text/scss" lang="scss" rel="stylesheet/scss" scoped>
     li {
         overflow: hidden;
-        margin-top: 10px;
+        margin-top: px2rem(10px);
     }
 
     .wrap {
         background: #333;
         display: flex;
-        margin: 10px 20px;
+        margin: px2rem(10px) px2rem(20px);
         ul {
             flex: 1;
-            margin-left: 20px;
+            margin-left: px2rem(20px);
             overflow: hidden;
             .info {
-                height: 20px;
-                font-size: 12px;
+                height: px2rem(20px);
+                font-size: px2rem(12px);
                 color: #828282;
                 width: calc(100% - 20px);
                 overflow: hidden;

@@ -1,0 +1,5 @@
+// 将设计图标注的px尺寸，转换为相应的CSS
+@import "config";
+@function px2rem($px) {
+    @return $px / $rem-base-font-size * 1rem;
+}
