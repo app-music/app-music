@@ -28,7 +28,7 @@
                         <i @click="previous()" class="iconfont icon-shangyishou1"></i>
                         <i @click="play()" :class="playStaus"></i>
                         <i @click="next()" class="iconfont icon-xiayishou"></i>
-                        <i @click="" class="iconfont icon-xihuan"></i>
+                        <i @click="loveIt()" ref="favorite" :class="musicChange"></i>
                     </span>
                 </div>
             </div>
@@ -45,10 +45,6 @@
     export default {
         name: "player-detail",
         props: {
-            currentSong: {
-                type: Song,
-                default: new Song({}),
-            },
             currentTime: {
                 type: Number,
                 default: 0,
@@ -61,6 +57,15 @@
             }
         },
         computed: {
+            currentSong(){
+
+                if(this.getCurrentMusic){
+                    let songs = this.getCurrentMusic;
+                    let a = new Song(songs[this.currentMusicIndex]);
+                    console.log(a);
+                    return a;
+                }
+            },
             playStaus() {
                 if (this.playAll.isPlay) {
                     return 'iconfont icon-zanting2'
@@ -71,10 +76,29 @@
             getCurrentMusicTime() {
                 return this.currentMusicTime;
             },
+            musicChange(){
+                if(this.getCurrentMusic){
+                    let id = this.getCurrentMusic[this.currentMusicIndex].songid;
+                    try {
+                        let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
+                        if(favoriteMusicData.findIndex(item=>item.id===id)===-1){
+                            return 'iconfont icon-xihuan'
+                        }else {
+                            return 'iconfont icon-xihuan6'
+                        }
+                    }catch (e) {
+                        console.log(e);
+                    }
+
+                }else {
+                    return 'iconfont icon-xihuan'
+                }
+            },
             ...mapGetters([
                 'currentMusicIndex',
                 'playAll',
-                'currentMusicTime'
+                'currentMusicTime',
+                'getCurrentMusic',
             ])
         },
         created() {
@@ -83,7 +107,8 @@
         },
         methods: {
             detailClose() {
-                this.$emit('playerDetailEvent', {playerDetailShow: false})
+                this.playerDetailShow(false);
+                // this.$emit('playerDetailEvent', {playerDetailShow: false})
             },
             previous() {
                 this.currentIndex(this.currentMusicIndex - 1);
@@ -96,9 +121,29 @@
             play() {
                 this.playMusic({isPlay: !this.playAll.isPlay});
             },
+            loveIt() {
+                if (this.getCurrentMusic) {
+                    let songs = this.getCurrentMusic;
+                    console.log(songs);
+                    songs[this.currentMusicIndex].islove = !songs[this.currentMusicIndex].islove;
+                    let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
+                    if (songs[this.currentMusicIndex].islove) {
+                        this.$refs.favorite.className = 'iconfont icon-xihuan6';
+                        let a = new Song(songs[this.currentMusicIndex]);
+                        favoriteMusicData.push(a);
+                    } else {
+                        this.$refs.favorite.className = 'iconfont icon-xihuan';
+                        let songId = songs[this.currentMusicIndex].songid;
+                        let index = favoriteMusicData.findIndex(item => item.id === songId);
+                        favoriteMusicData.splice(index,1);
+                    }
+                    localStorage.setItem('__favoriteMusic__', JSON.stringify(favoriteMusicData));
+                }
+            },
             ...mapActions({
                 currentIndex: 'currentMusicIndex',
-                playMusic: 'playAll'
+                playMusic: 'playAll',
+                playerDetailShow:'playerDetailShow'
             })
         },
         filters: {

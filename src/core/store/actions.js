@@ -15,5 +15,8 @@ export default {
     },
     currentMusicTime({commit}, param) {
         commit(types.CURRENT_MUSIC_TIME, param)
+    },
+    playerDetailShow({commit}, param) {
+        commit(types.PLAYER_DETAIL_SHOW, param)
     }
 }

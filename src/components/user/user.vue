@@ -34,7 +34,7 @@
     .user {
         position: fixed;
         z-index: 100;
-        top: -90px;
+        top: px2rem(-110px);
         left: 0;
         bottom: 0;
         right: 0;
@@ -70,7 +70,7 @@
             left: px2rem(6px);
             z-index: 60;
             i {
-                font-size: px2rem(26px) !important;
+                font-size: 26px !important;
                 display: block;
                 padding: px2rem(10px);
                 color: #ffcd32;

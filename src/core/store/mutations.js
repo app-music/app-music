@@ -9,6 +9,7 @@ const state = {
     playAll: {isPlay: false},
     currentMusicIndex: null,
     currentMusicTime: null,
+    playerDetailShow: false,
 };
 const mutations = {
     [types.CURRENT_MUSIC](state, param) {
@@ -22,6 +23,9 @@ const mutations = {
     },
     [types.CURRENT_MUSIC_TIME](state, param) {
         state.currentMusicTime = param;
+    },
+    [types.PLAYER_DETAIL_SHOW](state,param){
+        state.playerDetailShow = param
     }
 };
 export default {

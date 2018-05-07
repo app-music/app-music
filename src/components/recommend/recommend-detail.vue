@@ -18,9 +18,9 @@
             <div class="filter"></div>
             <div class="song-list">
                 <ul>
-                    <li v-for="(item,index) in cdList[0].songlist" :key="index">
+                    <li v-for="(item,index) in cdList[0].songlist"  :key="index">
                         <h2>{{item.songname}}</h2>
-                        <p>{{item.singer[0].name}}*{{item.albumname}}</p>
+                        <p @click="navigateToDetail(index)">{{item.singer[0].name}}*{{item.albumname}}</p>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
         data() {
             return {
                 id: '',
-                cdList: [{}]
+                cdList: [{}],
             }
         },
         comments: {},
@@ -69,6 +69,11 @@
                 // this.playAll({isPlay: true});
                 this.currentMusic(this.cdList[0].songlist);
             },
+            navigateToDetail(index) {
+                this.currentMusic(this.cdList[0].songlist);
+                this.currentMusicIndex(index);
+                this.playerDetailShow(true);
+            },
             goBack() {
                 this.$router.push({
                     path: '/'
@@ -77,7 +82,8 @@
             ...mapActions([
                 'currentMusic',
                 'currentMusicIndex',
-                'playAll'
+                'playAll',
+                'playerDetailShow'
             ])
         }
     }
@@ -87,7 +93,7 @@
     .music-detail {
         position: fixed;
         z-index: 100;
-        top: px2rem(-90px);
+        top: px2rem(-110px);
         left: 0;
         bottom: 0;
         right: 0;
@@ -139,7 +145,6 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
             background: rgba(7, 17, 27, .4)
         }
         .play-all {

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div style="margin:20px;">
+        <div  class="search-t">
             <div class="search">
                 <i class="iconfont icon-sousuo icon-color" style="color: #866363"></i>
                 <input type="text" class="search-input"
@@ -62,6 +62,9 @@
 
 <style lang="scss" type="text/scss" rel="stylesheet/scss" scoped>
     .container {
+        .search-t{
+            margin: px2rem(20px);
+        }
         .search {
             display: flex;
             -ms-flex-align: center;

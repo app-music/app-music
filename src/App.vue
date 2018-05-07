@@ -81,6 +81,7 @@
                 line-height: px2rem(44px);
                 text-align: center;
                 color: #ffcd32;
+                font-size: px2rem(18px);
             }
             .user {
                 position: absolute;
@@ -105,6 +106,7 @@
                 .nav-item-link {
                     color: #ffcd32;
                     display: block;
+                    font-size: px2rem(16px);
                     padding: px2rem(17px) 0;
                     text-decoration: none;
                 }
@@ -214,6 +216,6 @@
     }
     .router-view{
         margin-bottom:px2rem(110px);
-        margin-top: px2rem(90px);
+        margin-top: px2rem(110px);
     }
 </style>

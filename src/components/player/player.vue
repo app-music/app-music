@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="sing-player">
-            <div class="sing-icon" @click="playerDetailShow =!playerDetailShow">
+            <div class="sing-icon" @click="detailShow()">
                 <img
                      :src="getCount.image">
             </div>
@@ -17,7 +17,7 @@
                 <circle-progress :isPlay="paused" :time="time" :currentTime="currentTime"></circle-progress>
             </div>
         </div>
-        <player-detail v-if="playerDetailShow" :currentSong="getCount" :currentTime="currentTime"
+        <player-detail v-if="playerDetailShow" :currentTime="currentTime"
                        @playerDetailEvent="getPlayDetailEvent"></player-detail>
         <audio id="aa" ref="audio" :src="getCount.url" @timeupdate="timeUpdate">
         </audio>
@@ -44,7 +44,7 @@
                 song: {},
                 msg: false,
                 time: 0,
-                playerDetailShow: false,
+                // playerDetailShow: false,
                 currentSong: {},
                 currentTime: 0,
             }
@@ -75,12 +75,15 @@
                 } else {
                     return 'iconfont icon-bofang1'
                 }
-
+            },
+            playerDetailShow(){
+                return this.playerDetailShow
             },
             ...mapGetters([
                 'currentMusicIndex',
                 'getCurrentMusic',
                 'playAll',
+                'playerDetailShow'
             ]),
         },
         watch: {
@@ -96,10 +99,13 @@
                 this.$nextTick(() => {
                     if (value) {
                         setTimeout(e => {
-                            this.$refs.audio.play();
-                            this.currentMusicTime(this.$refs.audio.duration);
-                            this.playIt({isPlay: true});
-                            console.log(this.$refs.audio.duration);
+                            try {
+                                this.$refs.audio.play();
+                                this.currentMusicTime(this.$refs.audio.duration);
+                                this.playIt({isPlay: true});
+                            }catch (e) {
+                                throw new Error(e)
+                            }
                         }, 1000)
                     }
                 })
@@ -110,11 +116,16 @@
                 this.paused = !this.paused;
                 this.playIt({isPlay: !this.playAll.isPlay});
                 this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
-                this.time = this.$refs.audio.duration;
-                this.currentMusicTime(this.time)
+                try {
+                    this.time = this.$refs.audio.duration;
+                    this.currentMusicTime(this.time)
+                }catch (e) {
+                    throw new Error(e)
+                }
+
             },
             getPlayDetailEvent(evt) {
-                this.playerDetailShow = evt.playerDetailShow;
+                // this.playerDetailShow = evt.playerDetailShow;
 
             },
             timeUpdate(e) {
@@ -123,9 +134,13 @@
                     this.playIt({isPlay: false});
                 }
             },
+            detailShow(){
+                this._detailShow(true)
+            },
             ...mapActions({
                 playIt: 'playAll',
-                currentMusicTime: 'currentMusicTime'
+                currentMusicTime: 'currentMusicTime',
+                _detailShow:'playerDetailShow'
             })
 
         },
