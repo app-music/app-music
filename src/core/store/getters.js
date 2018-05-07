@@ -13,5 +13,8 @@ export default {
     },
     currentMusicTime(state) {
         return state.currentMusicTime
+    },
+    playerDetailShow(state){
+        return state.playerDetailShow;
     }
 }

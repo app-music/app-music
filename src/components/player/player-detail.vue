@@ -45,10 +45,6 @@
     export default {
         name: "player-detail",
         props: {
-            currentSong: {
-                type: Song,
-                default: new Song({}),
-            },
             currentTime: {
                 type: Number,
                 default: 0,
@@ -61,6 +57,15 @@
             }
         },
         computed: {
+            currentSong(){
+
+                if(this.getCurrentMusic){
+                    let songs = this.getCurrentMusic;
+                    let a = new Song(songs[this.currentMusicIndex]);
+                    console.log(a);
+                    return a;
+                }
+            },
             playStaus() {
                 if (this.playAll.isPlay) {
                     return 'iconfont icon-zanting2'
@@ -75,6 +80,7 @@
                 if(this.getCurrentMusic){
                     let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                     try {
+                        debugger;
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                         if(favoriteMusicData.findIndex(item=>item.id===id)===-1){
                             return 'iconfont icon-xihuan'
@@ -93,7 +99,7 @@
                 'currentMusicIndex',
                 'playAll',
                 'currentMusicTime',
-                'getCurrentMusic'
+                'getCurrentMusic',
             ])
         },
         created() {
@@ -102,7 +108,8 @@
         },
         methods: {
             detailClose() {
-                this.$emit('playerDetailEvent', {playerDetailShow: false})
+                this.playerDetailShow(false);
+                // this.$emit('playerDetailEvent', {playerDetailShow: false})
             },
             previous() {
                 this.currentIndex(this.currentMusicIndex - 1);
@@ -136,7 +143,8 @@
             },
             ...mapActions({
                 currentIndex: 'currentMusicIndex',
-                playMusic: 'playAll'
+                playMusic: 'playAll',
+                playerDetailShow:'playerDetailShow'
             })
         },
         filters: {
