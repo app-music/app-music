@@ -75,7 +75,7 @@
                 if(this.getCurrentMusic){
                     let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                     try {
-                        let favoriteMusicData = JSON.parse(localStorage.getItem('favoriteMusic')) || [];
+                        let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                         if(favoriteMusicData.findIndex(item=>item.id===id)===-1){
                             return 'iconfont icon-xihuan'
                         }else {
@@ -120,7 +120,7 @@
                     let songs = this.getCurrentMusic;
                     console.log(songs);
                     songs[this.currentMusicIndex].islove = !songs[this.currentMusicIndex].islove;
-                    let favoriteMusicData = JSON.parse(localStorage.getItem('favoriteMusic')) || [];
+                    let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                     if (songs[this.currentMusicIndex].islove) {
                         this.$refs.favorite.className = 'iconfont icon-xihuan6';
                         let a = new Song(songs[this.currentMusicIndex]);
@@ -131,7 +131,7 @@
                         let index = favoriteMusicData.findIndex(item => item.id === songId);
                         favoriteMusicData.splice(index,1);
                     }
-                    localStorage.setItem('favoriteMusic', JSON.stringify(favoriteMusicData));
+                    localStorage.setItem('__favoriteMusic__', JSON.stringify(favoriteMusicData));
                 }
             },
             ...mapActions({
