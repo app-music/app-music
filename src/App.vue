@@ -216,6 +216,6 @@
     }
     .router-view{
         margin-bottom:px2rem(110px);
-        margin-top: px2rem(90px);
+        margin-top: px2rem(110px);
     }
 </style>
