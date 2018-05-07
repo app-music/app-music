@@ -87,7 +87,7 @@
     .music-detail {
         position: fixed;
         z-index: 100;
-        top: px2rem(-90px);
+        top: px2rem(-110px);
         left: 0;
         bottom: 0;
         right: 0;

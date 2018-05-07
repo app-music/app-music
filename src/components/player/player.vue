@@ -96,10 +96,13 @@
                 this.$nextTick(() => {
                     if (value) {
                         setTimeout(e => {
-                            this.$refs.audio.play();
-                            this.currentMusicTime(this.$refs.audio.duration);
-                            this.playIt({isPlay: true});
-                            console.log(this.$refs.audio.duration);
+                            try {
+                                this.$refs.audio.play();
+                                this.currentMusicTime(this.$refs.audio.duration);
+                                this.playIt({isPlay: true});
+                            }catch (e) {
+                                throw new Error(e)
+                            }
                         }, 1000)
                     }
                 })
@@ -110,8 +113,13 @@
                 this.paused = !this.paused;
                 this.playIt({isPlay: !this.playAll.isPlay});
                 this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
-                this.time = this.$refs.audio.duration;
-                this.currentMusicTime(this.time)
+                try {
+                    this.time = this.$refs.audio.duration;
+                    this.currentMusicTime(this.time)
+                }catch (e) {
+                    throw new Error(e)
+                }
+
             },
             getPlayDetailEvent(evt) {
                 this.playerDetailShow = evt.playerDetailShow;
