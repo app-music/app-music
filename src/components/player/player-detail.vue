@@ -80,7 +80,6 @@
                 if(this.getCurrentMusic){
                     let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                     try {
-                        debugger;
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                         if(favoriteMusicData.findIndex(item=>item.id===id)===-1){
                             return 'iconfont icon-xihuan'
