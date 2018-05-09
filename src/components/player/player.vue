@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="sing-player">
+        <div class="sing-player" v-if="getCurrentMusic">
             <div class="sing-icon" @click="detailShow()">
                 <img
                      :src="getCount.image">
