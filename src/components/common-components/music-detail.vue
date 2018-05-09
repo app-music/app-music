@@ -1,83 +1,76 @@
 <template>
-    <!--<transition name="slide-fade">-->
-        <!--<div ref="aa" class="music-detail">-->
-            <!--<div class="go-back" @click="goBack()">-->
-                <!--<i class="iconfont icon-fanhui"></i>-->
-            <!--</div>-->
-            <!--<h1>{{cdList[0].dissname}}</h1>-->
-            <!--<div class="music-img" style="border: none">-->
-                <!--<img v-if="cdList[0].logo" :src="cdList[0].logo" style="border: none" width="100%" height="100%"-->
-                     <!--alt=""/>-->
-                <!--<div class="play-all" @click="clickPlayAll()">-->
-                    <!--<span>-->
-                        <!--<i class="iconfont icon-bofang"></i>-->
-                        <!--随机播放全部-->
-                    <!--</span>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="filter"></div>-->
-            <!--<div class="song-list">-->
-                <!--<ul>-->
-                    <!--<li v-for="(item,index) in cdList[0].songlist" :key="index">-->
-                        <!--<h2>{{item.songname}}</h2>-->
-                        <!--<p @click="navigateToDetail(index)">{{item.singer[0].name}}*{{item.albumname}}</p>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</transition>-->
-
-        <music-detail :title="cdList[0].dissname" :imgUrl="cdList[0].logo" :data="cdList[0].songlist"></music-detail>
-
+    <transition name="slide-fade">
+        <div ref="aa" class="music-detail">
+            <div class="go-back" @click="goBack()">
+                <i class="iconfont icon-fanhui"></i>
+            </div>
+            <h1>{{title}}</h1>
+            <div class="music-img" style="border: none">
+                <img v-if="imgUrl" :src="imgUrl" style="border: none" width="100%" height="100%"
+                     alt=""/>
+                <div class="play-all" @click="clickPlayAll()">
+                    <span>
+                        <i class="iconfont icon-bofang"></i>
+                        随机播放全部
+                    </span>
+                </div>
+            </div>
+            <div class="filter"></div>
+            <div class="song-list">
+                <ul>
+                    <li v-for="(item,index) in data" :key="index">
+                        <h2>{{item.songname}}</h2>
+                        <p @click="navigateToDetail(index)">{{item.singer[0].name}}*{{item.albumname}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </transition>
 </template>
 
 <script>
     import {CommonUtil} from "../../core/utils/common-util";
     import {mapActions} from 'vuex'
-    import musicDetail from '../common-components/music-detail'
 
     export default {
-        name: "recommend-detail",
+        name: "music-detail",
+        props: {
+            title: {
+                type: String,
+                default: ''
+            },
+            imgUrl:{
+                type:String,
+                default:''
+            },
+            data:{
+                type:Array,
+                default: function () {
+                    return [{singer:[{name:''}],}]
+                }
+            }
+        },
         data() {
             return {
                 id: '',
                 cdList: [{}],
             }
         },
-        components: {
-            musicDetail
-        },
+        comments: {},
         created() {
-            this.id = this.$route.params.id;
-            this.getCdListDetail();
+            // this.id = this.$route.params.id;
+            // this.getCdListDetail();
         },
         methods: {
-            getCdListDetail() {
-                this.$recommendService.getCdListDetail(this.id).then(result => {
-                    this.cdList = result.cdlist;
-                    console.log(this.cdList);
-                    this.$songService.getSongUrlList(this.cdList[0].songlist).then(result => {
-                        console.log(result);
-                        let midUrlInfo = result.url_mid.data.midurlinfo;
-                        this.cdList[0].songlist.forEach((item, index) => {
-                            item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
-                        });
-                    }, failed => {
-                        console.log(failed);
-                    })
-                }, failed => {
 
-                })
-            },
             clickPlayAll() {
-                let index = CommonUtil.getRandomNumBoth(1, this.cdList[0].songlist.length + 1);
+                let index = CommonUtil.getRandomNumBoth(1, this.data.length + 1);
                 this.currentMusicIndex(index);
-                // this.playAll({isPlay: true});
-                this.currentMusic(this.cdList[0].songlist);
+                this.currentMusic(this.data);
                 this.playerDetailShow(true)
             },
             navigateToDetail(index) {
-                this.currentMusic(this.cdList[0].songlist);
+                this.currentMusic(this.data);
                 this.currentMusicIndex(index);
                 this.playerDetailShow(true);
             },
@@ -173,13 +166,14 @@
                 vertical-align: middle;
                 font-size: 13px;
                 line-height: 25px;
-
             }
-
         }
         .song-list {
             padding: px2rem(20px) px2rem(30px);
+            height: 100%;
+            overflow: auto;
             ul {
+                padding-bottom: px2rem(450px);
                 li {
                     h2 {
                         text-overflow: ellipsis;

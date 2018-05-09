@@ -27,8 +27,10 @@
                         <i @click="" class="iconfont icon-suijibofang"></i>
                         <i @click="previous()" class="iconfont icon-shangyishou1"></i>
                         <i @click="play()" :class="playStaus"></i>
-                        <i @click="next()" class="iconfont icon-xiayishou"></i>
-                        <i @click="loveIt()" ref="favorite" :class="musicChange"></i>
+                        <i @click="next()" class="iconfont icon-xiayishou">{{musicChange}}</i>
+                        <i @click="loveIt()" v-if="!isFavorite" class="iconfont icon-xihuan"></i>
+                        <!--实心爱心-->
+                        <i @click="loveIt()" v-if="isFavorite" class="iconfont icon-xihuan6"></i>
                     </span>
                 </div>
             </div>
@@ -54,12 +56,12 @@
             return {
                 start: '',
                 end: '',
+                isFavorite:'false',
             }
         },
         computed: {
-            currentSong(){
-
-                if(this.getCurrentMusic){
+            currentSong() {
+                if (this.getCurrentMusic) {
                     let songs = this.getCurrentMusic;
                     let a = new Song(songs[this.currentMusicIndex]);
                     console.log(a);
@@ -76,21 +78,21 @@
             getCurrentMusicTime() {
                 return this.currentMusicTime;
             },
-            musicChange(){
-                if(this.getCurrentMusic){
-                    let id = this.getCurrentMusic[this.currentMusicIndex].songid;
+            musicChange() {
+                if (this.getCurrentMusic) {
                     try {
+                        let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
-                        if(favoriteMusicData.findIndex(item=>item.id===id)===-1){
-                            return 'iconfont icon-xihuan'
-                        }else {
-                            return 'iconfont icon-xihuan6'
-                        }
-                    }catch (e) {
+                        let index = favoriteMusicData.findIndex(item => item.id === id);
+                        this.$nextTick(() => {
+                            this.isFavorite = index!==-1
+                        });
+                        return '';
+                    } catch (e) {
                         console.log(e);
                     }
 
-                }else {
+                } else {
                     return 'iconfont icon-xihuan'
                 }
             },
@@ -111,16 +113,25 @@
                 // this.$emit('playerDetailEvent', {playerDetailShow: false})
             },
             previous() {
-                this.currentIndex(this.currentMusicIndex - 1);
+                if (this.currentMusicIndex === 0) {
+                    this.currentIndex(this.getCurrentMusic.length-1)
+                } else {
+                    this.currentIndex(this.currentMusicIndex - 1);
+                }
                 this.playMusic({isPlay: true});
             },
             next() {
-                this.currentIndex(this.currentMusicIndex + 1);
+                if (this.currentMusicIndex === this.getCurrentMusic.length-1) {
+                    this.currentIndex(0)
+                } else {
+                    this.currentIndex(this.currentMusicIndex + 1);
+                }
                 this.playMusic({isPlay: true});
             },
             play() {
                 this.playMusic({isPlay: !this.playAll.isPlay});
             },
+
             loveIt() {
                 if (this.getCurrentMusic) {
                     let songs = this.getCurrentMusic;
@@ -128,14 +139,14 @@
                     songs[this.currentMusicIndex].islove = !songs[this.currentMusicIndex].islove;
                     let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                     if (songs[this.currentMusicIndex].islove) {
-                        this.$refs.favorite.className = 'iconfont icon-xihuan6';
+                        this.isFavorite = true;
                         let a = new Song(songs[this.currentMusicIndex]);
                         favoriteMusicData.push(a);
                     } else {
-                        this.$refs.favorite.className = 'iconfont icon-xihuan';
+                        this.isFavorite = false;
                         let songId = songs[this.currentMusicIndex].songid;
                         let index = favoriteMusicData.findIndex(item => item.id === songId);
-                        favoriteMusicData.splice(index,1);
+                        favoriteMusicData.splice(index, 1);
                     }
                     localStorage.setItem('__favoriteMusic__', JSON.stringify(favoriteMusicData));
                 }
@@ -143,7 +154,7 @@
             ...mapActions({
                 currentIndex: 'currentMusicIndex',
                 playMusic: 'playAll',
-                playerDetailShow:'playerDetailShow'
+                playerDetailShow: 'playerDetailShow'
             })
         },
         filters: {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="sing-player">
+        <div class="sing-player" v-if="getCurrentMusic">
             <div class="sing-icon" @click="detailShow()">
                 <img
                      :src="getCount.image">
@@ -14,7 +14,7 @@
                     <i :class="playAllMusic"></i>
                     <!--<i v-if="!paused" class="iconfont icon-ai07"></i>-->
                 </div>
-                <circle-progress :isPlay="paused" :time="time" :currentTime="currentTime"></circle-progress>
+                <circle-progress :isPlay="isPlay" :time="time" :currentTime="currentTime"></circle-progress>
             </div>
         </div>
         <player-detail v-if="playerDetailShow" :currentTime="currentTime"
@@ -78,6 +78,9 @@
             },
             playerDetailShow(){
                 return this.playerDetailShow
+            },
+            isPlay(){
+               return this.playAll.isPlay;
             },
             ...mapGetters([
                 'currentMusicIndex',
