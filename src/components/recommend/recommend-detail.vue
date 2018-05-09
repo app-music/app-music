@@ -26,7 +26,9 @@
             <!--</div>-->
         <!--</div>-->
     <!--</transition>-->
-    <music-detail :title="cdList[0].dissname" :imgUrl="cdList[0].logo" :data="cdList[0].songlist"></music-detail>
+
+        <music-detail :title="cdList[0].dissname" :imgUrl="cdList[0].logo" :data="cdList[0].songlist"></music-detail>
+
 </template>
 
 <script>
@@ -42,7 +44,6 @@
                 cdList: [{}],
             }
         },
-        comments: {},
         components: {
             musicDetail
         },

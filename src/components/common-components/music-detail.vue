@@ -45,7 +45,9 @@
             },
             data:{
                 type:Array,
-                default:[]
+                default: function () {
+                    return [{singer:[{name:''}],}]
+                }
             }
         },
         data() {
