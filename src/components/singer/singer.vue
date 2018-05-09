@@ -21,7 +21,7 @@
     .singer-name {
         margin-left: px2rem(20px);
         color: hsla(0, 0%, 100%, .5);
-        font-size: px2rem(14px);
+        font-size: px2rem(24px);
     }
 
     .singerImg {

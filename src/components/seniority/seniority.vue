@@ -29,8 +29,10 @@
             margin-left: px2rem(20px);
             overflow: hidden;
             .info {
-                height: px2rem(20px);
-                font-size: px2rem(12px);
+                margin-top:px2rem(14px);
+                height: px2rem(40px);
+                font-size: px2rem(26px);
+                line-height:px2rem(40px);
                 color: #828282;
                 width: calc(100% - 20px);
                 overflow: hidden;

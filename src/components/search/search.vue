@@ -84,15 +84,15 @@
                 line-height: px2rem(18px);
                 background: #333;
                 color: #fff;
-                font-size: px2rem(14px);
+                font-size: px2rem(24px);
                 outline: 0;
             }
         }
         .search-hot-key {
             margin: 0 px2rem(20px) px2rem(20px);
             p {
-                margin-bottom: px2rem(20px);
-                font-size: px2rem(14px);
+                margin-bottom: px2rem(30px);
+                font-size: px2rem(24px);
                 color: hsla(0, 0%, 100%, .5);
             }
 
@@ -103,7 +103,7 @@
             margin: 0 px2rem(20px) px2rem(10px) 0;
             border-radius: px2rem(6px);
             background: #333;
-            font-size: px2rem(14px);
+            font-size: px2rem(24px);
             color: hsla(0, 0%, 100%, .3);
         }
 

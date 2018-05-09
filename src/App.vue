@@ -81,7 +81,7 @@
                 line-height: px2rem(44px);
                 text-align: center;
                 color: #ffcd32;
-                font-size: px2rem(18px);
+                font-size: px2rem(28px);
             }
             .user {
                 position: absolute;
@@ -106,7 +106,7 @@
                 .nav-item-link {
                     color: #ffcd32;
                     display: block;
-                    font-size: px2rem(16px);
+                    font-size: px2rem(25px);
                     padding: px2rem(17px) 0;
                     text-decoration: none;
                 }
