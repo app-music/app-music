@@ -112,7 +112,7 @@
     .circleProgress {
         width: px2rem(55px);
         height: px2rem(55px);
-        border: px2rem(1px) solid rgb(232, 232, 12);
+        border: px2rem(3px) solid rgb(232, 232, 12);
         border-radius: 50%;
         position: absolute;
         top: 0;

@@ -68,6 +68,7 @@
                 this.currentMusicIndex(index);
                 // this.playAll({isPlay: true});
                 this.currentMusic(this.cdList[0].songlist);
+                this.playerDetailShow(true)
             },
             navigateToDetail(index) {
                 this.currentMusic(this.cdList[0].songlist);
