@@ -3,8 +3,8 @@
         <mt-index-list>
             <mt-index-section v-for="(item,index) in singerData" :key="index" :index="item.index">
                 <template v-for="itemChild in item.childNode">
-                    <div class="singer-l">
-                        <img class="singerImg" :src="itemChild.Fsinger_mid" alt="">
+                    <div class="singer-l" @click="selectItem(itemChild.Fsinger_mid)">
+                        <img class="singerImg" :src="itemChild._Fsinger_mid" alt="">
                         <span class="singer-name">{{itemChild.Fsinger_name}}</span>
                     </div>
                 </template>
@@ -51,7 +51,7 @@
                 this.$singerService.getSingerList().then(success => {
                     data = success.data.list;
                     data.forEach((_item, index) => {
-                        _item.Fsinger_mid = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${_item.Fsinger_mid}.jpg?max_age=2592000`
+                        _item._Fsinger_mid = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${_item.Fsinger_mid}.jpg?max_age=2592000`
                         if (index < 5) {
                             arr.push(_item);
                         }
@@ -67,12 +67,17 @@
                         if (data.length > 0) {
                             obj = {index: item, childNode: arr};
                         }
-
                         this.singerData.push(obj)
                     })
                 });
                 console.log(this.singerData);
-            }
+            },
+            selectItem(id){
+                this.$router.push({
+                    path: `/singer/detail/${id}`,
+                })
+            },
+
         }
 
     }
