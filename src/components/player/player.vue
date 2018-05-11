@@ -19,12 +19,12 @@
         </div>
         <player-detail v-if="playerDetailShow" :currentTime="currentTime"
                        @playerDetailEvent="getPlayDetailEvent"></player-detail>
-        <audio id="aa" ref="audio" :src="getCount.url" @timeupdate="timeUpdate">
-        </audio>
-        <!--播放本地音乐测试-->
-        <!--<audio id="aa" ref="audio"  @timeupdate="timeUpdate">-->
-            <!--<source src="./Jam.mp3">-->
+        <!--<audio id="aa" ref="audio" @play='songReady':src="getCount.url" @timeupdate="timeUpdate">-->
         <!--</audio>-->
+        播放本地音乐测试
+        <audio id="aa" ref="audio"  @timeupdate="timeUpdate">
+            <source src="./Jam.mp3">
+        </audio>
     </div>
 </template>
 
@@ -81,6 +81,10 @@
             },
             isPlay(){
                return this.playAll.isPlay;
+            },
+            songReady(){
+                let playHistory= localStorage.getItem('__playHistory__')||[];
+                playHistory.push(new Song(this.getCurrentMusic[this.currentMusicIndex]))
             },
             ...mapGetters([
                 'currentMusicIndex',

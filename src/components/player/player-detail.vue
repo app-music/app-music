@@ -21,6 +21,17 @@
                         <div slot="start">{{currentTime*1000 | formatDate}}</div>
                         <div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>
                     </mt-progress>
+                    <!--<mt-range v-model="rangeValue" :bar-height="2" >-->
+                        <!--<div slot="start">{{currentTime*1000 | formatDate}}{{''}}</div>-->
+                        <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}{{''}}</div>-->
+                    <!--</mt-range>-->
+                    <range :value="currentTime/getCurrentMusicTime*100"
+                           :max="getCurrentMusicTime"
+                           @dragEvent ="rangeChange"
+                           @dragEndEvent ="rangeChangeEnd">
+                        <div slot="start">{{currentTime*1000 | formatDate}}</div>
+                        <div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>
+                    </range>
                 </div>
                 <div class="player-button">
                     <span>
@@ -43,7 +54,7 @@
     import Song from "../../core/utils/song";
     import {mapActions, mapGetters} from 'vuex';
     import {CommonUtil} from '../../core/utils/common-util';
-
+    import range from './range.vue'
     export default {
         name: "player-detail",
         props: {
@@ -57,7 +68,11 @@
                 start: '',
                 end: '',
                 isFavorite:'false',
+                rangeValue:'10'
             }
+        },
+        components:{
+            range
         },
         computed: {
             currentSong() {
@@ -96,6 +111,7 @@
                     return 'iconfont icon-xihuan'
                 }
             },
+
             ...mapGetters([
                 'currentMusicIndex',
                 'playAll',
@@ -150,6 +166,12 @@
                     }
                     localStorage.setItem('__favoriteMusic__', JSON.stringify(favoriteMusicData));
                 }
+            },
+            rangeChangeEnd($event){
+                this.currentTime = $event;
+            },
+            rangeChange($event){
+                this.currentTime = $event;
             },
             ...mapActions({
                 currentIndex: 'currentMusicIndex',

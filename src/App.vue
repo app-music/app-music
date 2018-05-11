@@ -218,4 +218,20 @@
         margin-bottom:px2rem(110px);
         margin-top: px2rem(110px);
     }
+    .mt-range-thumb {
+        background-color: #ffcd32;
+        background-clip: content-box;
+        position: absolute;
+        padding: 5px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border: 1px solid #fff;
+        border-radius: 100%;
+        cursor: move;
+        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.4);
+        box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
 </style>

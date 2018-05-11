@@ -45,7 +45,6 @@
                     }, failed => {
                         console.log(failed);
                     })
-
                     console.log(songs);
                 })
             },
