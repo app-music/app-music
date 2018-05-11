@@ -168,10 +168,11 @@
                 }
             },
             rangeChangeEnd($event){
-                this.currentTime = $event;
+                // this.currentTime = $event;
+                // this.$emit('playerDetailEvent', {playerDetailShow: false})
             },
             rangeChange($event){
-                this.currentTime = $event;
+                // this.currentTime = $event;
             },
             ...mapActions({
                 currentIndex: 'currentMusicIndex',
