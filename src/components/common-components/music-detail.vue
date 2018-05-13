@@ -67,11 +67,13 @@
                 let index = CommonUtil.getRandomNumBoth(1, this.data.length + 1);
                 this.currentMusicIndex(index);
                 this.currentMusic(this.data);
+                this.playAll({isPlay: true});
                 this.playerDetailShow(true)
             },
             navigateToDetail(index) {
                 this.currentMusicIndex(index);
                 this.currentMusic(this.data);
+                this.playAll({isPlay: true});
                 this.playerDetailShow(true);
             },
             goBack() {
