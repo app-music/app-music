@@ -18,7 +18,9 @@
             </div>
         </div>
         <player-detail v-if="playerDetailShow" :currentTime="currentTime"
-                       @playerDetailEvent="getPlayDetailEvent"></player-detail>
+                       @playerDetailEvent="getPlayDetailEvent"
+                       @playerDetailEventEnd="getPlayDetailEventEnd"
+        ></player-detail>
         <audio id="aa" ref="audio" @play='songReady':src="getCount.url" @timeupdate="timeUpdate">
         </audio>
         <!--播放本地音乐测试-->
@@ -128,8 +130,17 @@
 
             },
             getPlayDetailEvent(evt) {
-                // this.playerDetailShow = evt.playerDetailShow;
+                console.log('拖拽中',evt.currentTime);
+                this.$refs.audio.pause();
+                this.$refs.audio.currentTime = evt.currentTime;
 
+
+            },
+            getPlayDetailEventEnd(evt){
+                // console.log('结束',evt.currentTime);
+                // this.$refs.audio.currentTime = evt.currentTime;
+                // this.$refs.audio.play();
+                this.$refs.audio.play();
             },
             timeUpdate(e) {
                 this.currentTime = e.target.currentTime;

@@ -169,9 +169,10 @@
             },
             rangeChangeEnd($event){
                 // this.currentTime = $event;
-                // this.$emit('playerDetailEvent', {playerDetailShow: false})
+                this.$emit('playerDetailEventEnd', {currentTime: $event})
             },
             rangeChange($event){
+                this.$emit('playerDetailEvent', {currentTime: $event})
                 // this.currentTime = $event;
             },
             ...mapActions({
