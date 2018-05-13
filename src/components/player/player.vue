@@ -137,9 +137,8 @@
 
             },
             getPlayDetailEventEnd(evt){
-                // console.log('结束',evt.currentTime);
-                // this.$refs.audio.currentTime = evt.currentTime;
-                // this.$refs.audio.play();
+                console.log('结束',evt.currentTime);
+                this.$refs.audio.currentTime = evt.currentTime;
                 this.$refs.audio.play();
             },
             timeUpdate(e) {

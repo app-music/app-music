@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-range">
+    <div class="range">
         <slot name="start"></slot>
         <div class="range-content" ref="content">
             <div class="range-runway" style="border-top-width: 2px;">
@@ -43,7 +43,9 @@
             }
         },
         data() {
-            return {}
+            return {
+                currentValue:''
+            }
         },
         mounted() {
             const thumb = this.$refs.thumb;
@@ -81,12 +83,12 @@
                     } else if (newProgress > 1) {
                         newProgress = 1;
                     }
-                    console.log(Math.round(this.min + newProgress * (this.max - this.min)));
+                    this.currentValue = Math.round(this.min + newProgress * (this.max - this.min))
                     this.$emit('dragEvent', Math.round(this.min + newProgress * (this.max - this.min)));
                 },
                 end: () => {
                     if (this.disabled) return;
-                    this.$emit('dragEndEvent', this.value);
+                    this.$emit('dragEndEvent', this.currentValue);
                     dragState = {};
                 }
             })
@@ -98,7 +100,7 @@
 </script>
 
 <style scoped>
-    .mt-range {
+    .range {
         position: relative;
         display: -webkit-box;
         display: -ms-flexbox;

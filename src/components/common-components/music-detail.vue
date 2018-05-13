@@ -70,8 +70,8 @@
                 this.playerDetailShow(true)
             },
             navigateToDetail(index) {
-                this.currentMusic(this.data);
                 this.currentMusicIndex(index);
+                this.currentMusic(this.data);
                 this.playerDetailShow(true);
             },
             goBack() {

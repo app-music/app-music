@@ -17,10 +17,10 @@
             </div>
             <div class="player-control">
                 <div class="progress">
-                    <mt-progress :value="currentTime/getCurrentMusicTime*100">
-                        <div slot="start">{{currentTime*1000 | formatDate}}</div>
-                        <div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>
-                    </mt-progress>
+                    <!--<mt-progress :value="currentTime/getCurrentMusicTime*100">-->
+                        <!--<div slot="start">{{currentTime*1000 | formatDate}}</div>-->
+                        <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>-->
+                    <!--</mt-progress>-->
                     <!--<mt-range v-model="rangeValue" :bar-height="2" >-->
                         <!--<div slot="start">{{currentTime*1000 | formatDate}}{{''}}</div>-->
                         <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}{{''}}</div>-->
@@ -272,8 +272,9 @@
             left: 0;
             bottom: px2rem(50px);
             .progress {
-                margin: 0 auto;
+                margin: 10px auto;
                 width: 90%;
+
             }
             .player-button {
                 text-align: center;
