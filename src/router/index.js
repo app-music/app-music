@@ -36,7 +36,5 @@ export default new Router({
       path: '/singer/detail/:id',
       component: resolve => import('../components/singer/singer-detail.vue').then(resolve),
     },
-
-
   ]
 })

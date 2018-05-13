@@ -11,7 +11,8 @@
                 </mt-tab-item>
             </mt-navbar>
             <div id="play">
-                <i class="iconfont icon-suijibofang"></i>
+              <!--先不显示这个图标-->
+                <!--<i class="iconfont icon-suijibofang"></i>-->
                 <span>随机播放全部</span>
             </div>
 
@@ -69,12 +70,13 @@
             top: 0;
             left: px2rem(6px);
             z-index: 60;
+
             i {
                 font-size: 26px !important;
                 display: block;
                 padding: px2rem(10px);
                 color: #ffcd32;
-            }
+              }
 
         }
     }
@@ -104,28 +106,35 @@
     }
 
     #play {
-        height: 30px;
-        width: 130px;
+
+        height: px2rem(46px);
+        width: px2rem(240px);
         text-align: left;
         color: #999;
         border: 1px solid #999;
-        border-radius: 20px;
-        margin: 55px auto;
+        border-radius:px2rem(30px);
+        margin: px2rem(55px) auto;
 
         span {
             display: inline-block;
             line-height: 50%;
             vertical-align: middle;
-            margin-top: -9px;
-            font-size: 12px;
+            margin-top:px2rem(-9px);
+            font-size: px2rem(26px) ;
+          color: #000;
         }
+      /*先不要这个图标，影响市容*/
+      /**
         i {
             color: #ffffff;
             vertical-align: middle;
             display: inline-block;
-            margin-top: -7px;
-            margin-right: -10px;
+            margin-top:px2rem(-30px);
+            margin-right: px2rem(-20px);
         }
+
+
+      */
 
     }
 
