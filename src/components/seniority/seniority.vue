@@ -5,7 +5,7 @@
                 <!--{{item.id}}-->
                 <img height="100" :src="item.picUrl" alt="">
                 <ul>
-                    <li v-for="(title,index) in item.songList" class="info">
+                    <li v-for="(title,index) in item.songList" class="info" @click="goToDetail(item.id)">
                         {{index+1}} {{title.songname}}-{{title.singername}}
                     </li>
                 </ul>
@@ -63,6 +63,11 @@
                     this.listData = success.data.topList;
                 }, failed => {
                     console.log(failed);
+                })
+            },
+            goToDetail(id){
+                this.$router.push({
+                    path: `/seniority/detail/${id}`,
                 })
             }
         }
