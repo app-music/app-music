@@ -28,7 +28,7 @@
         methods:{
             getSingerDetail(id){
                 this.$singerService.getSingerDetail(id).then(success=>{
-                    console.log(success);
+//                    console.log(success);
                     this.title = success.data.singer_name;
                     let songs = [];
                     success.data.list.forEach(item=>{

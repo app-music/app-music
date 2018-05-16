@@ -20,7 +20,7 @@
                 <ul>
                     <li v-for="(item,index) in data" :key="index">
                         <h2>{{item.songname}}</h2>
-                        <p @click="navigateToDetail(index)">{{item.singer[0].name}}*{{item.albumname}}</p>
+                        <p @click="navigateToDetail(index)">{{item.singer[0].name}}  &nbsp;{{item.albumname}}</p>
                     </li>
                 </ul>
             </div>
@@ -115,7 +115,7 @@
         }
         h1 {
             position: absolute;
-            top: px2rem(2px);
+            top: px2rem(12px);
             left: 10%;
             z-index: 40;
             width: 80%;
@@ -124,8 +124,9 @@
             white-space: nowrap;
             text-align: center;
             line-height: px2rem(40px);
-            font-size: px2rem(18px);
-            color: #fff;
+            font-size: px2rem(26px);
+            color: #eee;
+          text-shadow:2px 3px 2px #333 ;
         }
         .music-img {
             position: relative;
@@ -182,7 +183,7 @@
                         overflow: hidden;
                         white-space: nowrap;
                         color: #fff;
-                        font-size: px2rem(15px);
+                        font-size: px2rem(25px);
                     }
                     p {
                         text-overflow: ellipsis;
@@ -191,6 +192,7 @@
                         margin-top: px2rem(4px);
                         color: hsla(0, 0%, 100%, .3);
                     }
+                  margin-bottom: px2rem(20px);
                 }
             }
         }

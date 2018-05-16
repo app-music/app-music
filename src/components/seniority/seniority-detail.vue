@@ -1,28 +1,55 @@
 <template>
-    <div>排行详情页面</div>
+
+  <music-detail :title="title" :data="data" :imgUrl="imgUrl"></music-detail>
 </template>
 
 <script>
+  import musicDetail from '../common-components/music-detail';
+  import {getSongUrlList} from "../../core/utils/song-util";
     export default {
-        name: "seniority-detail",
-        data(){
-           return{
-               id:'',
-               data:[]
-           }
-        },
-        created(){
-            this.id = this.$route.params.id;
-            this.getTopListDetail(this.id)
-        },
-        methods:{
-            getTopListDetail(id){
-                this.$seniorityService.getTopListDetail(id).then(success=>{
-                    console.log(success);
-                    this.data = success.data
-                })
-            }
-        },
+      name: "seniority-detail",
+      data(){
+        return {
+          id: '',
+          data: [],
+          title: '',
+          imgUrl: ''
+
+        }
+      },
+      components: {
+        musicDetail,
+      },
+      created(){
+        this.id = this.$route.params.id;
+        this.getTopListDetail(this.id);
+      },
+      methods: {
+//        getTopListDetail(id){
+//          this.$seniorityService.getTopListDetail(id).then(success=>{
+//            console.log(success);
+//        })
+//        },
+        getTopListDetail(id){
+          this.$seniorityService.getTopListDetail(id).then(success=>{
+            console.log(success);
+          this.imgUrl=success.topinfo.MacDetailPicUrl;
+          this.title = success.topinfo.ListName;
+          let arr=[];
+          success.songlist.forEach(item=>{
+            let {data}=item;
+          arr.push(data);
+          })
+          getSongUrlList(arr).then(res=>{
+            this.data=res;
+
+          },failed=>{
+
+          })
+          console.log(this.data);
+          })
+        }
+      }
     }
 </script>
 
