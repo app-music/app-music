@@ -4,28 +4,30 @@
             <div class="search">
                 <i class="iconfont icon-sousuo icon-color" style="color: #866363"></i>
                 <input type="text" class="search-input"
-                       v-model="value" v-bind:onchange="searchChange()"
+                       v-model="value" @input="searchChange($event)"
                        placeholder="搜索歌曲、歌名">
             </div>
         </div>
-        <div class="search-hot-key">
+        <div class="search-hot-key" v-if="!value">
             <p>热门搜索</p>
             <ul>
-                <li class="hot-key" v-for="(item,index) in hotKey" :key="index">
+                <li class="hot-key" v-for="(item,index) in hotKey" :key="index" @click="searchIt(item.k)">
                     {{item.k}}
                 </li>
             </ul>
         </div>
-        <div class="search-list">
+        <div class="search-list" v-if="value">
             <ul>
-                <li></li>
+                <li v-for="(item,index) in songList" :key="index" @click="navigateToDetail(index)">
+                    {{item.songname}}
+                </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
     import {mapActions} from 'vuex'
-
+    import {getSongUrlList} from '../../core/utils/song-util'
     export default {
         data() {
             return {
@@ -36,7 +38,8 @@
                     {title: 'ssss', value: 'ssss'},
                     {title: 'ssss', value: 'ssss'},
                 ],
-                hotKey: []
+                hotKey: [],
+                songList:[],
             }
         },
         created() {
@@ -51,11 +54,36 @@
                     console.log(failed.msg);
                 })
             },
-            searchChange() {
-                // this.$store.commit('COUNT',this.value)
+            searchIt(key){
+                this.search(key);
+                this.value = key;
+            },
+            searchChange(event) {
+                this.search(event.target.value)
+            },
+            search(value){
+                this.$searchService.searchMusicByKeyWord(value).then(success=>{
+                    let list = success.data.song.list;
+                    getSongUrlList(list).then(res=>{
+                        this.songList = res
+                    },failed=>{
+
+                    })
+                },failed=>{
+
+                })
+            },
+            navigateToDetail(index) {
+                this.currentMusic(this.songList);
+                this.currentMusicIndex(index);
+                this.playAll({isPlay: true});
+                this.playerDetailShow(true);
             },
             ...mapActions([
-                'currentMusic'
+                'currentMusic',
+                'currentMusicIndex',
+                'playAll',
+                'playerDetailShow'
             ])
         }
     }</script>
@@ -66,12 +94,13 @@
             margin: px2rem(20px);
         }
         .search {
+            padding: px2rem(30px);
             display: flex;
             -ms-flex-align: center;
             align-items: center;
             box-sizing: border-box;
             width: 100%;
-            padding: px2rem(20px) px2rem(6px);
+            /*padding: px2rem(20px) px2rem(6px);*/
             height: px2rem(40px);
             background: #333;
             border-radius: px2rem(6px);
@@ -105,6 +134,19 @@
             background: #333;
             font-size: px2rem(24px);
             color: hsla(0, 0%, 100%, .3);
+        }
+        .search-list{
+            ul{
+                padding: 30px;
+                li{
+                    display: flex;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    padding-bottom: px2rem(6px);
+                    color: hsla(0,0%,100%,.3);
+                }
+            }
+
         }
 
     }

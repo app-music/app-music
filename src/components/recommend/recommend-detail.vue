@@ -1,31 +1,5 @@
 <template>
-  <!--<transition name="slide-fade">-->
-  <!--<div ref="aa" class="music-detail">-->
-  <!--<div class="go-back" @click="goBack()">-->
-  <!--<i class="iconfont icon-fanhui"></i>-->
-  <!--</div>-->
-  <!--<h1>{{cdList[0].dissname}}</h1>-->
-  <!--<div class="music-img" style="border: none">-->
-  <!--<img v-if="cdList[0].logo" :src="cdList[0].logo" style="border: none" width="100%" height="100%"-->
-  <!--alt=""/>-->
-  <!--<div class="play-all" @click="clickPlayAll()">-->
-  <!--<span>-->
-  <!--<i class="iconfont icon-bofang"></i>-->
-  <!--随机播放全部-->
-  <!--</span>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="filter"></div>-->
-  <!--<div class="song-list">-->
-  <!--<ul>-->
-  <!--<li v-for="(item,index) in cdList[0].songlist" :key="index">-->
-  <!--<h2>{{item.songname}}</h2>-->
-  <!--<p @click="navigateToDetail(index)">{{item.singer[0].name}}*{{item.albumname}}</p>-->
-  <!--</li>-->
-  <!--</ul>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</transition>-->
+
 
   <music-detail :title="cdList[0].dissname" :imgUrl="cdList[0].logo" :data="cdList[0].songlist"></music-detail>
 
@@ -35,6 +9,7 @@
   import {CommonUtil} from "../../core/utils/common-util";
   import {mapActions} from 'vuex'
   import musicDetail from '../common-components/music-detail'
+  import {getSongUrlList} from "../../core/utils/song-util";
 
   export default {
     name: "recommend-detail",
@@ -56,15 +31,21 @@
         this.$recommendService.getCdListDetail(this.id).then(result => {
           this.cdList = result.cdlist;
           console.log(this.cdList);
-          this.$songService.getSongUrlList(this.cdList[0].songlist).then(result => {
-            console.log(result);
-            let midUrlInfo = result.url_mid.data.midurlinfo;
-            this.cdList[0].songlist.forEach((item, index) => {
-              item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
-            });
-          }, failed => {
-            console.log(failed);
-          })
+            getSongUrlList(result.cdlist[0].songlist).then(res=>{
+                this.cdList[0].songlist = res
+            },failed=>{
+
+            })
+
+          // this.$songService.getSongUrlList(this.cdList[0].songlist).then(result => {
+          //   console.log(result);
+          //   let midUrlInfo = result.url_mid.data.midurlinfo;
+          //   this.cdList[0].songlist.forEach((item, index) => {
+          //     item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
+          //   });
+          // }, failed => {
+          //   console.log(failed);
+          // })
         }, failed => {
 
         })

@@ -6,6 +6,7 @@
 
 <script>
     import musicDetail from '../common-components/music-detail'
+    import {getSongUrlList} from "../../core/utils/song-util";
     export default {
         name: "singer-detail",
         data() {
@@ -32,20 +33,14 @@
                     let songs = [];
                     success.data.list.forEach(item=>{
                         let {musicData} = item;
-                        // musicData.songUrl = `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`;
                         songs.push(musicData)
                     });
-                    this.$songService.getSongUrlList(songs).then(result => {
-                        console.log(result);
-                        let midUrlInfo = result.url_mid.data.midurlinfo;
-                        songs.forEach((item, index) => {
-                            item.songUrl = `http://dl.stream.qqmusic.qq.com/${midUrlInfo[index].purl}`
-                        });
-                        this.songData = songs;
-                    }, failed => {
-                        console.log(failed);
+                    getSongUrlList(songs).then(res=>{
+                        this.songData = res;
+                    },failed=>{
+
                     })
-                    console.log(songs);
+
                 })
             },
         },
