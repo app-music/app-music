@@ -5,7 +5,8 @@
                 <i class="iconfont icon-sousuo icon-color" style="color: #866363"></i>
                 <input type="text" class="search-input"
                        v-model="value" @input="searchChange($event)"
-                       placeholder="搜索歌曲、歌名">
+                placeholder="搜索歌曲、歌名">
+                <i class="iconfont icon-delete icon-color" style="color: #866363" @click="deleteValue()"></i>
             </div>
         </div>
         <div class="search-hot-key" v-if="!value">
@@ -19,7 +20,7 @@
         <div class="search-list" v-if="value">
             <ul>
                 <li v-for="(item,index) in songList" :key="index" @click="navigateToDetail(index)">
-                    {{item.songname}}
+                    <i class="iconfont icon-yinle1"></i> <span>{{item.songname}}</span>
                 </li>
             </ul>
         </div>
@@ -72,6 +73,9 @@
                 },failed=>{
 
                 })
+            },
+            deleteValue(){
+                this.value='';
             },
             navigateToDetail(index) {
                 this.currentMusic(this.songList);
@@ -144,6 +148,9 @@
                     align-items: center;
                     padding-bottom: px2rem(6px);
                     color: hsla(0,0%,100%,.3);
+                    i{
+                        margin-right: 10px;
+                    }
                 }
             }
 
