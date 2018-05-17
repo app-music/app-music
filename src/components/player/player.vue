@@ -21,12 +21,12 @@
                        @playerDetailEvent="getPlayDetailEvent"
                        @playerDetailEventEnd="getPlayDetailEventEnd"
         ></player-detail>
-        <audio id="aa" ref="audio" @play='songReady':src="getCount.url" @timeupdate="timeUpdate">
-        </audio>
-        <!--播放本地音乐测试-->
-        <!--<audio id="aa" ref="audio"  @timeupdate="timeUpdate">-->
-            <!--<source src="./Jam.mp3">-->
+        <!--<audio id="aa" ref="audio" @play='songReady':src="getCount.url" @timeupdate="timeUpdate">-->
         <!--</audio>-->
+        <!--播放本地音乐测试-->
+        <audio id="aa" ref="audio" @play='songReady' @timeupdate="timeUpdate">
+            <source src="./Jam.mp3">
+        </audio>
     </div>
 </template>
 

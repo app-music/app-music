@@ -11,26 +11,26 @@
             </h3>
             <div class="music-img">
                 <div>
-                    <img height="100%" width="100%" :src="currentSong.image" alt=""/>
+                    <img ref="image" :style="playStaus2" height="100%" width="100%" :src="currentSong.image" alt=""/>
                 </div>
                 <h2>目前没有获取到歌词</h2>
             </div>
             <div class="player-control">
                 <div class="progress">
                     <!--<mt-progress :value="currentTime/getCurrentMusicTime*100">-->
-                        <!--<div slot="start">{{currentTime*1000 | formatDate}}</div>-->
-                        <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>-->
+                    <!--<div slot="start">{{currentTime*1000 | formatDate}}</div>-->
+                    <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>-->
                     <!--</mt-progress>-->
                     <!--<mt-range v-model="rangeValue" :bar-height="2" >-->
-                        <!--<div slot="start">{{currentTime*1000 | formatDate}}{{''}}</div>-->
-                        <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}{{''}}</div>-->
+                    <!--<div slot="start">{{currentTime*1000 | formatDate}}{{''}}</div>-->
+                    <!--<div slot="end">{{getCurrentMusicTime*1000 |formatDate}}{{''}}</div>-->
                     <!--</mt-range>-->
                     <range :value="currentTime/getCurrentMusicTime*100"
                            :max="getCurrentMusicTime"
-                           @dragEvent ="rangeChange"
-                           @dragEndEvent ="rangeChangeEnd">
-                        <div slot="start">{{currentTime*1000 | formatDate}}</div>
-                        <div slot="end">{{getCurrentMusicTime*1000 |formatDate}}</div>
+                           @dragEvent="rangeChange"
+                           @dragEndEvent="rangeChangeEnd">
+                        <div slot="start" style="color: #eaffea">{{currentTime*1000 | formatDate}}</div>
+                        <div slot="end" style="color: #eaffea">{{getCurrentMusicTime*1000 |formatDate}}</div>
                     </range>
                 </div>
                 <div class="player-button">
@@ -55,6 +55,7 @@
     import {mapActions, mapGetters} from 'vuex';
     import {CommonUtil} from '../../core/utils/common-util';
     import range from './range.vue'
+
     export default {
         name: "player-detail",
         props: {
@@ -67,12 +68,16 @@
             return {
                 start: '',
                 end: '',
-                isFavorite:'false',
-                rangeValue:'10'
+                isFavorite: 'false',
+                rangeValue: '10',
+                image:''
             }
         },
-        components:{
+        components: {
             range
+        },
+        mounted(){
+           this.image = this.$refs.image;
         },
         computed: {
             currentSong() {
@@ -90,6 +95,13 @@
                     return 'iconfont icon-bofang'
                 }
             },
+            playStaus2(){
+                if (this.playAll.isPlay){
+                    return {animation: 'rotate infinite linear 20s'};
+                } else {
+                    return {animation: 'none'};
+                }
+            },
             getCurrentMusicTime() {
                 return this.currentMusicTime;
             },
@@ -100,7 +112,7 @@
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                         let index = favoriteMusicData.findIndex(item => item.id === id);
                         this.$nextTick(() => {
-                            this.isFavorite = index!==-1
+                            this.isFavorite = index !== -1
                         });
                         return '';
                     } catch (e) {
@@ -130,14 +142,14 @@
             },
             previous() {
                 if (this.currentMusicIndex === 0) {
-                    this.currentIndex(this.getCurrentMusic.length-1)
+                    this.currentIndex(this.getCurrentMusic.length - 1)
                 } else {
                     this.currentIndex(this.currentMusicIndex - 1);
                 }
                 this.playMusic({isPlay: true});
             },
             next() {
-                if (this.currentMusicIndex === this.getCurrentMusic.length-1) {
+                if (this.currentMusicIndex === this.getCurrentMusic.length - 1) {
                     this.currentIndex(0)
                 } else {
                     this.currentIndex(this.currentMusicIndex + 1);
@@ -167,11 +179,11 @@
                     localStorage.setItem('__favoriteMusic__', JSON.stringify(favoriteMusicData));
                 }
             },
-            rangeChangeEnd($event){
+            rangeChangeEnd($event) {
                 // this.currentTime = $event;
                 this.$emit('playerDetailEventEnd', {currentTime: $event})
             },
-            rangeChange($event){
+            rangeChange($event) {
                 this.$emit('playerDetailEvent', {currentTime: $event})
                 // this.currentTime = $event;
             },
@@ -254,6 +266,7 @@
             color: #fff;
         }
         .music-img {
+
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -294,4 +307,6 @@
             }
         }
     }
+
+
 </style>

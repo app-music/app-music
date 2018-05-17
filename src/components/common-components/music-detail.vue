@@ -64,17 +64,20 @@
         methods: {
 
             clickPlayAll() {
+                this.currentMusic(this.data);
                 let index = CommonUtil.getRandomNumBoth(1, this.data.length + 1);
                 this.currentMusicIndex(index);
-                this.currentMusic(this.data);
                 this.playAll({isPlay: true});
                 this.playerDetailShow(true)
             },
             navigateToDetail(index) {
-                this.currentMusicIndex(index);
-                this.currentMusic(this.data);
-                this.playAll({isPlay: true});
-                this.playerDetailShow(true);
+                setTimeout(e=>{
+                    this.currentMusic(this.data);
+                    this.currentMusicIndex(index);
+                    this.playAll({isPlay: true});
+                    this.playerDetailShow(true)
+                })
+
             },
             goBack() {
                 this.$router.push({
@@ -135,6 +138,7 @@
             padding-top: 70%;
             transform-origin: top;
             background-size: cover;
+            /*animation: rotate infinite 3s;*/
             img {
                 border: none;
                 position: absolute;
@@ -213,4 +217,6 @@
         transform: translateX(100%);
         opacity: 0;
     }
+
+
 </style>
