@@ -6,6 +6,10 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
+            path: '/login',
+            component: resolve => import('../components/login/login.vue').then(resolve),
+        },
+        {
             path: '/',
             redirect: '/recommend'
         },
@@ -41,5 +45,6 @@ export default new Router({
             path: '/singer/detail/:id',
             component: resolve => import('../components/singer/singer-detail.vue').then(resolve),
         },
+
     ]
 })

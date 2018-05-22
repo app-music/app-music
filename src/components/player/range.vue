@@ -4,7 +4,7 @@
         <div class="range-content" ref="content">
             <div class="range-runway" ref="runWay" style="border-top-width: 2px;">
             </div>
-            <div class="range-progress"ref="progress" v-bind:style="{width:value+'%',height:'2px'}">
+            <div class="range-progress" ref="progress" v-bind:style="{width:value+'%',height:'2px'}">
             </div>
             <div class="range-thumb" ref="thumb" v-bind:style="{left:value+'%'}"></div>
         </div>
