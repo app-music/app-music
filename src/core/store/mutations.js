@@ -7,7 +7,7 @@ import getters from "./getters";
 const state = {
     currentMusic: null,
     playAll: {isPlay: false},
-    currentMusicIndex: null,
+    currentMusicIndex: -1,
     currentMusicTime: null,
     playerDetailShow: false,
 };

@@ -64,16 +64,6 @@
 
                 })
             },
-            refreshclick() {
-
-            },
-            showModel() {
-                this.isVisible = true;
-            },
-            colsModel(item) {
-                console.log(item)
-                this.isVisible = item.isOk;
-            },
             //获得焦点-----------------------------------
             inputFocus() {
                 this.showMsg = false;

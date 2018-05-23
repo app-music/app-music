@@ -20,7 +20,7 @@
                 <ul>
                     <li v-for="(item,index) in data" :key="index">
                         <h2>{{item.songname}}</h2>
-                        <p @click="navigateToDetail(index)">{{item.singer[0].name}}  &nbsp;{{item.albumname}}</p>
+                        <p @click="navigateToDetail(index)">{{item.singer[0].name}} &nbsp;{{item.albumname}}</p>
                     </li>
                 </ul>
             </div>
@@ -39,14 +39,14 @@
                 type: String,
                 default: ''
             },
-            imgUrl:{
-                type:String,
-                default:''
+            imgUrl: {
+                type: String,
+                default: ''
             },
-            data:{
-                type:Array,
+            data: {
+                type: Array,
                 default: function () {
-                    return [{singer:[{name:''}],}]
+                    return [{singer: [{name: ''}],}]
                 }
             }
         },
@@ -71,13 +71,10 @@
                 this.playerDetailShow(true)
             },
             navigateToDetail(index) {
-                setTimeout(e=>{
-                    this.currentMusic(this.data);
-                    this.currentMusicIndex(index);
-                    this.playAll({isPlay: true});
-                    this.playerDetailShow(true)
-                })
-
+                this.currentMusic(this.data);
+                this.currentMusicIndex(index);
+                this.playAll({isPlay: true});
+                this.playerDetailShow(true)
             },
             goBack() {
                 this.$router.push({
@@ -129,7 +126,7 @@
             line-height: px2rem(40px);
             font-size: px2rem(26px);
             color: #eee;
-          text-shadow:2px 3px 2px #333 ;
+            text-shadow: 2px 3px 2px #333;
         }
         .music-img {
             position: relative;
@@ -196,7 +193,7 @@
                         margin-top: px2rem(4px);
                         color: hsla(0, 0%, 100%, .3);
                     }
-                  margin-bottom: px2rem(20px);
+                    margin-bottom: px2rem(20px);
                 }
             }
         }

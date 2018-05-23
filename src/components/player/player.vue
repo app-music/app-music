@@ -3,7 +3,7 @@
         <div class="sing-player" v-if="getCurrentMusic">
             <div class="sing-icon" @click="detailShow()">
                 <img
-                     :src="getCount.image">
+                        :src="getCount.image">
             </div>
             <div class="text">
                 <h2 class="name" v-html="getCount.singer[0].name"></h2>
@@ -78,11 +78,11 @@
                     return 'iconfont icon-bofang1'
                 }
             },
-            playerDetailShow(){
+            playerDetailShow() {
                 return this.playerDetailShow
             },
-            isPlay(){
-               return this.playAll.isPlay;
+            isPlay() {
+                return this.playAll.isPlay;
             },
             ...mapGetters([
                 'currentMusicIndex',
@@ -96,19 +96,19 @@
                 deep: true,
                 handler() {
                     this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
-                    // this.time = this.$refs.audio.duration;
+                    this.time = this.$refs.audio.duration;
                     // this.currentMusicTime(this.time)
                 }
             },
             currentMusicIndex(value) {
                 this.$nextTick(() => {
-                    if (value) {
+                    if (value !== -1) {
                         setTimeout(e => {
                             try {
                                 this.$refs.audio.play();
                                 this.currentMusicTime(this.$refs.audio.duration);
                                 this.playIt({isPlay: true});
-                            }catch (e) {
+                            } catch (e) {
                                 throw new Error(e)
                             }
                         }, 1000)
@@ -124,41 +124,41 @@
                 try {
                     this.time = this.$refs.audio.duration;
                     this.currentMusicTime(this.time)
-                }catch (e) {
+                } catch (e) {
                     throw new Error(e)
                 }
 
             },
             getPlayDetailEvent(evt) {
-                console.log('拖拽中',evt.currentTime);
+                console.log('拖拽中', evt.currentTime);
                 this.$refs.audio.pause();
                 this.$refs.audio.currentTime = evt.currentTime;
 
 
             },
-            getPlayDetailEventEnd(evt){
-                console.log('结束',evt.currentTime);
+            getPlayDetailEventEnd(evt) {
+                console.log('结束', evt.currentTime);
                 this.$refs.audio.currentTime = evt.currentTime;
                 this.$refs.audio.play();
             },
             timeUpdate(e) {
                 this.currentTime = e.target.currentTime;
-                if(this.currentTime === this.time){
+                if (this.currentTime === this.time) {
                     this.playIt({isPlay: false});
                 }
             },
-            songReady(){
-                let playHistory= JSON.parse(localStorage.getItem('__playHistory__'))||[];
+            songReady() {
+                let playHistory = JSON.parse(localStorage.getItem('__playHistory__')) || [];
                 playHistory.push(new Song(this.getCurrentMusic[this.currentMusicIndex]));
-                localStorage.setItem('__playHistory__',JSON.stringify(playHistory));
+                localStorage.setItem('__playHistory__', JSON.stringify(playHistory));
             },
-            detailShow(){
+            detailShow() {
                 this._detailShow(true)
             },
             ...mapActions({
                 playIt: 'playAll',
                 currentMusicTime: 'currentMusicTime',
-                _detailShow:'playerDetailShow'
+                _detailShow: 'playerDetailShow'
             })
 
         },
