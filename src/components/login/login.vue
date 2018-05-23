@@ -11,10 +11,17 @@
                 <!--<span v-show="showMsg" class="msg">{{msg}}</span>-->
             </div>
             <div class="user-name">
-                <input type="text" @focus="inputFocus" placeholder="请输入账号" v-model="userCode"/>
+                <input type="text" name="userCode"
+                       v-validate="'required|min:3|max:9|alpha_dash'"
+                       @focus="inputFocus" placeholder="请输入账号" v-model="userCode"/>
+                <span v-show="errors.has('userCode')" class="help is-danger">{{ errors.first('userCode') }}</span>
             </div>
             <div class="user-name">
-                <input type="password" @focus="inputFocus" placeholder="请输入密码" v-model="password"/>
+                <input type="password"
+                       name="password"
+                       v-validate="'required|min:3|max:9'"
+                       @focus="inputFocus" placeholder="请输入密码" v-model="password"/>
+                <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
             </div>
             <div style="font-size: .2rem;
                 padding: .2rem .2rem 0;
@@ -46,22 +53,31 @@
                 this.$router.push('/register')
             },
             login() {
-                let body = {
-                    userCode: this.userCode,
-                    password: this.password
-                };
-                this.$userService.login(body).then(res => {
-                    Toast({
-                        message: res.msg,
-                        iconClass: 'icon iconfont icon-yiliao'
-                    });
-                    this.$router.push('/')
-                }, error => {
-                    Toast({
-                        message: error.msg,
-                        iconClass: 'icon iconfont icon-shanchu2'
-                    });
+                this.$validator.validateAll().then((result) => {
+                    if (!result) {
+                        Toast('请正确填完信息!');
+                        return;
+                    }
+                    let body = {
+                        userCode: this.userCode,
+                        password: this.password
+                    };
+                    this.$userService.login(body).then(res => {
+                        Toast({
+                            message: res.msg,
+                            iconClass: 'icon iconfont icon-yiliao'
+                        });
+                        this.$router.push('/');
+                        sessionStorage.setItem('loginInfo', JSON.stringify(body))
+                    }, error => {
+                        Toast({
+                            message: error.msg,
+                            iconClass: 'icon iconfont icon-shanchu2'
+                        });
 
+                    });
+                    // node 后台没有启动时候用
+                    //sessionStorage.setItem('loginInfo', JSON.stringify(body))
                 })
             },
             //获得焦点-----------------------------------
@@ -237,5 +253,8 @@
             background: #57a3f3;
             display: inline-block;
         }
+    }
+    .is-danger{
+        color: red;
     }
 </style>

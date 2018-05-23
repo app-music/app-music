@@ -2,8 +2,7 @@
     <div>
         <div class="sing-player" v-if="getCurrentMusic">
             <div class="sing-icon" @click="detailShow()">
-                <img
-                        :src="getCount.image">
+                <img :src="getCount.image">
             </div>
             <div class="text">
                 <h2 class="name" v-html="getCount.singer[0].name"></h2>
