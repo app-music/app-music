@@ -10,6 +10,10 @@ export default new Router({
             component: resolve => import('../components/login/login.vue').then(resolve),
         },
         {
+            path: '/register',
+            component: resolve => import('../components/login/register.vue').then(resolve),
+        },
+        {
             path: '/',
             redirect: '/recommend'
         },

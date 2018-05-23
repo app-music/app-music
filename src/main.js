@@ -9,7 +9,10 @@ import '../src/assets/css/global.scss'
 import "../src/assets/css/utils.scss";
 import Loading from './core/api-server/index';
 import store from './core/store';
-
+import './core/utils/validate.js';
+// import VeeValidate from 'vee-validate';
+//
+// Vue.use(VeeValidate);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

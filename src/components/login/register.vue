@@ -1,29 +1,52 @@
 <template>
     <div class="login-bg">
+        <div class="go-back" @click="$router.go(-1)">
+            <i class="iconfont icon-fanhui"></i>
+        </div>
         <div class="main-pic">
             <a href="javascript:;" class="main-icon">
                 <img src="../../assets/login_icon.png" class="img" style="border-radius:50%;">
             </a>
         </div>
-
         <div class="logo-info">
             <div class="user-name">
-                <!--<span v-show="showMsg" class="msg">{{msg}}</span>-->
+                <!--<label class="label">Name</label>-->
+                <p class="control has-icon has-icon-right">
+                    <input name="userName" v-model="userName"
+                           v-validate="'required|min:3|max:9'"
+                           :class="{'input': true, 'is-danger': errors.has('userName') }" type="text"
+                           placeholder="请输入昵称">
+                    <i v-show="errors.has('userName')" class="fa fa-warning"></i>
+                    <span v-show="errors.has('userName')" class="help is-danger">{{ errors.first('userName') }}</span>
+                </p>
             </div>
             <div class="user-name">
-                <input type="text" @focus="inputFocus" placeholder="请输入账号" v-model="userCode"/>
+                <input type="text" name="userCode"
+                       v-validate="'required|min:3|max:9|alpha_dash'"
+                       :class="{'input': true, 'is-danger': errors.has('userCode') }"
+                       placeholder="请输入账号" v-model="userCode"/>
+                <i v-show="errors.has('userCode')" class="fa fa-warning"></i>
+                <span v-show="errors.has('userCode')" class="help is-danger">{{ errors.first('userCode') }}</span>
             </div>
             <div class="user-name">
-                <input type="password" @focus="inputFocus" placeholder="请输入密码" v-model="password"/>
-            </div>
-            <div style="font-size: .2rem;
-                padding: .2rem .2rem 0;
-                color:#e63636;position: relative;z-index: 100" class="fr" @click="register">注册账号
+                <input type="password" name="password"
+                       v-validate="'required|min:3|max:9'"
+                       :class="{'input': true, 'is-danger': errors.has('password') }"
+                       placeholder="请输入密码" v-model="password"/>
+                <i v-show="errors.has('password')" class="fa fa-warning"></i>
+                <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
             </div>
             <div class="user-name">
-                <div class="btn" @click="login">登&nbsp;&nbsp;录</div>
+                <input type="password" name="confirmPassword"
+                       v-validate="'required|min:3|max:9|confirmed:password'"
+                       :class="{'input': true, 'is-danger': errors.has('confirmPassword') }"
+                       placeholder="请确认密码" v-model="confirmPassword"/>
+                <i v-show="errors.has('confirmPassword')" class="fa fa-warning"></i>
+                <span v-show="errors.has('confirmPassword')" class="help is-danger">{{ errors.first('confirmPassword') }}</span>
             </div>
-
+            <div class="user-name">
+                <div class="btn" @click="register">注&nbsp;&nbsp;册</div>
+            </div>
         </div>
     </div>
 </template>
@@ -32,63 +55,61 @@
     import {Toast} from 'mint-ui';
 
     export default {
+        name: "register",
         data() {
             return {
+                userName: '',
                 userCode: '',
                 password: '',
-                data: {},
+                confirmPassword: ''
             }
-        },
-        created() {
         },
         methods: {
             register() {
-                this.$router.push('/register')
-            },
-            login() {
-                let body = {
-                    userCode: this.userCode,
-                    password: this.password
-                };
-                this.$userService.login(body).then(res => {
-                    Toast({
-                        message: res.msg,
-                        iconClass: 'icon iconfont icon-yiliao'
-                    });
-                    this.$router.push('/')
-                }, error => {
-                    Toast({
-                        message: error.msg,
-                        iconClass: 'icon iconfont icon-shanchu2'
-                    });
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        let body = {
+                            userName: this.userName,
+                            userCode: this.userCode,
+                            password: this.password,
+                        };
+                        this.$userService.register(body).then(res => {
+                            this.$router.push('login')
+                        }, error => {
+                            console.log(error.msg)
+                        })
+                    }else {
+                        Toast('请正确填完信息!')
+                    }
+                });
 
-                })
-            },
-            refreshclick() {
-
-            },
-            showModel() {
-                this.isVisible = true;
-            },
-            colsModel(item) {
-                console.log(item)
-                this.isVisible = item.isOk;
-            },
-            //获得焦点-----------------------------------
-            inputFocus() {
-                this.showMsg = false;
-            },
-        },
+            }
+        }
 
     }
 </script>
-<style rel="stylesheet/scss" type="text/scss" lang="scss" scoped>
 
+<style scoped rel="stylesheet/scss" type="text/scss" lang="scss">
+    .go-back {
+        position: absolute;
+        top: 0;
+        left: px2rem(6px);
+        z-index: 60;
+
+        i {
+            font-size: 26px !important;
+            display: block;
+            padding: px2rem(10px);
+            color: #ffcd32;
+        }
+
+    }
     .login-bg {
         height: 100%;
-        background: url("../../assets/sp_bg_C.jpg") no-repeat;
-        background-size: 100% 100%;
+        background: url("../../assets/sp_bg_C.jpg") repeat;
+        background-size: cover;
         margin-top: px2rem(0px);
+        margin-bottom: 0;
         position: fixed;
         top: 0;
         bottom: 0;
@@ -129,14 +150,15 @@
 
     .logo-info {
         width: 100%;
-        padding: 0rem .5rem;
+        padding: 0.5rem .5rem;
         box-sizing: border-box;
     }
 
     .user-name {
+        height: 86px;
         width: 100%;
         text-align: center;
-        padding: .1rem 0rem;
+        /*padding: 20px 0;*/
         box-sizing: border-box;
         position: relative;
     }
@@ -247,5 +269,10 @@
             background: #57a3f3;
             display: inline-block;
         }
+    }
+
+    .is-danger {
+        color: red;
+        font-size: 18px;
     }
 </style>
