@@ -13,7 +13,7 @@
                 <div>
                     <img ref="image" :style="playStaus2" height="100%" width="100%" :src="currentSong.image" alt=""/>
                 </div>
-                <h2>目前没有获取到歌词</h2>
+                <h2 >{{currentLyric}}</h2>
             </div>
             <div class="player-control">
                 <div class="progress">
@@ -55,7 +55,7 @@
     import {mapActions, mapGetters} from 'vuex';
     import {CommonUtil} from '../../core/utils/common-util';
     import range from './range.vue'
-
+    import Lyric from 'lyric-parser'
     export default {
         name: "player-detail",
         props: {
@@ -70,7 +70,9 @@
                 end: '',
                 isFavorite: 'false',
                 rangeValue: '10',
-                image:''
+                image:'',
+                lyric:'',
+                currentLyric:'',
             }
         },
         components: {
@@ -93,6 +95,7 @@
                     return 'iconfont icon-zanting2'
                 } else {
                     return 'iconfont icon-bofang'
+
                 }
             },
             playStaus2(){
@@ -111,6 +114,17 @@
                         let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                         let index = favoriteMusicData.findIndex(item => item.id === id);
+                        console.log(this.getCurrentMusic[this.currentMusicIndex]);
+                        this.$songService.getSongLyric(this.getCurrentMusic[this.currentMusicIndex].songmid).then(res=>{
+                            let lyric = Base64.decode(res.lyric);
+
+                            this.lyric = new Lyric(lyric,({lineNum, txt})=>{
+
+                                this.currentLyric = txt
+                            });
+                            this.lyric.play()
+
+                        });
                         this.$nextTick(() => {
                             this.isFavorite = index !== -1
                         });
@@ -130,6 +144,15 @@
                 'currentMusicTime',
                 'getCurrentMusic',
             ])
+        },
+        watch:{
+            play(value){
+                if(value){
+                    this.lyric.play();
+                }else {
+                    this.lyric.stop();
+                }
+            }
         },
         created() {
             console.log(this.currentSong);
@@ -181,9 +204,16 @@
             },
             rangeChangeEnd($event) {
                 // this.currentTime = $event;
+                this.lyric.seek($event*1000);
+                if(this.playMusic.isPlay){
+                    this.lyric.play()
+                }else {
+                    this.lyric.stop()
+                }
                 this.$emit('playerDetailEventEnd', {currentTime: $event})
             },
             rangeChange($event) {
+                this.lyric.seek($event*1000);
                 this.$emit('playerDetailEvent', {currentTime: $event})
                 // this.currentTime = $event;
             },
@@ -276,7 +306,7 @@
                 border-radius: 50%;
             }
             h2 {
-                margin-top: px2rem(30px);
+                margin-top: px2rem(100px);
             }
         }
         .player-control {

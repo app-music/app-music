@@ -67,8 +67,8 @@
                             message: res.msg,
                             iconClass: 'icon iconfont icon-yiliao'
                         });
-                        this.$router.push('/');
-                        sessionStorage.setItem('loginInfo', JSON.stringify(body))
+                        sessionStorage.setItem('loginInfo', JSON.stringify(body));
+                        this.$router.push('/recommend');
                     }, error => {
                         Toast({
                             message: error.msg,
@@ -254,7 +254,8 @@
             display: inline-block;
         }
     }
-    .is-danger{
+
+    .is-danger {
         color: red;
     }
 </style>

@@ -138,7 +138,9 @@
             getPlayDetailEventEnd(evt) {
                 console.log('结束', evt.currentTime);
                 this.$refs.audio.currentTime = evt.currentTime;
-                this.$refs.audio.play();
+                if(this.playAll.isPlay){
+                    this.$refs.audio.play();
+                }
             },
             timeUpdate(e) {
                 this.currentTime = e.target.currentTime;

@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "js-base64": "^2.4.3",
+    "lyric-parser": "^1.0.1",
     "mint-ui": "^2.2.13",
     "vee-validate": "^2.0.9",
     "vue": "^2.5.2",

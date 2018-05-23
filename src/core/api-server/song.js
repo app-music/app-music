@@ -47,6 +47,28 @@ export default {
                 throw new Error(error)
             })
         })
+    },
+    getSongLyric(mid) {
+        const url = '/abc/api/lyric';
+        const data = Object.assign({}, commonParams, {
+            songmid: mid,
+            platform: 'yqq',
+            hostUin: 0,
+            needNewCode: 0,
+            categoryId: 10000000,
+            pcachetime: +new Date(),
+            format: 'json'
+        });
+
+        return new Promise((resolve, reject) => {
+            axios.get(url, {params: data}).then((result) => {
+                result.data.code === 0 ? resolve(result.data) : reject(result.data);
+            },error=>{
+                throw new Error(error)
+            })
+        })
+
     }
+
 
 }
