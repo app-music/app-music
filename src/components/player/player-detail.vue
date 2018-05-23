@@ -205,11 +205,12 @@
             rangeChangeEnd($event) {
                 // this.currentTime = $event;
                 this.lyric.seek($event*1000);
-                if(this.playMusic.isPlay){
-                    this.lyric.play()
-                }else {
-                    this.lyric.stop()
-                }
+                // debugger
+                // if(this.playMusic.isPlay){
+                //     this.lyric.play()
+                // }else {
+                //     this.lyric.stop()
+                // }
                 this.$emit('playerDetailEventEnd', {currentTime: $event})
             },
             rangeChange($event) {
