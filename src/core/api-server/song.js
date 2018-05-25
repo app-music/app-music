@@ -41,7 +41,7 @@ export default {
                     }
                 }
             };
-            axios.post(`abc/api/getPurlUrl`, data).then(result => {
+            axios.post(`/music/api/getPurlUrl`, data).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
                 throw new Error(error)
@@ -49,7 +49,7 @@ export default {
         })
     },
     getSongLyric(mid) {
-        const url = '/abc/api/lyric';
+        const url = '/music/api/lyric';
         const data = Object.assign({}, commonParams, {
             songmid: mid,
             platform: 'yqq',

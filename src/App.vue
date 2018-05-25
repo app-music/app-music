@@ -55,7 +55,7 @@
     @import "assets/css/utils";
 
     body {
-        background: #222;
+        background: #222!important;
     }
 
     #head {
@@ -127,16 +127,16 @@
     .mint-indexsection-index {
         margin: 0;
         padding: px2rem(10px);
-        background: #222222;
+        background: #333333!important;
     }
 
     .mint-indexlist-nav {
         border-radius: px2rem(10px);
         color: #fafafa;
         text-align: center;
-        background: rgba(0, 0, 0, .3);
+        background: rgba(0, 0, 0, .3)!important;
         font-family: Helvetica;
-        border: none;
+        border: none!important;
     }
 
     .mint-indexsection-index {

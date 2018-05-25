@@ -11,7 +11,7 @@ export default {
      */
     login(body) {
         return new Promise((resolve, reject) => {
-            axios.post(`/music/users/login`, body).then(result => {
+            axios.post(`/nodeApi/users/login`, body).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
                 console.log('请确认后台服务器是否开启!');
@@ -29,7 +29,7 @@ export default {
      */
     register(body) {
         return new Promise((resolve, reject) => {
-            axios.post(`/music/users/register`, body).then(result => {
+            axios.post(`/nodeApi/users/register`, body).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
                 console.log('请确认后台服务器是否开启!');

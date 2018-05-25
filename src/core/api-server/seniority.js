@@ -7,7 +7,7 @@ export default {
      */
     getTopList() {
         return new Promise((resolve, reject) => {
-            axios.get(`api/v8/fcg-bin/fcg_myqq_toplist.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=json&uin=0&needNewCode=1&platform=h5`).then(result => {
+            axios.get(`/v8/fcg-bin/fcg_myqq_toplist.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=json&uin=0&needNewCode=1&platform=h5`).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
                 throw new Error(error)
@@ -21,7 +21,7 @@ export default {
      */
     getTopListDetail(topId){
         return new Promise((resolve, reject) => {
-            axios.get(`api/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&topid=${topId}&needNewCode=1&uin=0&tpl=3&page=detail&type=top&platform=h5`).then(result => {
+            axios.get(`/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&topid=${topId}&needNewCode=1&uin=0&tpl=3&page=detail&type=top&platform=h5`).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
                 throw new Error(error)

@@ -11,36 +11,43 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/api': {
+            '/v8': {
                 target: "https://c.y.qq.com",//设置你调用的接口域名和端口号 别忘了加http
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': ''//这里理解成用‘/v8'代替target里面的地址，后面组件中我们掉接口时直接用api代替
+                    '^/api': ''
+                    //这里理解成用‘/v8'代替target里面的地址，后面组件中我们掉接口时直接用api代替
                     //比如我要调用'http://40.00.100.133:3002/user/login'，直接写‘/api/user/login'即可
                 }
             },
-            '/resource': {
-                target: "http://10.5.112.57:3000/resource",//设置你调用的接口域名和端口号 别忘了加http
+            '/soso': {
+                target: "https://c.y.qq.com",
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/resource': ''//这里理解成用‘/api'代替target里面的地址，后面组件中我们掉接口时直接用api代替
-                    //比如我要调用'http://40.00.100.133:3002/user/login'，直接写‘/api/user/login'即可
                 }
             },
-            '/abc': {
-                target: "http://ustbhuangyi.com/music",//设置你调用的接口域名和端口号 别忘了加http
+            '/musichall': {
+                target: "https://c.y.qq.com",
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/abc': ''//这里理解成用‘/api'代替target里面的地址，后面组件中我们掉接口时直接用api代替
-                    //比如我要调用'http://40.00.100.133:3002/user/login'，直接写‘/api/user/login'即可
+                }
+            },
+            '/splcloud': {
+                target: "https://c.y.qq.com",
+                changeOrigin: true,
+                pathRewrite: {
                 }
             },
             '/music': {
-                target: "http://localhost:3000",//设置你调用的接口域名和端口号 别忘了加http
+                target: "http://ustbhuangyi.com",
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/music': '/music'//这里理解成用‘/api'代替target里面的地址，后面组件中我们掉接口时直接用api代替
-                    //比如我要调用'http://40.00.100.133:3002/user/login'，直接写‘/api/user/login'即可
+                }
+            },
+            '/nodeApi': {
+                target: "http://localhost:3000",
+                changeOrigin: true,
+                pathRewrite: {
                 }
             },
 

@@ -230,14 +230,6 @@
                 return CommonUtil.dateFmt('mm:ss', date);
             }
         },
-        watch: {
-            currentSong: {
-                deep: true,
-                handler() {
-                    console.log(111);
-                }
-            }
-        }
     }
 </script>
 

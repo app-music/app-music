@@ -7,7 +7,7 @@ export default {
      */
     getRecommend() {
         return new Promise((resolve, reject) => {
-            axios.get(`api/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&platform=h5&uin=0&needNewCode=1`).then(result => {
+            axios.get(`/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&platform=h5&uin=0&needNewCode=1`).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
                 throw new Error(error)
@@ -20,7 +20,7 @@ export default {
      */
     getCdInfo() {
         return new Promise((resolve, reject) => {
-            axios.get(`/abc/api/getDiscList`, {params: data}).then(result => {
+            axios.get(`/music/api/getDiscList`, {params: data}).then(result => {
                 // console.log(result);
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
@@ -38,7 +38,7 @@ export default {
             let data = Object.assign({}, getCdListDetailParmas, {
                 disstid: id,
             });
-            axios.get(`abc/api/getCdInfo`, {params: data}).then(result => {
+            axios.get(`/music/api/getCdInfo`, {params: data}).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data)
             }, error => {
                 throw  new Error(error)
