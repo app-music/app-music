@@ -151,7 +151,7 @@
             songReady() {
                 let playHistory = JSON.parse(localStorage.getItem('__playHistory__')) || [];
                 if (this.getCurrentMusic[this.currentMusicIndex]) {
-                    playHistory.push(this.getCurrentMusic[this.currentMusicIndex]);
+                    playHistory.unshift(this.getCurrentMusic[this.currentMusicIndex]);
 
                 }
                 localStorage.setItem('__playHistory__', JSON.stringify(playHistory));

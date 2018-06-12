@@ -83,6 +83,8 @@
                 text-align: center;
                 color: #ffcd32;
                 font-size: px2rem(28px);
+                background: #222;
+                padding: px2rem(10px) 0 px2rem(8px);
             }
             .user {
                 position: absolute;
