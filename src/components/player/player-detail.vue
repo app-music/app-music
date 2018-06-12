@@ -111,6 +111,9 @@
                 }
             },
             getCurrentMusicTime() {
+                if(this.lyric){
+                    this.lyric.seek(this.currentMusicTime*1000)
+                }
                 return this.currentMusicTime;
             },
             musicChange() {
