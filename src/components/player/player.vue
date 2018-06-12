@@ -150,7 +150,10 @@
             },
             songReady() {
                 let playHistory = JSON.parse(localStorage.getItem('__playHistory__')) || [];
-                playHistory.push(this.getCurrentMusic[this.currentMusicIndex]);
+                if (this.getCurrentMusic[this.currentMusicIndex]) {
+                    playHistory.push(this.getCurrentMusic[this.currentMusicIndex]);
+
+                }
                 localStorage.setItem('__playHistory__', JSON.stringify(playHistory));
             },
             detailShow() {

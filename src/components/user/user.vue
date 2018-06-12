@@ -239,6 +239,7 @@
                 let index;
                 if(this.selected === '1'){
                     this.currentMusic(this.fav);
+                    debugger;
                      index = CommonUtil.getRandomNumBoth(1, this.fav.length );
                 }else {
                     this.currentMusic(this.his);
