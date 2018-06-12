@@ -3,7 +3,7 @@
         <div class="block" >
             <mt-swipe :auto="4000">
                 <mt-swipe-item v-for=" (item,index) in swipes" :key="index">
-                    <img class="swipe-recommend" height="100%" width="100%" :src="item.picUrl" alt="">
+                    <a :href="item.linkUrl"><img class="swipe-recommend" height="100%" width="100%" :src="item.picUrl" alt=""></a>
                 </mt-swipe-item>
             </mt-swipe>
         </div>

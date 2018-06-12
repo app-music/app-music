@@ -2,7 +2,7 @@
     <div id="app">
         <div id="head">
             <header class="header">
-                <h3>Chicken Music</h3>
+                <h3>Monica Music</h3>
                 <span class="user" @click="$router.push({ path: 'user'})">
                 <i class="iconfont icon-yonghu"></i>
             </span>
