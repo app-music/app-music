@@ -118,7 +118,7 @@
                     try {
                         let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
-                        let index = favoriteMusicData.findIndex(item => item.id === id);
+                        let index = favoriteMusicData.findIndex(item => item.songid === id);
                         console.log(this.getCurrentMusic[this.currentMusicIndex]);
                         this.$songService.getSongLyric(this.getCurrentMusic[this.currentMusicIndex].songmid).then(res=>{
                             let lyric = Base64.decode(res.lyric);
@@ -196,12 +196,12 @@
                     let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                     if (songs[this.currentMusicIndex].islove) {
                         this.isFavorite = true;
-                        let a = new Song(songs[this.currentMusicIndex]);
-                        favoriteMusicData.push(a);
+                        // let a = new Song(songs[this.currentMusicIndex]);
+                        favoriteMusicData.push(songs[this.currentMusicIndex]);
                     } else {
                         this.isFavorite = false;
                         let songId = songs[this.currentMusicIndex].songid;
-                        let index = favoriteMusicData.findIndex(item => item.id === songId);
+                        let index = favoriteMusicData.findIndex(item => item.songid === songId);
                         favoriteMusicData.splice(index, 1);
                     }
                     localStorage.setItem('__favoriteMusic__', JSON.stringify(favoriteMusicData));

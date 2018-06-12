@@ -13,7 +13,7 @@ export default class Song {
         this.mid = data.songmid;
         this.singer = data.singer;
         this.name = data.songname;
-        this.album = data.album;
+        this.album = data.albumname;
         this.duration = data.duration;
         if (data.albummid) {
             this.image = `https://y.gtimg.cn/music/photo_new/T002R300x300M000${data.albummid}.jpg?max_age=2592000`;

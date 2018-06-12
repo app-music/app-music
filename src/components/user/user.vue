@@ -14,7 +14,7 @@
                 <!--先不显示这个图标-->
                 <!--<i class="iconfont icon-suijibofang"></i>-->
                 <!--<span>随机播放全部</span>-->
-                <span>
+                <span @click="clickPlayAll">
                         <i class="iconfont icon-bofang"></i>
                         随机播放全部
                     </span>
@@ -22,14 +22,15 @@
 
             <!-- tab-container -->
 
-            <mt-tab-container style="max-height: 500px;overflow: scroll;padding: 5px" v-model="selected">
+            <mt-tab-container style="max-height: 500px;overflow: scroll;padding: 5px 5px 5px 25px" v-model="selected">
                 <mt-tab-container-item id="1">
                     <!--fav part-->
-                    <div v-for="(item,index) in fav" class="listWrap">
-                        <p class="singerName">
-                            {{item.singer[0].name}}</p>
+                    <div  v-for="(item,index) in fav" @click="navigateToDetail(index)"class="listWrap">
                         <p class="songName">
-                            {{item.name}}
+                            {{item.songname}}
+                        </p>
+                        <p class="singerName">
+                            {{item.singer[0].name}}*{{item.albumname }}
                         </p>
 
                     </div>
@@ -37,11 +38,12 @@
 
                 <mt-tab-container-item id="2">
                     <!--history part-->
-                    <div v-for="(item,index) in his" class="listWrap">
-                        <p class="singerName">
-                            {{item.singer[0].name}}</p>
+                    <div v-for="(item,index) in his" @click="navigateToDetail(index)" class="listWrap">
                         <p class="songName">
-                            {{item.name}}
+                            {{item.songname}}
+                        </p>
+                        <p class="singerName">
+                            {{item.singer[0].name}}*{{item.albumname }}
                         </p>
 
                     </div>
@@ -183,15 +185,28 @@
             line-height: px2rem(40px);
         }
         .singerName {
-            color: #ffffff;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 4px;
+            color: hsla(0,0%,100%,.3);
+            font-weight: 400;
+            font-size: 14px;
         }
         .songName {
-            color: #666;
+            color: #ffffff;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 400;
+            font-size: 15px;
         }
     }
 </style>
 
 <script>
+    import {CommonUtil} from "../../core/utils/common-util";
+    import {mapActions} from 'vuex'
 
     export default {
         data() {
@@ -219,7 +234,36 @@
             getHistory() {
                 this.his = JSON.parse(localStorage.getItem('__playHistory__')) || [];
                 console.log(this.his);
-            }
+            },
+            clickPlayAll() {
+                let index;
+                if(this.selected === '1'){
+                    this.currentMusic(this.fav);
+                     index = CommonUtil.getRandomNumBoth(1, this.fav.length );
+                }else {
+                    this.currentMusic(this.his);
+                     index = CommonUtil.getRandomNumBoth(1, this.his.length );
+                }
+                this.currentMusicIndex(index);
+                this.playAll({isPlay: true});
+                this.playerDetailShow(true)
+            },
+            navigateToDetail(index){
+                if(this.selected === '1'){
+                    this.currentMusic(this.fav);
+                }else {
+                    this.currentMusic(this.his);
+                }
+                this.currentMusicIndex(index);
+                this.playAll({isPlay: true});
+                this.playerDetailShow(true)
+            },
+            ...mapActions([
+                'currentMusic',
+                'currentMusicIndex',
+                'playAll',
+                'playerDetailShow'
+            ])
         }
     }
 
