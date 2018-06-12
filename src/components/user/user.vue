@@ -26,8 +26,8 @@
                 <mt-tab-container-item id="1">
                     <!--fav part-->
                     <div v-for="(item,index) in fav" class="listWrap">
-                        <p v-for="(singer,_index) in item.singer" class="singerName">
-                            {{singer.name}}</p>
+                        <p class="singerName">
+                            {{item.singer[0].name}}</p>
                         <p class="songName">
                             {{item.name}}
                         </p>
@@ -38,8 +38,8 @@
                 <mt-tab-container-item id="2">
                     <!--history part-->
                     <div v-for="(item,index) in his" class="listWrap">
-                        <p v-for="(singer,_index) in item.singer" class="singerName">
-                            {{singer.name}}</p>
+                        <p class="singerName">
+                            {{item.singer[0].name}}</p>
                         <p class="songName">
                             {{item.name}}
                         </p>
@@ -157,7 +157,7 @@
         /*先不要这个图标，影响市容*/
 
           i {
-              color: #ffffff;
+              color: #ccc;
               vertical-align: middle;
               display: inline-block;
               margin-left: px2rem(15px);
