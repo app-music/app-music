@@ -20,8 +20,8 @@
                        @playerDetailEvent="getPlayDetailEvent"
                        @playerDetailEventEnd="getPlayDetailEventEnd"
         ></player-detail>
-        <audio id="aa" ref="audio" @play='songReady':src="getCount.url" @timeupdate="timeUpdate">
-        </audio>
+        <audio id="aa" ref="audio" @ended="ended" @play='songReady' :src="getCount.url" @timeupdate="timeUpdate">
+    </audio>
         <!--播放本地音乐测试-->
         <!--<audio id="aa" ref="audio" @play='songReady' @timeupdate="timeUpdate">-->
             <!--<source src="./Jam.mp3">-->
@@ -155,6 +155,10 @@
             },
             detailShow() {
                 this._detailShow(true)
+            },
+            ended(){
+                console.log('播放结束');
+                this.playIt({isPlay: false})
             },
             ...mapActions({
                 playIt: 'playAll',

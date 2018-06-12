@@ -1,19 +1,23 @@
 <template>
 
     <transition name="player">
+
         <div class="player">
+            <div data-v-35618e92="" class="background">
+                <img  width="100%" height="100%" :src="currentSong.image">
+            </div>
             <div class="hidden" @click="detailClose()">
                 <i class="iconfont icon-xiangxia02"></i>
             </div>
             <h3>
-                {{currentSong.singer[0].name}}
                 <h2>{{currentSong.name}}</h2>
+                {{currentSong.singer[0].name}}
             </h3>
             <div class="music-img">
                 <div>
                     <img ref="image" :style="playStaus2" height="100%" width="100%" :src="currentSong.image" alt=""/>
                 </div>
-                <h2 >{{currentLyric}}</h2>
+                <h2 style="font-size: 14px">{{currentLyric}}</h2>
             </div>
             <div class="player-control">
                 <div class="progress">
@@ -100,6 +104,7 @@
             },
             playStaus2(){
                 if (this.playAll.isPlay){
+
                     return {animation: 'rotate infinite linear 20s'};
                 } else {
                     return {animation: 'none'};
@@ -255,6 +260,8 @@
         bottom: 0;
         right: 0;
         background: #222;
+        background-repeat:no-repeat ;
+        background-size: cover;
         .hidden {
             position: absolute;
             top: 0;
@@ -268,6 +275,16 @@
             }
 
         }
+        .background{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: .6;
+            -webkit-filter: blur(20px);
+        }
         h3 {
             position: absolute;
             top: px2rem(2px);
@@ -279,21 +296,24 @@
             white-space: nowrap;
             text-align: center;
             line-height: px2rem(40px);
-            font-size: 18px;
+            font-size: 14px;
             color: #fff;
+            height: 40px;
+            padding-top: 10px;
         }
         h2 {
             line-height: px2rem(20px);
             text-align: center;
-            font-size: 14px;
             color: #fff;
+            font-size: 18px;
+            padding-bottom: 10px;
         }
         .music-img {
 
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: px2rem(90px);
+            top: px2rem(150px);
             width: 80%;
             img {
                 border-radius: 50%;
