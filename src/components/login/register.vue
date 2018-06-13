@@ -1,5 +1,8 @@
 <template>
     <div class="login-bg">
+        <div  class="background">
+            <img  width="100%" height="100%" src="../../assets/login.jpg">
+        </div>
         <div class="go-back" @click="$router.go(-1)">
             <i class="iconfont icon-fanhui"></i>
         </div>
@@ -78,6 +81,15 @@
                         }, error => {
                             console.log(error.msg)
                         })
+                        // let user = JSON.parse(localStorage.getItem('user'))||[];
+                        // let index = user.findIndex(item=>item.userCode === body.userCode);
+                        // if(index===-1){
+                        //     user.push(body);
+                        //     localStorage.setItem('user',JSON.stringify(user));
+                        //     Toast('注册成功')
+                        // }else {
+                        //     Toast('该用户已经被注册')
+                        // }
                     }else {
                         Toast('请正确填完信息!')
                     }
@@ -106,7 +118,7 @@
     }
     .login-bg {
         height: 100%;
-        background: url("../../assets/sp_bg_C.jpg") repeat;
+        /*background: url("../../assets/login.jpg") no-repeat;*/
         background-size: cover;
         margin-top: px2rem(0px);
         margin-bottom: 0;
@@ -155,7 +167,7 @@
     }
 
     .user-name {
-        height: 86px;
+        height: px2rem(110px);
         width: 100%;
         text-align: center;
         /*padding: 20px 0;*/
@@ -270,9 +282,18 @@
             display: inline-block;
         }
     }
-
+    .background{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        /*opacity: .6;*/
+        -webkit-filter: blur(8px);
+    }
     .is-danger {
         color: red;
-        font-size: 18px;
+        font-size: 14px;
     }
 </style>

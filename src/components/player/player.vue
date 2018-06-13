@@ -21,10 +21,10 @@
                        @playerDetailEventEnd="getPlayDetailEventEnd"
         ></player-detail>
         <audio id="aa" ref="audio" @ended="ended" @play='songReady' :src="getCount.url" @timeupdate="timeUpdate">
-    </audio>
+        </audio>
         <!--播放本地音乐测试-->
         <!--<audio id="aa" ref="audio" @play='songReady' @timeupdate="timeUpdate">-->
-            <!--<source src="./Jam.mp3">-->
+        <!--<source src="./Jam.mp3">-->
         <!--</audio>-->
     </div>
 </template>
@@ -138,7 +138,7 @@
             getPlayDetailEventEnd(evt) {
                 console.log('结束', evt.currentTime);
                 this.$refs.audio.currentTime = evt.currentTime;
-                if(this.playAll.isPlay){
+                if (this.playAll.isPlay) {
                     this.$refs.audio.play();
                 }
             },
@@ -151,6 +151,13 @@
             songReady() {
                 let playHistory = JSON.parse(localStorage.getItem('__playHistory__')) || [];
                 if (this.getCurrentMusic[this.currentMusicIndex]) {
+                    let index = playHistory
+                        .findIndex(item => item.songid === this.getCurrentMusic[this.currentMusicIndex].songid);
+                    if (index >= 0) {
+                        playHistory.splice(index, 1);
+                    } else {
+
+                    }
                     playHistory.unshift(this.getCurrentMusic[this.currentMusicIndex]);
 
                 }
@@ -159,7 +166,7 @@
             detailShow() {
                 this._detailShow(true)
             },
-            ended(){
+            ended() {
                 console.log('播放结束');
                 this.playIt({isPlay: false})
             },

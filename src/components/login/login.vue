@@ -1,5 +1,8 @@
 <template>
     <div class="login-bg">
+        <div class="background">
+            <img  width="100%" height="100%" src="../../assets/login.jpg">
+        </div>
         <div class="main-pic">
             <a href="javascript:;" class="main-icon">
                 <img src="../../assets/login_icon.png" class="img" style="border-radius:50%;">
@@ -78,6 +81,29 @@
                     });
                     // node 后台没有启动时候用
                     //sessionStorage.setItem('loginInfo', JSON.stringify(body))
+                    // let user = JSON.parse(localStorage.getItem('user'))||[];
+                    // let index = user.findIndex(item=>item.userCode === body.userCode);
+                    // if(index!==-1){
+                    //     if(user[index].password === body.password){
+                    //         Toast({
+                    //             message: '请求成功',
+                    //             iconClass: 'icon iconfont icon-yiliao'
+                    //         });
+                    //         sessionStorage.setItem('loginInfo', JSON.stringify(body));
+                    //         this.$router.push('/recommend');
+                    //     }else {
+                    //         Toast({
+                    //             message: '用户名或密码错误',
+                    //             iconClass: 'icon iconfont icon-shanchu2'
+                    //         });
+                    //     }
+                    // }else {
+                    //     Toast({
+                    //         message: '用户名或密码错误',
+                    //         iconClass: 'icon iconfont icon-shanchu2'
+                    //     });
+                    // }
+
                 })
             },
             //获得焦点-----------------------------------
@@ -92,7 +118,7 @@
 
     .login-bg {
         height: 100%;
-        background: url("../../assets/sp_bg_C.jpg") no-repeat;
+        /*background: url("../../assets/sp_bg_C.jpg") no-repeat;*/
         background-size: 100% 100%;
         margin-top: px2rem(0px);
         position: fixed;
@@ -257,5 +283,16 @@
 
     .is-danger {
         color: red;
+        font-size: 14px;
+    }
+    .background{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        /*opacity: .6;*/
+        -webkit-filter: blur(8px);
     }
 </style>
