@@ -95,17 +95,18 @@
 <style lang="scss" type="text/scss" rel="stylesheet/scss" scoped>
     .container {
         .search-t{
-            margin: px2rem(20px);
+            /*margin: px2rem(20px);*/
+            padding: px2rem(30px) px2rem(15px);
         }
         .search {
-            padding: px2rem(30px);
+            padding: 0 px2rem(30px);
             display: flex;
             -ms-flex-align: center;
             align-items: center;
             box-sizing: border-box;
             width: 100%;
             /*padding: px2rem(20px) px2rem(6px);*/
-            height: px2rem(40px);
+            height: px2rem(60px);
             background: #333;
             border-radius: px2rem(6px);
             .icon-color {
@@ -114,7 +115,7 @@
             .search-input {
                 flex: 1;
                 margin: 0 px2rem(5px);
-                line-height: px2rem(18px);
+                /*line-height: px2rem(18px);*/
                 background: #333;
                 color: #fff;
                 font-size: px2rem(24px);

@@ -5,8 +5,8 @@
                 <img :src="getCount.image">
             </div>
             <div class="text">
-                <h2 class="name" v-html="getCount.singer[0].name"></h2>
                 <p class="desc" v-html="getCount.name"></p>
+                <h2 class="name" v-html="getCount.singer[0].name"></h2>
             </div>
             <div class="progress-circle" @click="playMusic()">
                 <div class="play-music">
@@ -211,22 +211,23 @@
             justify-content: center;
             -ms-flex: 1;
             flex: 1;
-            line-height: px2rem(20px);
+            height: px2rem(80px);
             overflow: hidden;
             h2 {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                font-size: px2rem(18px);
+                color: hsla(0, 0%, 100%, .3);
+            }
+            p {
+
                 margin-bottom: px2rem(2px);
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
-                font-size: px2rem(14px);
+                font-size: px2rem(20px);
                 color: #fff;
-            }
-            p {
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-                font-size: 12px;
-                color: hsla(0, 0%, 100%, .3);
             }
         }
         .progress-circle {
@@ -237,7 +238,7 @@
             margin-right: px2rem(0px);
             .play-music {
                 position: absolute;
-                left: px2rem(30px);
+                left: px2rem(31px);
                 top: px2rem(30px);
                 transform: translate(-0.15rem, -0.15rem);
                 color: red;

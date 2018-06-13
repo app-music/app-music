@@ -95,7 +95,7 @@
 
     .wrapper {
         width: px2rem(30px);
-        height: px2rem(60px);
+        height: px2rem(70px);
         position: absolute;
         top: 0;
         overflow: hidden;
