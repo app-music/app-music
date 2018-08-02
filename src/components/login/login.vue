@@ -65,51 +65,51 @@
                         userCode: this.userCode,
                         password: this.password
                     };
-                    this.$userService.login(body).then(res => {
-                        Toast({
-                            message: res.msg,
-                            iconClass: 'icon iconfont icon-yiliao'
-                        });
-                        sessionStorage.setItem('loginInfo', JSON.stringify(body));
-                        this.$router.push('/recommend');
-                    }, error => {
-                        Toast({
-                            message: error.msg,
-                            iconClass: 'icon iconfont icon-shanchu2'
-                        });
-
-                    });
-                    // node 后台没有启动时候用
-                    // sessionStorage.setItem('loginInfo', JSON.stringify(body))
-                    // let user = JSON.parse(localStorage.getItem('user'))||[];
-                    // let index = user.findIndex(item=>item.userCode === body.userCode);
-                    // if(index!==-1){
-                    //     if(user[index].password === body.password){
-                    //         Toast({
-                    //             message: '请求成功',
-                    //             iconClass: 'icon iconfont icon-yiliao'
-                    //         });
-                    //         sessionStorage.setItem('loginInfo', JSON.stringify(body));
-                    //         this.$router.push('/recommend');
-                    //     }else {
-                    //         Toast({
-                    //             message: '用户名或密码错误',
-                    //             iconClass: 'icon iconfont icon-shanchu2'
-                    //         });
-                    //     }
-                    // }else if(body.userCode==='admin'&&body.password ==='123456') {
+                    // this.$userService.login(body).then(res => {
                     //     Toast({
-                    //         message: '请求成功',
+                    //         message: res.msg,
                     //         iconClass: 'icon iconfont icon-yiliao'
                     //     });
                     //     sessionStorage.setItem('loginInfo', JSON.stringify(body));
                     //     this.$router.push('/recommend');
-                    // }else {
+                    // }, error => {
                     //     Toast({
-                    //         message: '用户名或密码错误',
+                    //         message: error.msg,
                     //         iconClass: 'icon iconfont icon-shanchu2'
                     //     });
-                    // }
+                    //
+                    // });
+                    // node 后台没有启动时候用
+                    // sessionStorage.setItem('loginInfo', JSON.stringify(body))
+                    let user = JSON.parse(localStorage.getItem('user'))||[];
+                    let index = user.findIndex(item=>item.userCode === body.userCode);
+                    if(index!==-1){
+                        if(user[index].password === body.password){
+                            Toast({
+                                message: '请求成功',
+                                iconClass: 'icon iconfont icon-yiliao'
+                            });
+                            sessionStorage.setItem('loginInfo', JSON.stringify(body));
+                            this.$router.push('/recommend');
+                        }else {
+                            Toast({
+                                message: '用户名或密码错误',
+                                iconClass: 'icon iconfont icon-shanchu2'
+                            });
+                        }
+                    }else if(body.userCode==='admin'&&body.password ==='123456') {
+                        Toast({
+                            message: '请求成功',
+                            iconClass: 'icon iconfont icon-yiliao'
+                        });
+                        sessionStorage.setItem('loginInfo', JSON.stringify(body));
+                        this.$router.push('/recommend');
+                    }else {
+                        Toast({
+                            message: '用户名或密码错误',
+                            iconClass: 'icon iconfont icon-shanchu2'
+                        });
+                    }
 
                 })
             },

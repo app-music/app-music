@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js && npm run fixfont && npm run fiximg",
+    "fixfont": "xcopy %cd%\\dist\\static\\fonts %cd%\\dist\\static\\css\\static\\fonts /s /y /d /e /i",
+    "fiximg": "xcopy %cd%\\dist\\static\\img %cd%\\dist\\static\\css\\static\\img /s /y /d /e /i"
   },
   "dependencies": {
     "axios": "^0.18.0",

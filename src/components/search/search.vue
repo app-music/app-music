@@ -64,8 +64,8 @@
             },
             search(value){
                 this.$searchService.searchMusicByKeyWord(value).then(success=>{
-                    let list = success.data.song.list;
-                    getSongUrlList(list).then(res=>{
+                  let list = success.data.song.list;
+                  getSongUrlList(list).then(res=>{
                         this.songList = res
                     },failed=>{
 
