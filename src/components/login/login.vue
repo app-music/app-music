@@ -65,6 +65,7 @@
                         userCode: this.userCode,
                         password: this.password
                     };
+                    // node 后台启动时候用
                     // this.$userService.login(body).then(res => {
                     //     Toast({
                     //         message: res.msg,
@@ -89,7 +90,7 @@
                                 message: '请求成功',
                                 iconClass: 'icon iconfont icon-yiliao'
                             });
-                            sessionStorage.setItem('loginInfo', JSON.stringify(body));
+                            localStorage.setItem('loginInfo', JSON.stringify(body));
                             this.$router.push('/recommend');
                         }else {
                             Toast({
@@ -102,7 +103,7 @@
                             message: '请求成功',
                             iconClass: 'icon iconfont icon-yiliao'
                         });
-                        sessionStorage.setItem('loginInfo', JSON.stringify(body));
+                        localStorage.setItem('loginInfo', JSON.stringify(body));
                         this.$router.push('/recommend');
                     }else {
                         Toast({

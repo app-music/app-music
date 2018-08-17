@@ -3,6 +3,9 @@
         <div id="head">
             <header class="header">
                 <h3>Monica Music</h3>
+                <span style="position: absolute;top: 50%;color:yellow;transform:translateY(-50%);right: 64px"
+                      @click="logout()"
+                >注销</span>
                 <span class="user" @click="$router.push({ path: 'user'})">
                 <i class="iconfont icon-yonghu"></i>
             </span>
@@ -46,6 +49,10 @@
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
+            },
+            logout(){
+                localStorage.removeItem('loginInfo');
+                this.$router.push('/login')
             }
         }
     }
