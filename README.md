@@ -23,13 +23,12 @@
 > 2. 页面效果图
 ---
 
-![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/index.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/login.png)
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/index.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/singer.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/seniority.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/search.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/user.png)
-![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/rec-detail.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/rec-detail_1.png)
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/player.png)
 
