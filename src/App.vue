@@ -34,6 +34,7 @@
     import './assets/iconfont/iconfont.css'
     import player from './components/player/player'
     import './assets/iconfont_2/iconfont.css'
+    import {mapActions} from 'vuex'
 
     export default {
         name: 'App',
@@ -52,8 +53,14 @@
             },
             logout(){
                 localStorage.removeItem('loginInfo');
-                this.$router.push('/login')
-            }
+                this.$router.push('/login');
+                this.currentMusic(null);
+                this.playAll({isPlay: false});
+            },
+            ...mapActions([
+              'currentMusic',
+              'playAll',
+            ])
         }
     }
 </script>
