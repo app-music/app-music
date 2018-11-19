@@ -79,7 +79,6 @@
             navigateToDetail(index) {
                 this.currentMusic(this.songList);
                 this.currentMusicIndex(index);
-                this.playAll({isPlay: true});
                 this.playerDetailShow(true);
             },
             ...mapActions([

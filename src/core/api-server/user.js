@@ -33,8 +33,7 @@ export default {
             axios.post(`${nodePrefix}/nodeApi/users/register`, body).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);
             }, error => {
-                console.log('请确认后台服务器是否开启!');
-                throw new Error(error)
+                reject(error)
             }).catch(err=>{
 
             })

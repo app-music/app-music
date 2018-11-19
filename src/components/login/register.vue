@@ -78,18 +78,21 @@
                         };
                         this.$userService.register(body).then(res => {
                             this.$router.push('login')
-                        }, error => {
-                            console.log(error.msg)
+                        }, () => {
+                            console.log('后台服务器可能没有开启!前端模拟注册···');
+                            // 没有开node后台的情况
+                            let user = JSON.parse(localStorage.getItem('user'))||[];
+                            let index = user.findIndex(item=>item.userCode === body.userCode);
+                            if(index===-1){
+                                user.push(body);
+                                localStorage.setItem('user',JSON.stringify(user));
+                                Toast('注册成功');
+                                this.$router.push('login')
+                            }else {
+                                Toast('该用户已经被注册')
+                            }
                         })
-                        // let user = JSON.parse(localStorage.getItem('user'))||[];
-                        // let index = user.findIndex(item=>item.userCode === body.userCode);
-                        // if(index===-1){
-                        //     user.push(body);
-                        //     localStorage.setItem('user',JSON.stringify(user));
-                        //     Toast('注册成功')
-                        // }else {
-                        //     Toast('该用户已经被注册')
-                        // }
+
                     }else {
                         Toast('请正确填完信息!')
                     }
