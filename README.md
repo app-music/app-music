@@ -23,3 +23,39 @@
 > 2. 页面效果图
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/index.png)
 
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/login.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/singer.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/seniority.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/search.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/user.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/rec-detail.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/rec-detail_1.png)
+
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/play.png)
+
+
+---
+> 项目启动
+
+1. npm install
+2. npm run start
+3. 浏览器打开http://localhost:8080
+
+> 项目部署 
+-  npm run build 
+
+1. 生成的dist 文件部署到nginx上
+2. 使用webview 原理 打包成Android、ios app
+
+
+---
+### 为啥要用nginx部署
+
+> 项目中涉及到qq音乐接口；由于浏览器的同源策略限制，形成了跨域问题；使用nginx配置反向代理解决跨域问题。
+
