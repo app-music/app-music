@@ -37,7 +37,7 @@
 
 ![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/rec-detail_1.png)
 
-![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/play.png)
+![image](https://github.com/app-music/app-music/blob/master/src/assets/effect/player.png)
 
 
 ---
