@@ -4,7 +4,7 @@
             <div class="sing-icon" @click="detailShow()">
                 <img :src="getCount.image">
             </div>
-            <div class="text">
+            <div class="text" @click="detailShow()">
                 <p class="desc" v-html="getCount.name"></p>
                 <h2 class="name" v-html="getCount.singer[0].name"></h2>
             </div>

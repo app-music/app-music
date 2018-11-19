@@ -233,20 +233,17 @@
             },
             getHistory() {
                 this.his = JSON.parse(localStorage.getItem('__playHistory__')) || [];
-                console.log(this.his);
             },
             clickPlayAll() {
                 let index;
                 if(this.selected === '1'){
                     this.currentMusic(this.fav);
-                    debugger;
-                     index = CommonUtil.getRandomNumBoth(1, this.fav.length );
+                     index = CommonUtil.getRandomNumBoth(0, this.fav.length);
                 }else {
                     this.currentMusic(this.his);
-                     index = CommonUtil.getRandomNumBoth(1, this.his.length );
+                     index = CommonUtil.getRandomNumBoth(0, this.his.length);
                 }
                 this.currentMusicIndex(index);
-                this.playAll({isPlay: true});
                 this.playerDetailShow(true)
             },
             navigateToDetail(index){
