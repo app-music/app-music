@@ -3,7 +3,7 @@
 ---
 > 1. 前端 vue vuex mint-ui axios 
 > 2. 后台 nodejs mongodb qq音乐接口页面素材仿照慕课网视频
-> 3. 本人工作主要是angular6为主；目前 围绕音乐app 写了angular6版本 vue版本 react版本 weex版本 微信小程序版本，相关的代码可以参照我的github；
+> 3. 目前 围绕音乐app 写了angular6版本 vue版本 react版本 weex版本 微信小程序版本，相关的代码可以参照我的github；
 > 4. 后端用的主要是java springboot MyBatis mysql；
 > 5. 平时也研究nodejs mongodb；
 
