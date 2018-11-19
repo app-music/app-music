@@ -70,7 +70,6 @@
                         this.singerData.push(obj)
                     })
                 });
-                console.log(this.singerData);
             },
             selectItem(id){
                 this.$router.push({

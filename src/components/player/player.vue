@@ -64,7 +64,6 @@
                     let songs = this.getCurrentMusic;
                     this.paused = true;
                     let a = new Song(songs[this.currentMusicIndex]);
-                    console.log(a);
                     return a;
                 } else {
                     return new Song({singer: [{}]})
@@ -91,13 +90,10 @@
             ]),
         },
         watch: {
-            playAllMusic: {
-                deep: true,
-                handler() {
-                    this.$refs.audio[this.playAll.isPlay ? 'play' : 'pause']();
-                    this.time = this.$refs.audio.duration;
-                    // this.currentMusicTime(this.time)
-                }
+            playAll(value) {
+                this.$refs.audio[value.isPlay ? 'play' : 'pause']();
+                this.time = this.$refs.audio.duration;
+
             },
             currentMusicIndex(value) {
                 this.$nextTick(() => {
@@ -129,14 +125,12 @@
 
             },
             getPlayDetailEvent(evt) {
-                console.log('拖拽中', evt.currentTime);
                 this.$refs.audio.pause();
                 this.$refs.audio.currentTime = evt.currentTime;
 
 
             },
             getPlayDetailEventEnd(evt) {
-                console.log('结束', evt.currentTime);
                 this.$refs.audio.currentTime = evt.currentTime;
                 if (this.playAll.isPlay) {
                     this.$refs.audio.play();

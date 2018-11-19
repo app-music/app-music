@@ -90,7 +90,6 @@
                 if (this.getCurrentMusic) {
                     let songs = this.getCurrentMusic;
                     let a = new Song(songs[this.currentMusicIndex]);
-                    console.log(a);
                     return a;
                 }
             },
@@ -122,7 +121,6 @@
                         let id = this.getCurrentMusic[this.currentMusicIndex].songid;
                         let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                         let index = favoriteMusicData.findIndex(item => item.songid === id);
-                        console.log(this.getCurrentMusic[this.currentMusicIndex]);
                         this.$songService.getSongLyric(this.getCurrentMusic[this.currentMusicIndex].songmid).then(res=>{
                             let lyric = Base64.decode(res.lyric);
 
@@ -138,7 +136,6 @@
                         });
                         return '';
                     } catch (e) {
-                        console.log(e);
                     }
 
                 } else {
@@ -163,8 +160,6 @@
             }
         },
         created() {
-            console.log(this.currentSong);
-            console.log(this);
         },
         methods: {
             detailClose() {
@@ -194,7 +189,6 @@
             loveIt() {
                 if (this.getCurrentMusic) {
                     let songs = this.getCurrentMusic;
-                    console.log(songs);
                     songs[this.currentMusicIndex].islove = !songs[this.currentMusicIndex].islove;
                     let favoriteMusicData = JSON.parse(localStorage.getItem('__favoriteMusic__')) || [];
                     if (songs[this.currentMusicIndex].islove) {

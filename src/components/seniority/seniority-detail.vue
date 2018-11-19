@@ -32,7 +32,6 @@
 //        },
         getTopListDetail(id){
           this.$seniorityService.getTopListDetail(id).then(success=>{
-            console.log(success);
           this.imgUrl=success.topinfo.MacDetailPicUrl;
           this.title = success.topinfo.ListName;
           let arr=[];
@@ -46,7 +45,6 @@
           },failed=>{
 
           })
-          console.log(this.data);
           })
         }
       }

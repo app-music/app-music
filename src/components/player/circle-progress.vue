@@ -32,7 +32,6 @@
             return {}
         },
         created() {
-            console.log(this.$refs.rightCirlcle);
         },
         computed: {
             rightTransformDeg() {

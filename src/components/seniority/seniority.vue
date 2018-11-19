@@ -57,7 +57,6 @@
         methods: {
             getTopList() {
                 this.$seniorityService.getTopList().then(success => {
-                    console.log(success);
                     this.listData = success.data.topList;
                 }, failed => {
                     console.log(failed);

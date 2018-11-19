@@ -49,7 +49,6 @@
         },
         methods: {
             handleSelect(key, keyPath) {
-                console.log(key, keyPath);
             },
             logout(){
                 localStorage.removeItem('loginInfo');

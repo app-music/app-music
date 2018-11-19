@@ -30,7 +30,6 @@
       getCdListDetail() {
         this.$recommendService.getCdListDetail(this.id).then(result => {
           this.cdList = result.cdlist;
-          console.log(this.cdList);
             getSongUrlList(result.cdlist[0].songlist).then(res=>{
                 this.cdList[0].songlist = res
             },failed=>{

@@ -49,7 +49,6 @@
         methods: {
             getSearchKey() {
                 this.$searchService.getSearchKey().then(success => {
-                    console.log(success);
                     this.hotKey = success.data.hotkey.slice(0, 10);
                 }, failed => {
                     console.log(failed.msg);

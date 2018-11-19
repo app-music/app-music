@@ -5,7 +5,7 @@
   "author": "huxc10086@163.com",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "node ./src/assets/start.js && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "node ./src/assets/start.js && npm run dev",
     "build": "node build/build.js && npm run fixfont && npm run fiximg",
     "fixfont": "xcopy %cd%\\dist\\static\\fonts %cd%\\dist\\static\\css\\static\\fonts /s /y /d /e /i",
