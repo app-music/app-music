@@ -7,7 +7,6 @@ export default {
      * @returns {Promise}
      */
     getRecommend() {
-      console.log(qqPrefix);
       return new Promise((resolve, reject) => {
             axios.get(`${qqPrefix}/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=jsonp&platform=h5&uin=0&needNewCode=1`).then(result => {
                 result.data.code === 0 ? resolve(result.data) : reject(result.data);

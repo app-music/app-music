@@ -161,13 +161,19 @@
                 this._detailShow(true)
             },
             ended() {
-                console.log('播放结束');
-                this.playIt({isPlay: false})
+                this.playIt({isPlay: false});
+                if (this.currentMusicIndex === this.getCurrentMusic.length - 1) {
+                    this.currentIndex(0)
+                } else {
+                    this.currentIndex(this.currentMusicIndex + 1);
+                }
+
             },
             ...mapActions({
                 playIt: 'playAll',
                 currentMusicTime: 'currentMusicTime',
-                _detailShow: 'playerDetailShow'
+                _detailShow: 'playerDetailShow',
+                currentIndex: 'currentMusicIndex',
             })
 
         },
