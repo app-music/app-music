@@ -70,5 +70,13 @@ export class CommonUtil {
         return fmt;
 
     }
+
+  /**
+   * 获取登录信息
+   * returns {any}
+   */
+  static getToken(){
+        return JSON.parse(localStorage.getItem('loginInfo'));
+    }
 }
 

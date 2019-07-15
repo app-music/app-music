@@ -1,7 +1,7 @@
 /**
  * Created by xiaoconghu on 2018/5/21.
  */
-import axios from 'axios';
+import {axiosInstance as axios} from './axios';
 import {nodePrefix} from "./api.config";
 
 export default {

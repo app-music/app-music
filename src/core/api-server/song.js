@@ -2,7 +2,8 @@
  * Created by xiaoconghu on 2018/4/1.
  */
 
-import axios from 'axios';
+import {axiosInstance as axios} from './axios';
+
 import {commonParams} from "./recommend";
 import {CommonUtil} from "../utils/common-util";
 import {isValidMusic} from "../utils/song";
