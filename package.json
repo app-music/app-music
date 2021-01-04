@@ -12,7 +12,7 @@
     "fiximg": "xcopy %cd%\\dist\\static\\img %cd%\\dist\\static\\css\\static\\img /s /y /d /e /i"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "js-base64": "^2.4.3",
     "lyric-parser": "^1.0.1",
     "mint-ui": "^2.2.13",
